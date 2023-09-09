@@ -1,0 +1,45 @@
+.barra-menu-informes{
+    background-color: var(--fondo-Menu);
+    width: 100%;
+    padding: 10px;
+    display: flex;
+}
+
+.consultar{
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.informes-paso{
+    color: white;
+    background-color:  var(--magenta);
+    border-radius: 5px;
+    padding: 5px;
+    font-family: #FFF;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: start;
+    margin-right: 20px;
+    margin: 0px 20px;
+}
+
+.informes-paso:hover{
+    background-color: var(--gris-claro);
+}
+
+.informes-generales{
+    color: white;
+    background-color: var(--celeste);
+    border-radius: 5px;
+    padding: 5px;
+    font-family: #FFF;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: start;
+}
+
+.informes-generales:hover{
+    background-color: var(--gris-claro);
+}
