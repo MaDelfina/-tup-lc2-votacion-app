@@ -4,7 +4,7 @@
     background-color: var(--fondo-Cabecera);
     text-decoration: white;
     width: 100%;
-    margin: 0px auto;
+    margin:0px auto
 }
 
 .logo{
@@ -13,90 +13,123 @@
 
 /*Barra de menu*/
 .barra-menu{
+    color: #FFF;
     background-color: var(--fondo-Menu);
     width: 100%;
-    padding: 10px;
+    padding: 20px;
+    list-style:none;
     display: flex;
-    justify-content: end;
+    text-transform: uppercase;
 }
 
-.active{
-    color: white;
+#barra-menu-informes{
+    color: #FFF;
     border: 2px solid white;
     border-radius: 25px;
     padding: 5px 20px;
-    margin: 0px 50px;
+    margin: 0px 5px;
+    text-decoration:none;
+    text-transform: uppercase;
 }
+
+#barra-menu-paso,
+#barra-menu-generales{
+    color: #FFF;
+    border-radius:5px;
+    padding:5px 20px;
+    margin:0px 5px 0px 10px;
+    text-transform: uppercase;
+    text-decoration:none;
+}
+
+#barra-menu-paso{
+    background-color: var(--magenta);
+}
+
+#barra-menu-generales{
+    background-color: var(--celeste);
+}
+
+#barra-menu-informes:hover,
+#barra-menu-paso:hover,
+#barra-menu-generales:hover{
+    background-color: var(--gris-claro);
+}
+
 
 /*Contenido principal de la página */
+
 #sec-titulo{
-    display: flex;
+    display:flex
 }
 
-.sec-titulo-texto{
-    margin: 20px 200px 10px 0px;
+#sec-titulo-texto{
+    margin: 40px 150px 20px 80px;
 }
 
-.sec-titulo-h2{
+#sec-titulo-h2{
     font-family: 'Roboto', sans-serif;
     margin-bottom: 15px;
     font-size: 50px;
 }
 
-.sec-titulo-p{
+#sec-titulo-p{
     font-size: 20px;
 }
 
-.sec-titulo-img{
-    width: 400px;
-    padding-top: 50px;
-    padding-right: 150px;
+#sec-titulo-img{
+    margin: 40px 300px 0px 100px;
+    
 }
 
 /*Seccion para contenido de la página*/
-#sec-contenido{
-    margin: 20px 200px 10px 0px;
+
+#sec-contenido a{
+    text-decoration: none;
 }
 
-.botones-paso-generales{
-    display: flex;
-    margin: 10px 0px 0px 0px;
+#sec-contenido-p,
+#sec-contenido-h1{
+    margin-left: 80px;
 }
 
-.paso{
+#sec-contenido-p{
+    font-size:15px;
+}
+
+#botones-paso-generales{
+    display:flex;
+    margin: 10px 40px 40px 40px;
+    justify-content: center;
+}
+
+
+
+#paso{
     color: white;
     background-color:  var(--magenta);
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 10px;
+    margin:25px;
+    padding: 40px 0px 0px 20px;
     font-family: #FFF;
-    font-size: 20px;
-    text-transform: uppercase;
+    font-size: 28px;
     text-align: start;
-    margin-right: 20px;
-    width: 200px;
-    height: 30px;
-    margin: 0px 200px 0px 0px;
+    width: 400px;
+    height: 80px;
 }
 
-.paso:hover{
-    background-color: var(--gris-claro);
-}
 
-.generales{
+#generales{
     color: white;
-    background-color: var(--celeste);
-    border-radius: 5px;
-    padding: 5px;
+    background-color:  var(--celeste);
+    border-radius: 10px;
+    margin:25px;
+    padding: 40px 0px 0px 20px;
     font-family: #FFF;
-    font-size: 20px;
-    text-transform: uppercase;
+    font-size: 28px;
     text-align: start;
-    width: 200px;
-    height: 30px;
-}
-
-.generales:hover{
-    background-color: var(--gris-claro);
+    width: 400px;
+    height: 80px;
 }
 
 /*Footer*/
@@ -104,14 +137,19 @@
     background-color: var(--fondo-Footer);
     display: flex;
     justify-content: space-between;
+    width: 100%
 }
 
 .footer-p{
     color: var(--texto-footer);
-    margin: 10px 40px 10px 40px;
+    margin: 40px;
 }
 
 .footer-img{
     display: flex;
-    margin:5px 30px;
+    margin:40px;
 }
+
+.footer .logo_dine{
+    margin-left: 20px;
+    }
