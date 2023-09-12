@@ -2,8 +2,13 @@
 
 *{
     font-family: 'Roboto', sans-serif;
+}
+
+html,
+body{
     margin: 0px;
     padding: 0px;
+    background-color: rgb(235, 245, 251)/*volvi a descargar la imagen desde freepik porque tenia fondo blanco y quedaba mal con el fondo propuesto*/
 }
 
 p{

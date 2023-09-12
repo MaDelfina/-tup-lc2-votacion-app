@@ -1,0 +1,115 @@
+
+/*Barra de logo portal*/
+.header-page{
+    padding: 5px;
+    background-color: var(--fondo-Cabecera);
+    width: 100%;
+    margin:0px auto;
+}
+
+.logo{
+    margin: 0px 15px;
+}
+
+/*Barra de menu*/
+.barra-menu{
+    color: #FFF;
+    background-color: var(--fondo-Menu);
+    width: 100%;
+    padding: 10px;
+    list-style:none;
+    display: flex;
+    align-items: baseline;
+    text-transform: uppercase;
+    margin: 0px auto;
+    gap:15px;
+}
+
+form{
+    display:flex;
+}
+
+.desplegable{
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    height:30px;
+    padding: 5px 0px;
+    color: var(--celeste);
+    margin:0px 5px 0px 5px;
+}
+
+#barra-menu-filtrar{
+    background-color: white;
+    border-radius: 15px;
+    padding:5px 20px;
+    color:var(--textos);
+    text-align: center;
+    font-size: 13px;
+}
+
+#barra-menu-paso{
+    color: #FFF;
+    border-radius:5px;
+    padding:5px 20px;
+    text-decoration:none;
+    background-color: var(--magenta);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size:13px;
+
+}
+
+#barra-menu-informes{
+    color: #FFF;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 5px 20px;
+    text-decoration:none;
+    text-align: center;
+    font-size:13px;
+    
+}
+
+#barra-menu-informes:hover,
+#barra-menu-paso:hover{
+    background-color: var(--gris-claro);
+}
+
+#barra-menu-inicio{
+    color: #FFF;
+    background-color: var(--gris-claro);
+    border-radius: 5px;
+    padding:5px 30px;
+    text-decoration:none;
+    font-size: 13px;
+    text-align: center;
+    margin-left:800%; /*quise ubicarlo al final de la fila de otra forma pero no pude*/
+}
+
+#barra-menu-inicio:hover{
+    background-color: var(--textos);
+}
+
+
+/*Footer*/
+.footer{
+    background-color: var(--fondo-Footer);
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+}
+
+.footer-p{
+    color: var(--texto-footer);
+    margin: 40px;
+}
+
+.footer-img{
+    display: flex;
+    margin:40px;
+}
+
+.footer .logo_dine{
+    margin-left: 20px;
+    }
