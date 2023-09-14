@@ -1,8 +1,12 @@
-.barra-menu-informes{
-    background-color: var(--fondo-Menu);
-    width: 100%;
-    padding: 10px;
-    display: flex;
+#barra-menu-inicio{
+    color: #FFF;
+    background-color: var(--gris-claro);
+    border-radius: 5px;
+    padding:5px 30px;
+    text-decoration:none;
+    font-size: 13px;
+    text-align: center;
+    margin-left: 800%;
 }
 
 .consultar{
@@ -42,4 +46,36 @@
 
 .informes-generales:hover{
     background-color: var(--gris-claro);
+}
+
+/*Contenido principal de la página*/
+#sec-titulo-informe{
+    display: flex;
+    justify-content: center;
+}
+
+.sec-titulo-exito{
+    background-color: var(--mensaje-usuario-verde);
+}
+
+.sec-titulo-error{
+    background-color: var(--mensaje-usuario-rojo);
+}
+
+.sec-titulo-imcompleto{
+    background-color: var(--mensaje-usuario-amarillo);
+}
+
+.mensaje{
+    margin: 20px auto;
+    padding: 15px;
+    width: 400px;
+    padding: 15px;
+    color: #FFffFF;
+    font-size: 13px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

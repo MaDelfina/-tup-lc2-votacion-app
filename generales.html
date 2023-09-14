@@ -4,21 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/5.15.4/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/png" href="img/icons/favicon-16x16.png">
     <title>Generales</title>
+
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/pages/generales.css" />
+
+    <!--Link font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <header>
         <!--Barra de logo portal-->
         <div class="header-page">
-            <a href="index.html"><img src="img/Logo_DINE_negativo.png" alt="logo" class="logo" width="150px"
-                    href="index.html"></a>
+            <a href="index.html"><img src="img/Logo_DINE_negativo.png" alt="logo" class="logo" width="150px" href="index.html"></a>
         </div>
         <!--Barra de menú principal-->
         <div>
@@ -62,14 +64,45 @@
     <main>
         <section id="sec-titulo">
             <!--Seccion para agregar una palicula favorita por codigo-->
-            <h2>Generales</h2>
-            <p>Párrafo o subtítulo</p>
-            <div>Imagen</div>
+            <div class="sec-titulo-mensajes">
+                <p class="sec-titulo-exito mensaje"><i class="fa fa-thumbs-up"></i>Se agrego con exito el resultado al informe</p>
+                <p class="sec-titulo-error mensaje"><i class="fa fa-exclamation-triangle"></i>Error. Se produjo un error al intentar agregar resultados al informe</p>
+                <p class="sec-titulo-imcompleto mensaje"><i class="fa fa-exclamation"></i>La operacion no se puedo completar</p>
+            </div>
+
+            <h1>Elecciones 2021 | Generales</h1>
+            <p class="texto-path">2020 > Generales > Provisorio > Senadores Nacionales > Buenos Aires</p>
+            <div class="div-agregar-informe">
+                <p class="agregar-a-informe">Agregar a informe</p>
+                <div class="recuadro-resumen-info">
+                    <p class="mesas-estructuradas">Mesas Estructuradas</p>
+                    <p class="electores">Electores</p>
+                    <p class="participacion-escrutado">Participacion sobre escrutado</p>
+                </div>
+            </div>
         </section>
+
         <section id="sec-contenido">
             <!--Seccion para contenido de la página-->
+            <!--Recuadros-->
+            <!--Recuadro 1-->
+            <div class="recuadro agrupacion-politica">
+                <h4 class="titulo">Agrupaciones politicas</h4>
+                <hr>
+            </div>
+            <!--Recuadro 2-->
+            <div class="recuadro">
+                <h4 class="titulo">Buenos Aires</h4>
+                <hr>
+            </div>
+            <!--Recuadro 3-->
+            <div class="recuadro">
+                <h4 class="titulo">Resumen de votos</h4>
+                <hr>
+            </div>
         </section>
     </main>
+
     <!--Pie de página-->
     <footer class="footer">
         <div class="footer-img">

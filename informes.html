@@ -10,31 +10,39 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/pages/index.css" />
     <link rel="stylesheet" href="css/pages/informes.css">
+
+    <!--Link font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <header>
         <!--Barra de logo portal-->
         <div class="header-page">
-            <a href="index.html"><img src="img/logo_DINE.png" alt="logo" class="logo" width="150px"></a>
-            <!--<a href="index.html"><img src="img/dine.png" alt="logo" class="logo"> Dirección Nacional Electoral</a>-->
+            <a href="index.html"><img src="img/Logo_DINE_negativo.png" alt="logo" class="logo" width="150px" href="index.html"></a>
+
         </div>
         <!--Barra de menú principal-->
-        <ul class="barra-menu-informes">
-            <p class="consultar">Consultar</p>
-            <a href="paso.html" class="informes-paso">PASO</a>
-            <a href="paso.html" class="informes-generales">GENERALES</a>
-            <a href="index.html">INICIO</a>
-        </ul>
+        <div>
+            <ul class="barra-menu">
+                <li>CONSULTAR:</li>
+                <li><a id="barra-menu-paso" href="paso.html"> paso </a></li>
+                <li><a id="barra-menu-generales" href="generales.html"> generales </a></li>
+                <li><a id="barra-menu-inicio" href="index.html"> INICIO</a></li>
+            </ul>
+        </div>
     </header>
     
     <!-- Contenido principal de la página -->
     <main>
-        <section id="sec-titulo">
+        <section id="sec-titulo-informe">
             <!--Seccion para agregar una palicula favorita por codigo-->
-            <h2>Informes</h2>
-            <p>Párrafo o subtítulo</p>
-            <div>Imagen</div>
+            <div class="sec-titulo-mensajes">
+                <p class="sec-titulo-exito mensaje"><i class="fa fa-thumbs-up"></i>Se agrego con exito el resultado al informe</p>
+                <p class="sec-titulo-error mensaje"><i class="fa fa-exclamation-triangle"></i>Error. Se produjo un error al intentar agregar resultados al informe</p>
+                <p class="sec-titulo-imcompleto mensaje"><i class="fa fa-exclamation"></i>La operacion no se puedo completar</p>
+            </div>
+            
         </section>
         <section id="sec-contenido">
             <!--Seccion para contenido de la página-->

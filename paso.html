@@ -6,40 +6,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistema de Publicación de Resultados Electorales</title>
     <link rel="shortcut icon" type="image/png" href="favicon-16x16.png">
+
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/pages/paso.css">
+    <link rel="stylesheet" href="css/pages/informes.css">
+
+    <!--Link font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <header>
         <!--Barra de logo portal-->
         <div class="header-page">
-            <img src="img/dine.png" alt="logo" class="logo" href="index.html"> Dirección Nacional
-            Electoral
+            <a href="index.html"><img src="img/Logo_DINE_negativo.png" alt="logo" class="logo" width="150px" href="index.html"></a>
         </div>
         <!--Barra de menú principal-->
-        <ul>
-            <li><a class="active" href="informes.html">Informes</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
+        <div>
+            <ul class = "barra-menu">
+                <form>
+                    <li>
+                        <select class="desplegable">
+                            <option> Año: </option>
+                            <option> 2020 </option>
+                            <option> 2021 </option>
+                            <option> 2022 </option>
+                            <option> 2023 </option>
+                        </select>
+                    </li>
+                    <li>
+                        <select class="desplegable">
+                            <option> Cargo: </option>
+                            <option> Presidente </option>
+                            <option> Senadores </option>
+                            <option> Diputados </option>
+                        </select>
+                    </li>
+                    <li>
+                        <select class="desplegable">
+                            <option> Distrito: </option>
+                            <option> Buenos Aires </option>
+                            <option> Santa Fe </option>
+                            <option> Entre Ríos </option>
+                        </select>
+                    </li>
+                </form>
+                <li id="barra-menu-filtrar"> filtrar</li> <!--FALTA AGREGAR ICONO DE LUPITA-->
+                <li><a id="barra-menu-paso" href="paso.html"> paso </a></li>
+                <li><a id="barra-menu-informes" href="informes.html"> informes</a></li>
+                <li><a id="barra-menu-inicio" href="index.html"> inicio </a></li>
+            </ul>
+        </div>
     </header>
     
     <!-- Contenido principal de la página -->
     <main>
         <section id="sec-titulo">
             <!--Seccion para agregar una palicula favorita por codigo-->
-            <h2>Paso</h2>
-            <p>Párrafo o subtítulo</p>
-            <div>Imagen</div>
+            <div class="sec-titulo-mensajes">
+                <p class="sec-titulo-exito mensaje"><i class="fa fa-thumbs-up"></i>Se agrego con exito el resultado al informe</p>
+                <p class="sec-titulo-error mensaje"><i class="fa fa-exclamation-triangle"></i>Error. Se produjo un error al intentar agregar resultados al informe</p>
+                <p class="sec-titulo-imcompleto mensaje"><i class="fa fa-exclamation"></i>La operacion no se puedo completar</p>
+            </div>
+
+            <h1>Elecciones 2021 | Paso</h1>
+            <p class="texto-path">2020 > Generales > Provisorio > Senadores Nacionales > Buenos Aires</p>
+            <div class="div-agregar-informe">
+                <p class="agregar-a-informe">Agregar a informe</p>
+                <div class="recuadro-resumen-info">
+                    <p class="mesas-estructuradas">Mesas Estructuradas</p>
+                    <p class="electores">Electores</p>
+                    <p class="participacion-escrutado">Participacion sobre escrutado</p>
+                </div>
+            </div>
         </section>
+
         <section id="sec-contenido">
             <!--Seccion para contenido de la página-->
+            <!--Recuadros-->
+            <!--Recuadro 1-->
+            <div class="recuadro agrupacion-politica">
+                <h4 class="titulo">Agrupaciones politicas</h4>
+                <hr>
+            </div>
+            <!--Recuadro 2-->
+            <div class="recuadro">
+                <h4 class="titulo">Buenos Aires</h4>
+                <hr>
+            </div>
+            <!--Recuadro 3-->
+            <div class="recuadro">
+                <h4 class="titulo">Resumen de votos</h4>
+                <hr>
+            </div>
         </section>
     </main>
+
     <!--Pie de página-->
-    <footer>
-        <p>Desarrollado con ♥ - LC2</p>
+    <footer class="footer">
+        <div class="footer-img">
+            <img src="img/icons/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="Ministerio-del-Interior_pluma"
+                width="100px">
+            <img src="img/icons/Logo_DINE_negativo.a88f983e.png" alt="Logo_DINE_negativo" width="100px">
+            <img src="img/icons/logos_001-10.4430c8d5.png" alt="logos_001-10" width="100px">
+        </div>
+
+        <p class="footer-p">Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley
+            19945). Los porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art. 45
+            Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores residentes
+            en el exterior ni privados de la libertad. Al usar este sitio usted acepta los <a>Términos y Condiciones</a>
+        </p>
     </footer>
 </body>
 </html>
-
