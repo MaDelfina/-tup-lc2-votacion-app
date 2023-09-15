@@ -51,7 +51,8 @@
                         </select>
                     </li>
                 </form>
-                <li id="barra-menu-filtrar"> <i class="fa fa-search" aria-hidden="true"></i> filtrar</li> <!--FALTA AGREGAR ICONO DE LUPITA-->
+                <li id="barra-menu-filtrar"><i class="fa fa-search"></i> filtrar</li>
+                <!--FALTA AGREGAR ICONO DE LUPITA-->
                 <li><a id="barra-menu-paso" href="paso.html"> paso </a></li>
                 <li><a id="barra-menu-informes" href="informes.html"> informes</a></li>
                 <li><a id="barra-menu-inicio" href="index.html"> inicio </a></li>
@@ -64,9 +65,12 @@
         <section id="sec-titulo">
             <!--Seccion para agregar una palicula favorita por codigo-->
             <div class="sec-titulo-mensajes">
-                <p class="sec-titulo-exito mensaje"><i class="fa fa-thumbs-up"></i> &nbsp Se agrego con exito el resultado al informe</p>
-                <p class="sec-titulo-error mensaje"><i class="fa fa-exclamation-triangle"></i> &nbsp Error. Se produjo un error al intentar agregar resultados al informe</p>
-                <p class="sec-titulo-imcompleto mensaje"><i class="fa fa-exclamation"></i> &nbsp La operacion no se puedo completar</p>
+                <p class="sec-titulo-exito mensaje"><i class="fa fa-thumbs-up"></i> &nbsp Se agrego con exito el
+                    resultado al informe</p>
+                <p class="sec-titulo-error mensaje"><i class="fa fa-exclamation-triangle"></i> &nbsp Error. Se produjo
+                    un error al intentar agregar resultados al informe</p>
+                <p class="sec-titulo-imcompleto mensaje"><i class="fa fa-exclamation"></i> &nbsp La operacion no se
+                    puedo completar</p>
             </div>
 
             <h1>Elecciones 2021 | Generales</h1>
@@ -83,21 +87,75 @@
 
         <section id="sec-contenido">
             <!--Seccion para contenido de la página-->
-            <!--Recuadros-->
             <!--Recuadro 1-->
             <div class="recuadro agrupacion-politica">
                 <h4 class="titulo">Agrupaciones politicas</h4>
+                <p>Juntos por el cambio</p>
+
                 <hr>
+
+                <div class="juntos juntos-por-el-cambio">
+                    <p>Juntos</p>
+                    <div>
+                        <p>38%</p>
+                        <p>30000 VOTOS</p>
+                    </div>
+                </div>
+                <div class="progress" style="background: var(--grafica-amarillo-claro);">
+                    <div class="progress-bar" style="width:15%; background: var(--graficaamarillo);">
+                        <span class="progress-bar-text">75%</span>
+                    </div>
+                </div>
+
+                <div class="jp juntos-por-el-cambio">
+                    <p>JP</p>
+                    <div>
+                        <p>20%</p>
+                        <p>12000 VOTOS</p>
+                    </div>
+                </div>
+                <div class="progress" style="background: var(--grafica-amarillo-claro);">
+                    <div class="progress-bar" style="width:15%; background: var(--graficaamarillo);">
+                        <span class="progress-bar-text">15%</span>
+                    </div>
+                </div>
+                <p>ECO + VAMOS CORRIENTES</p>
+                <hr>
+
             </div>
             <!--Recuadro 2-->
             <div class="recuadro">
                 <h4 class="titulo">Buenos Aires</h4>
                 <hr>
+                <svg class="ciudad-autonoma-ba-as" height="210" width="800">
+                    <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
+                        fill-rule="evenodd" d="M182 61L179 56L176 58L178 56L176
+                    53L173 55L169 47L168 48L164 45L157 43L158 41L155 41L154 36L149 32L148 33L143 29L142
+                    30L145 32L140 29L138 32L137 30L140 29L139 26L137 28L136 23L133 22L130 27L103 41L81
+                    99L82 134L131 179L159 140L168 137L171 139L174 138L181 141L186 137L195 136L200 130L207
+                    125L205 120L210 118L210 112L205 107L210 110L213 114L215 113L215 110L217 110L218 112L219
+                    111L217 109L221 111L224 109L220 106L222 106L221 102L218 102L216 104L215 103L217 102L212
+                    102L220 101L219 95L216 92L214 86L208 81L200 83L199 80L201 79L202 81L200 77L206 75L203
+                    75L203 73L206 73L201 71L205 70L199 69L198 68L202 68L200 66L195 67L194 66L198 65L188
+                    62L192 62L190 60L183 59L189 64L187 65z"></path>
+                </svg>
             </div>
             <!--Recuadro 3-->
             <div class="recuadro">
-                <h4 class="titulo">Resumen de votos</h4>
-                <hr>
+                <div class="chart-wrap horizontal">
+                    <h4 class="titulo">Resumen de votos</h4>
+                    <hr>
+                    <div class="grid">
+                        <div class="bar" style="--bar-value:85%;--bar-color:var(--grafica-amarillo);" data-name="Partido 1" title="Your Blog 85%"></div>
+                        <div class="bar" style="--bar-value:23%;--bar-color:var(--grafica-lila2);" data-name="Partido 2" title="Medium23%"></div>
+                        <div class="bar" style="--bar-value:7%;--bar-color:var(--grafica-bordo);" data-name="Partido 3" title="Tumblr7%"></div>
+                        <div class="bar" style="--bar-value:38%;--bar-color:var(--grafica-celeste);" data-name="Partido 4" title="Facebook38%"></div>
+                        <div class="bar" style="--bar-value:35%;--bar-color:var(--grafica-lila2-claro);" data-name="Partido 5" title="YouTube35%"></div>
+                        <div class="bar" style="--bar-value:30%;--bar-color:var(--grafica-bordo);" data-name="Partido 6" title="LinkedIn30%"></div>
+                        <div class="bar" style="--bar-value:20%;--bar-color:var(--grafica-gris-claro);" data-name="Otros" title="Other20%"></div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -106,7 +164,8 @@
     <footer class="footer">
         <div class="footer-img">
             <img src="img/icons/logo_ministerio.png" alt="Ministerio-del-Interior_pluma" width="150" height="50">
-            <img src="img/icons/Logo_DINE_negativo.a88f983e.png" alt="Logo_DINE_negativo" class="logo_dine" width="150px" height="40">
+            <img src="img/icons/Logo_DINE_negativo.a88f983e.png" alt="Logo_DINE_negativo" class="logo_dine"
+                width="150px" height="40">
             <img src="img/icons/logo_observatorio.png" alt="logos_001-10" width="140" height="50">
         </div>
 

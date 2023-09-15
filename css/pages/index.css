@@ -46,7 +46,6 @@
     background-color: var(--gris-claro);
 }
 
-
 /*Contenido principal de la página */
 
 #sec-titulo{
@@ -64,11 +63,11 @@
 }
 
 #sec-titulo-p{
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #sec-titulo-img{
-    margin: 40px 300px 0px 100px;
+    margin: 50px 150px 0px 0px;
     
 }
 
