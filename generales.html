@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/png" href="img/icons/favicon-16x16.png">
-    <title>Generales</title>
+    <title>Sistema de Publicación de Resultados Electorales</title>
 
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/common.css" />
@@ -19,12 +18,12 @@
 <body>
     <header>
         <!--Barra de logo portal-->
-        <div class="header-page">
-            <a href="index.html"><img src="img/Logo_DINE_negativo.png" alt="logo" class="logo" width="150px" href="index.html"></a>
+        <div id="header-page">
+            <a href="index.html"><img src="img/logo_DINE.png" alt="logo" id="logo"></a>
         </div>
         <!--Barra de menú principal-->
         <div>
-            <ul class = "barra-menu">
+            <ul class="barra-menu">
                 <form>
                     <li>
                         <select class="desplegable">
@@ -52,7 +51,7 @@
                         </select>
                     </li>
                 </form>
-                <li id="barra-menu-filtrar"> filtrar</li> <!--FALTA AGREGAR ICONO DE LUPITA-->
+                <li id="barra-menu-filtrar"> <i class="fa fa-search" aria-hidden="true"></i> filtrar</li> <!--FALTA AGREGAR ICONO DE LUPITA-->
                 <li><a id="barra-menu-paso" href="paso.html"> paso </a></li>
                 <li><a id="barra-menu-informes" href="informes.html"> informes</a></li>
                 <li><a id="barra-menu-inicio" href="index.html"> inicio </a></li>
@@ -65,9 +64,9 @@
         <section id="sec-titulo">
             <!--Seccion para agregar una palicula favorita por codigo-->
             <div class="sec-titulo-mensajes">
-                <p class="sec-titulo-exito mensaje"><i class="fa fa-thumbs-up"></i>Se agrego con exito el resultado al informe</p>
-                <p class="sec-titulo-error mensaje"><i class="fa fa-exclamation-triangle"></i>Error. Se produjo un error al intentar agregar resultados al informe</p>
-                <p class="sec-titulo-imcompleto mensaje"><i class="fa fa-exclamation"></i>La operacion no se puedo completar</p>
+                <p class="sec-titulo-exito mensaje"><i class="fa fa-thumbs-up"></i> &nbsp Se agrego con exito el resultado al informe</p>
+                <p class="sec-titulo-error mensaje"><i class="fa fa-exclamation-triangle"></i> &nbsp Error. Se produjo un error al intentar agregar resultados al informe</p>
+                <p class="sec-titulo-imcompleto mensaje"><i class="fa fa-exclamation"></i> &nbsp La operacion no se puedo completar</p>
             </div>
 
             <h1>Elecciones 2021 | Generales</h1>
@@ -107,7 +106,7 @@
     <footer class="footer">
         <div class="footer-img">
             <img src="img/icons/logo_ministerio.png" alt="Ministerio-del-Interior_pluma" width="150" height="50">
-            <img src="img/icons/logo_DINE.png" alt="Logo_DINE_negativo" class="logo_dine" width="150px" height="40">
+            <img src="img/icons/Logo_DINE_negativo.a88f983e.png" alt="Logo_DINE_negativo" class="logo_dine" width="150px" height="40">
             <img src="img/icons/logo_observatorio.png" alt="logos_001-10" width="140" height="50">
         </div>
 

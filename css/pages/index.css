@@ -1,14 +1,3 @@
-/*Barra de logo portal*/
-.header-page{
-    padding: 0.5em;
-    background-color: var(--fondo-Cabecera);
-    width: 100%;
-    margin:0px auto
-}
-
-.logo{
-    margin: 0px 20px;
-}
 
 /*Barra de menu*/
 .barra-menu{
@@ -18,10 +7,11 @@
     padding: 20px;
     list-style:none;
     display: flex;
-    text-transform: uppercase;
-    margin:0px auto;
     align-items: baseline;
-    gap:15px; /*espaciado entre los elementos del menu*/
+    justify-content:left;
+    text-transform: uppercase;
+    margin: 0px auto;
+    gap:15px;
 }
 
 #barra-menu-informes{
@@ -132,24 +122,3 @@
     height: 80px;
 }
 
-/*Footer*/
-.footer{
-    background-color: var(--fondo-Footer);
-    display: flex;
-    justify-content: space-between;
-    width: 100%
-}
-
-.footer-p{
-    color: var(--texto-footer);
-    margin: 40px;
-}
-
-.footer-img{
-    display: flex;
-    margin:40px;
-}
-
-.footer .logo_dine{
-    margin-left: 20px;
-    }

@@ -1,51 +1,53 @@
-#barra-menu-inicio{
+.barra-menu{
+    color: #FFF;
+    background-color: var(--fondo-Menu);
+    width: 100%;
+    padding: 20px;
+    list-style:none;
+    display: flex;
+    align-items: baseline;
+    justify-content:left;
+    text-transform: uppercase;
+    margin: 0px auto;
+    gap:15px;
+}
+
+#barra-menu-paso,
+#barra-menu-generales{
+    color: #FFF;
+    border-radius:5px;
+    padding:5px 20px;
+    text-decoration:none;
+    text-align: center;
+}
+
+#barra-menu-paso{
+    background-color: var(--magenta);
+}
+
+#barra-menu-generales{
+    background-color: var(--celeste);
+}
+
+#barra-menu-informes:hover,
+#barra-menu-paso:hover,
+#barra-menu-generales:hover{
+    background-color: var(--gris-claro);
+}
+
+#barra-menu-inicio{ /* ESTE BOTON VERGA SE CAGA VER COMO CENTRARLO AL CONTENEDOR*/
     color: #FFF;
     background-color: var(--gris-claro);
     border-radius: 5px;
     padding:5px 30px;
     text-decoration:none;
     font-size: 13px;
-    text-align: center;
-    margin-left: 800%;
+    position: absolute; 
+    right: 25px;
 }
 
-.consultar{
-    color: white;
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-}
-
-.informes-paso{
-    color: white;
-    background-color:  var(--magenta);
-    border-radius: 5px;
-    padding: 5px;
-    font-family: #FFF;
-    font-size: 15px;
-    text-transform: uppercase;
-    text-align: start;
-    margin-right: 20px;
-    margin: 0px 20px;
-}
-
-.informes-paso:hover{
-    background-color: var(--gris-claro);
-}
-
-.informes-generales{
-    color: white;
-    background-color: var(--celeste);
-    border-radius: 5px;
-    padding: 5px;
-    font-family: #FFF;
-    font-size: 15px;
-    text-transform: uppercase;
-    text-align: start;
-}
-
-.informes-generales:hover{
-    background-color: var(--gris-claro);
+#barra-menu-inicio:hover{
+    background-color: var(--textos);
 }
 
 /*Contenido principal de la página*/

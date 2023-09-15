@@ -6,9 +6,22 @@
 
 html,
 body{
-    margin: 0px;
+    margin: 0px auto;
     padding: 0px;
-    background-color: rgb(235, 245, 251)/*volvi a descargar la imagen desde freepik porque tenia fondo blanco y quedaba mal con el fondo propuesto*/
+    background-color: rgb(235, 245, 251);
+}
+
+/*Barra de logo portal*/
+#header-page{
+    padding: 10px;
+    background-color: var(--fondo-Cabecera);
+    width: 100%;
+    margin:0px;
+}
+
+#logo{
+    margin: 0px 20px;
+    width: 150px;
 }
 
 p{
@@ -31,6 +44,29 @@ h3{
     font-size: 18px;
     color: var(--titulos);
 }
+
+/*Footer*/
+.footer{
+    background-color: var(--fondo-Footer);
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+}
+
+.footer-p{
+    color: var(--texto-footer);
+    margin: 40px;
+}
+
+.footer-img{
+    display: flex;
+    margin:40px;
+}
+
+.footer .logo_dine{
+    margin-left: 20px;
+    margin-top: 5px;
+    }
 
 /*Paleta de colores*/
 :root {
