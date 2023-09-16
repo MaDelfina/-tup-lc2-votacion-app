@@ -1,74 +1,75 @@
-.barra-menu{
+.barra-menu {
     color: #FFF;
     background-color: var(--fondo-Menu);
     width: 100%;
     padding: 20px;
-    list-style:none;
+    list-style: none;
     display: flex;
     align-items: baseline;
-    justify-content:left;
+    justify-content: left;
     text-transform: uppercase;
     margin: 0px auto;
-    gap:15px;
+    gap: 15px;
 }
 
 #barra-menu-paso,
-#barra-menu-generales{
+#barra-menu-generales {
     color: #FFF;
-    border-radius:5px;
-    padding:5px 20px;
-    text-decoration:none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    text-decoration: none;
     text-align: center;
 }
 
-#barra-menu-paso{
+#barra-menu-paso {
     background-color: var(--magenta);
 }
 
-#barra-menu-generales{
+#barra-menu-generales {
     background-color: var(--celeste);
 }
 
 #barra-menu-informes:hover,
 #barra-menu-paso:hover,
-#barra-menu-generales:hover{
+#barra-menu-generales:hover {
     background-color: var(--gris-claro);
 }
 
-#barra-menu-inicio{ /* ESTE BOTON VERGA SE CAGA VER COMO CENTRARLO AL CONTENEDOR*/
+#barra-menu-inicio {
+    /* ESTE BOTON VERGA SE CAGA VER COMO CENTRARLO AL CONTENEDOR*/
     color: #FFF;
     background-color: var(--gris-claro);
     border-radius: 5px;
-    padding:5px 30px;
-    text-decoration:none;
+    padding: 5px 30px;
+    text-decoration: none;
     font-size: 13px;
-    position: absolute; 
+    position: absolute;
     right: 25px;
 }
 
-#barra-menu-inicio:hover{
+#barra-menu-inicio:hover {
     background-color: var(--textos);
 }
 
 /*Contenido principal de la página*/
-#sec-titulo-informe{
+#sec-titulo-informe {
     display: flex;
     justify-content: center;
 }
 
-.sec-titulo-exito{
+.sec-titulo-exito {
     background-color: var(--mensaje-usuario-verde);
 }
 
-.sec-titulo-error{
+.sec-titulo-error {
     background-color: var(--mensaje-usuario-rojo);
 }
 
-.sec-titulo-imcompleto{
+.sec-titulo-imcompleto {
     background-color: var(--mensaje-usuario-amarillo);
 }
 
-.mensaje{
+.mensaje {
     margin: 20px auto;
     padding: 15px;
     width: 400px;
@@ -80,4 +81,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/*Seccion para contenido de la página*/
+.recuadro-reporte-elecciones {
+    width: 800px;
+    height: 400px;
+    border-radius: 25px;
+    border: 1px var(--borde-Grilla) solid;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 1em;
+    margin: 20px 200px;
+}
+
+.recuadro-informe {
+    display: flex;
+    justify-content: space-around;
+}
+
+hr {
+    width: 800px;
+    margin: 0 auto 50px auto;
+    border-radius: 15px;
+    border: 1px solid var(--borde-Grilla);
+    border-collapse: collapse;
+    background-color: rgb(250, 250, 250);
+}
+
+.datos-recuadro{
+    display: flex;
+}
+
+.texto-elecciones-chico {
+    font-size: 12px;
+    color: var(--textos);
+    font-weight: bold;
+}
+
+.texto-path-chico {
+    font-size: 11px;
+    color: var(--celeste);
 }

@@ -1,4 +1,3 @@
-
 /*Barra de menu*/
 .barra-menu{
     color: #FFF;
@@ -92,8 +91,6 @@
     justify-content: center;
 }
 
-
-
 #paso{
     color: white;
     background-color:  var(--magenta);
@@ -105,8 +102,8 @@
     text-align: start;
     width: 400px;
     height: 80px;
+    display: flex;
 }
-
 
 #generales{
     color: white;
@@ -119,5 +116,5 @@
     text-align: start;
     width: 400px;
     height: 80px;
+    display: flex;
 }
-
