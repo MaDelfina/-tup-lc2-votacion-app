@@ -2,7 +2,6 @@
 .barra-menu {
     color: #FFF;
     background-color: var(--fondo-Menu);
-    width: 100%;
     padding: 12px;
     list-style: none;
     display: flex;
@@ -76,7 +75,7 @@ form {
     text-decoration: none;
     font-size: 13px;
     position:absolute;
-    right:20px;
+    right:40px;
     transform: translate(0px, -65%);
 }
 
@@ -86,6 +85,7 @@ form {
 }
 
 /*Contenido principal de la página*/
+/*Mensajes usuario*/
 .sec-titulo-exito {
     background-color: var(--mensaje-usuario-verde);
 }
@@ -119,6 +119,7 @@ form {
     justify-content: center;
 }
 
+/*Sec-contenido-botones*/
 #sec-titulo {
     margin:40px 50px 40px 80px;
 }
@@ -129,26 +130,34 @@ form {
     color: var(--celeste);
     margin:0px auto;
 }
-
-#sec-contenido-arriba{
-    display:flex;
+#sec-contenido-botones{
+    display: flex;
+    justify-content: center;
+    margin:40px;
+    align-items: center;
 }
 
 #boton-informe {
     background-color: var(--gris-claro);
     color: white;
     font-size: 10px;
-    padding: 10px;
+    padding: 10px ;
     border-radius: 5px;
     text-transform: uppercase;
     margin: 12px 1px;
+    display: flex;
+   
 }
 
 .agregar-a-informe:hover {
     color: var(--textos);
 }
 
-
+#recuadro-resumen-info{
+    display:flex;
+    gap:15px;
+    margin-right: 300px;
+}
 .mesas-estructuradas {
     background-color: var(--celeste);
     border-radius: 10px;
@@ -179,8 +188,11 @@ form {
 
 /*Seccion para contenido de la página*/
 
-#recuadros{
+#recuadros-centrales{
     display:flex;
+    margin:0px 40px ;
+    justify-content: center;
+    gap:40px;
 }
 
 .recuadro {

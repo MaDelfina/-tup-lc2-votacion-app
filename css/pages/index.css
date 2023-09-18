@@ -2,7 +2,7 @@
 .barra-menu{
     color: #FFF;
     background-color: var(--fondo-Menu);
-    width: 100%;
+    
     padding: 20px;
     list-style:none;
     display: flex;
