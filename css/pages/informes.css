@@ -36,7 +36,6 @@
 }
 
 #barra-menu-inicio {
-    /* ESTE BOTON VERGA SE CAGA VER COMO CENTRARLO AL CONTENEDOR*/
     color: #FFF;
     background-color: var(--gris-claro);
     border-radius: 5px;
@@ -45,6 +44,7 @@
     font-size: 13px;
     position: absolute;
     right: 25px;
+    top: 12%;
 }
 
 #barra-menu-inicio:hover {
@@ -92,7 +92,7 @@
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     padding: 1em;
     margin: 20px 200px;
-}
+}*/
 
 .recuadro-informe {
     display: flex;
@@ -112,11 +112,11 @@
 .texto-path-chico {
     font-size: 11px;
     color: var(--celeste);
-}*/
+}
 
 
 .recuadro-reporte-elecciones{
-    width: 800px;
+    width: 1000px;
     height: 400px;
     border-radius: 25px;
     border: 1px var(--borde-Grilla) solid;
@@ -132,7 +132,7 @@
 }
 
 hr {
-    width: 800px;
+    
     margin: 0 auto 50px auto;
     border-radius: 15px;
     border: 1px solid var(--borde-Grilla);
