@@ -56,7 +56,6 @@
 }
 
 #sec-titulo-h2{
-    font-family: 'Roboto', sans-serif;
     margin-bottom: 15px;
     font-size: 50px;
 }
@@ -88,7 +87,7 @@
 #botones-paso-generales{
     display:flex;
     margin: 10px 40px 40px 40px;
-    justify-content: center;
+    justify-content:center;
 }
 
 #paso{
@@ -96,13 +95,16 @@
     background-color:  var(--magenta);
     border-radius: 10px;
     margin:25px;
-    padding: 40px 0px 0px 20px;
+    padding: 1rem;
     font-family: #FFF;
     font-size: 28px;
-    text-align: start;
     width: 400px;
-    height: 80px;
-    display: flex;
+    height: 100px;
+    display:flex;
+    justify-content: start;
+    align-items: center;
+
+    
 }
 
 #generales{
@@ -110,11 +112,12 @@
     background-color:  var(--celeste);
     border-radius: 10px;
     margin:25px;
-    padding: 40px 0px 0px 20px;
+    padding: 1rem;
     font-family: #FFF;
     font-size: 28px;
-    text-align: start;
     width: 400px;
-    height: 80px;
-    display: flex;
+    height: 100px;
+    display:flex;
+    justify-content: start;
+    align-items: center;
 }

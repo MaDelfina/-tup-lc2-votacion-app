@@ -30,7 +30,7 @@ form {
 #barra-menu-filtrar {
     background-color: white;
     border-radius: 15px;
-    padding: 5px 20px;
+    padding: 5px 15px;
     color: var(--textos);
     text-align: center;
     font-size: 13px;
@@ -69,20 +69,17 @@ form {
 }
 
 #barra-menu-inicio {
-    /* ESTE BOTON VERGA SE CAGA VER COMO CENTRARLO AL CONTENEDOR*/
     color: #070707;
     background-color: var(--gris-claro);
     border-radius: 5px;
     padding: 5px 30px;
     text-decoration: none;
     font-size: 13px;
-    position: absolute;
-    right: 25px;
+    position:absolute;
+    right:20px;
+    transform: translate(0px, -65%);
 }
 
-.fa-search {
-    color: #070707 !important;
-}
 
 #barra-menu-inicio:hover {
     background-color: var(--textos);
@@ -101,7 +98,9 @@ form {
     background-color: var(--mensaje-usuario-amarillo);
 }
 
-.fa {
+.fa-thumbs-up,
+.fa-exclamation-triangle
+.fa-exclamation{
     color: white;
     font-size: 15px;
 }
@@ -120,13 +119,22 @@ form {
     justify-content: center;
 }
 
-.texto-path {
+#sec-titulo {
+    margin:40px 50px 40px 80px;
+}
+
+#texto-path {
     font-size: 14px;
     font-family: "Roboto";
     color: var(--celeste);
+    margin:0px auto;
 }
 
-.agregar-a-informe {
+#sec-contenido-arriba{
+    display:flex;
+}
+
+#boton-informe {
     background-color: var(--gris-claro);
     color: white;
     font-size: 10px;
@@ -140,9 +148,6 @@ form {
     color: var(--textos);
 }
 
-.div-agregar-informe {
-    display: flex;
-}
 
 .mesas-estructuradas {
     background-color: var(--celeste);
@@ -171,15 +176,11 @@ form {
     font-size: 12px;
 }
 
-.recuadro-resumen-info {
-    display: flex;
-    margin: 0px 0px 0px 600px;
-}
 
 /*Seccion para contenido de la página*/
-#sec-contenido {
-    display: flex;
-    justify-content: center;
+
+#recuadros{
+    display:flex;
 }
 
 .recuadro {
