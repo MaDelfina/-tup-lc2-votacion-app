@@ -74,8 +74,8 @@ form {
     padding: 5px 30px;
     text-decoration: none;
     font-size: 13px;
-    position:absolute;
-    right:40px;
+    position: absolute;
+    right: 40px;
     transform: translate(0px, -65%);
 }
 
@@ -99,8 +99,7 @@ form {
 }
 
 .fa-thumbs-up,
-.fa-exclamation-triangle
-.fa-exclamation{
+.fa-exclamation-triangle .fa-exclamation {
     color: white;
     font-size: 15px;
 }
@@ -121,19 +120,20 @@ form {
 
 /*Sec-contenido-botones*/
 #sec-titulo {
-    margin:40px 50px 40px 80px;
+    margin: 40px 50px 40px 80px;
 }
 
 #texto-path {
     font-size: 14px;
     font-family: "Roboto";
     color: var(--celeste);
-    margin:0px auto;
+    margin: 0px auto;
 }
-#sec-contenido-botones{
+
+#sec-contenido-botones {
     display: flex;
     justify-content: center;
-    margin:40px;
+    margin: 40px;
     align-items: center;
 }
 
@@ -141,23 +141,23 @@ form {
     background-color: var(--gris-claro);
     color: white;
     font-size: 10px;
-    padding: 10px ;
+    padding: 10px;
     border-radius: 5px;
     text-transform: uppercase;
     margin: 12px 1px;
     display: flex;
-   
 }
 
 .agregar-a-informe:hover {
     color: var(--textos);
 }
 
-#recuadro-resumen-info{
-    display:flex;
-    gap:15px;
+#recuadro-resumen-info {
+    display: flex;
+    gap: 15px;
     margin-right: 300px;
 }
+
 .mesas-estructuradas {
     background-color: var(--celeste);
     border-radius: 10px;
@@ -185,14 +185,12 @@ form {
     font-size: 12px;
 }
 
-
 /*Seccion para contenido de la página*/
-
-#recuadros-centrales{
-    display:flex;
-    margin:0px 40px ;
+#recuadros-centrales {
+    display: flex;
+    margin: 0px 40px;
     justify-content: center;
-    gap:40px;
+    gap: 40px;
 }
 
 .recuadro {
@@ -219,7 +217,7 @@ form {
     margin: 0px 0px 0px 230px;
 }
 
-hr{
+hr {
     width: 350px;
     margin: 0 auto 50px auto;
     border-radius: 15px;
