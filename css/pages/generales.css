@@ -74,8 +74,8 @@ form {
     padding: 5px 30px;
     text-decoration: none;
     font-size: 13px;
-    position: absolute;
-    right: 40px;
+    position:absolute;
+    right:40px;
     transform: translate(0px, -65%);
 }
 
@@ -99,7 +99,8 @@ form {
 }
 
 .fa-thumbs-up,
-.fa-exclamation-triangle .fa-exclamation {
+.fa-exclamation-triangle
+.fa-exclamation{
     color: white;
     font-size: 15px;
 }
@@ -118,79 +119,130 @@ form {
     justify-content: center;
 }
 
-/*Sec-contenido-botones*/
+/*Sec-contenido-titulo*/
 #sec-titulo {
-    margin: 40px 50px 40px 80px;
+    margin:40px 50px 40px 80px;
 }
 
 #texto-path {
     font-size: 14px;
     font-family: "Roboto";
     color: var(--celeste);
-    margin: 0px auto;
+    margin:0px auto;
 }
 
-#sec-contenido-botones {
+/*sec-contenido-botones*/
+#sec-contenido-botones{
     display: flex;
-    justify-content: center;
-    margin: 40px;
+    justify-content: space-between;
     align-items: center;
+    margin:40px;
 }
 
-#boton-informe {
+#boton-informe{
     background-color: var(--gris-claro);
-    color: white;
-    font-size: 10px;
-    padding: 10px;
+    font-size: 13px;
+    padding: 10px 40px;
     border-radius: 5px;
     text-transform: uppercase;
-    margin: 12px 1px;
-    display: flex;
+    color: white;
+    margin-left:40px;
 }
 
-.agregar-a-informe:hover {
-    color: var(--textos);
+#boton-informe:hover{
+    background-color: var(--textos);
 }
 
-#recuadro-resumen-info {
-    display: flex;
-    gap: 15px;
-    margin-right: 300px;
+#recuadro-resumen-info{
+    display:flex;
+    gap:15px;
+    margin-right:40px;
 }
-
-.mesas-estructuradas {
+#boton-mesas-escrutadas {
     background-color: var(--celeste);
     border-radius: 10px;
     margin: 15px;
     padding: 0.5rem 1rem;
-    font-family: #FFF;
+    height: 70px;
+    width: 184px;
+    color:#FFF;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
 }
 
-.electores {
+#texto-mesas-escrutadas,
+#porcentaje-mesas-escrutadas{
+    color:#FFF;
+    margin-right: 10px;
+}
+
+#texto-mesas-escrutadas{
+    font-weight: bold;
+}
+
+#boton-electores {
     background-color: var(--magenta);
     border-radius: 10px;
     margin: 15px;
     padding: 0.5rem 1rem;
-    font-family: #FFF;
+    height: 70px;
+    width: 184px;
+    color:#FFF;
     font-size: 12px;
+    display:flex;
+    justify-content: center;
 }
 
-.participacion-escrutado {
+#texto-electores,
+#porcentaje-electores{
+    color: #FFF;
+    margin-right: 60px;
+}
+
+#texto-electores{
+    font-weight: bold;
+}
+
+#svg-electores{
+    margin:10px 10px 0px 10px;
+}
+
+#boton-participacion-escrutado {
     background-color: var(--morado);
     border-radius: 10px;
     margin: 15px;
     padding: 0.5rem 1rem;
-    font-family: #FFF;
+    height: 70px;
+    width: 184px;
+    color:#FFF;
     font-size: 12px;
+    display:flex;
+    justify-content: center;
 }
 
-/*Seccion para contenido de la página*/
-#recuadros-centrales {
-    display: flex;
-    margin: 0px 40px;
+
+#texto-part-escrutado,
+#porcentaje-part-escrutado{
+    color: #FFF;
+}
+
+#texto-part-escrutado{
+    font-weight: bold;
+}
+
+#svg-part-escrutado{
+    margin:10px 10px 0px 0px; 
+}
+
+
+/*sec-contenido recuadros centrales*/
+
+#recuadros-centrales{
+    display:flex;
+    margin:0px 40px ;
     justify-content: center;
-    gap: 40px;
+    gap:40px;
 }
 
 .recuadro {
@@ -200,6 +252,7 @@ form {
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     padding: 1em;
+    align-items: center;
 }
 
 .titulo {
@@ -217,7 +270,7 @@ form {
     margin: 0px 0px 0px 230px;
 }
 
-hr {
+hr{
     width: 350px;
     margin: 0 auto 50px auto;
     border-radius: 15px;
@@ -238,7 +291,7 @@ hr {
     height: 100%;
     display: flex;
     align-items: center;
-    transition: width 0.25s;
+    transition:widht 0.25s;
     border-radius: 5px;
 }
 
