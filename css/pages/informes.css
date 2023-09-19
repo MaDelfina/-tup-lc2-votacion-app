@@ -119,11 +119,14 @@ hr {
     font-size: 12px;
     color: var(--textos);
     font-weight: bold;
+    padding-left: 50px;
+   
 }
 
 .texto-path-chico {
     font-size: 11px;
     color: var(--celeste);
+    padding-left: 50px;
 }
 
 #recuadro-resumen-info {
@@ -131,7 +134,7 @@ hr {
     gap: 7px;
 }
 
-.mesas-estructuradas {
+.mesas-escrutadas {
     background-color: var(--celeste);
     border-radius: 10px;
     font-family: #FFF;
@@ -141,6 +144,9 @@ hr {
     width: 130px;
     text-align: center;
     align-items: center;
+    color: #FFF;
+    margin-right: 10px;
+    
 }
 
 .electores {
@@ -153,6 +159,8 @@ hr {
     height: 70px;
     text-align: center;
     align-items: center;
+    color: #FFF;
+    margin-right: 10px;
 }
 
 .participacion-escrutado {
@@ -165,13 +173,26 @@ hr {
     width: 120px;
     text-align: center;
     align-items: center;
+    color: #FFF;
+    margin-right: 10px;
 }
 
 .juntos, .jp{
     display: flex;
     justify-content: center;
+    
 }
 
 .porcentaje-votos{
     margin: 0px 0px 0px 100px;
+}
+
+#porcentaje-mesas-escrutada{
+    font-weight: bold;
+}
+
+
+
+.ciudad-autonoma-ba-as {
+    margin-top: -50px; 
 }
