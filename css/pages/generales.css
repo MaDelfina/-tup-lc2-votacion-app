@@ -133,7 +133,7 @@ form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin:40px;
+    padding: 0px 40px 40px 40px
 }
 
 #boton-informe{
@@ -235,9 +235,9 @@ form {
 /*sec-contenido recuadros centrales*/
 #recuadros-centrales{
     display:flex;
-    margin:10px 40px ;
     justify-content: center;
-    gap:40px;
+    gap:30px;
+    padding-bottom: 50px;
 }
 
 .recuadro {
@@ -246,28 +246,49 @@ form {
     border-radius: 25px;
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    padding: 1em;
+    padding: 2em;
     align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 
 .titulo {
     font-weight: bold;
+    padding: 1.8em 0 1rem 0;
     text-align: center;
     white-space: nowrap;
 }
 
 /*Recuadro 1*/
-.juntos-por-el-cambio {
-    display: flex;
+.titulo-agrupaciones p{
+    font-size: 13px;
+    padding-top:15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color:var(--textos)
 }
 
-.juntos-por-el-cambio>div {
-    margin: 0px 0px 0px 230px;
+.nombre-agrupaciones p,
+.texto-agrupaciones p{
+    font-size:11px;
+    color:var(--textos);
+    padding:5px;
+    text-transform: uppercase;
+}
+
+.nombre-agrupaciones p{
+    font-weight: bold;
+}
+
+.juntos-por-el-cambio,
+.partido-justicialista,
+.partido-eco {
+    display: flex;
+    justify-content: space-between;
 }
 
 hr{
-    width: 350px;
-    margin: 0 auto 50px auto;
     border-radius: 15px;
     border: 1px solid var(--borde-Grilla);
     border-collapse: collapse;
