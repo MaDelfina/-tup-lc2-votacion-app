@@ -48,7 +48,6 @@ form {
     margin-bottom: 20px;
     text-align: center;
     font-size: 13px;
-
 }
 
 #barra-menu-informes {
@@ -59,7 +58,6 @@ form {
     text-decoration: none;
     text-align: center;
     font-size: 13px;
-
 }
 
 #barra-menu-informes:hover,
@@ -78,7 +76,6 @@ form {
     right:40px;
     transform: translate(0px, -65%);
 }
-
 
 #barra-menu-inicio:hover {
     background-color: var(--textos);
@@ -158,6 +155,7 @@ form {
     gap:15px;
     margin-right:40px;
 }
+
 #boton-mesas-escrutadas {
     background-color: var(--celeste);
     border-radius: 10px;
@@ -221,7 +219,6 @@ form {
     justify-content: center;
 }
 
-
 #texto-part-escrutado,
 #porcentaje-part-escrutado{
     color: #FFF;
@@ -235,12 +232,10 @@ form {
     margin:10px 10px 0px 0px; 
 }
 
-
 /*sec-contenido recuadros centrales*/
-
 #recuadros-centrales{
     display:flex;
-    margin:0px 40px ;
+    margin:10px 40px ;
     justify-content: center;
     gap:40px;
 }

@@ -1,3 +1,4 @@
+/*Barra de menu*/
 .barra-menu {
     color: #FFF;
     background-color: var(--fondo-Menu);
@@ -87,6 +88,7 @@
     margin: 40px 50px 40px 80px;
 }
 
+/*Recuadro*/
 .recuadro-reporte-elecciones{
     width: 65rem;
     height: 300px;
@@ -119,8 +121,6 @@ hr {
     font-size: 12px;
     color: var(--textos);
     font-weight: bold;
-    padding-left: 50px;
-   
 }
 
 .texto-path-chico {
@@ -131,7 +131,7 @@ hr {
 
 #recuadro-resumen-info {
     display: flex;
-    gap: 7px;
+    gap: 5px;
 }
 
 .mesas-escrutadas {
@@ -145,8 +145,6 @@ hr {
     text-align: center;
     align-items: center;
     color: #FFF;
-    margin-right: 10px;
-    
 }
 
 .electores {
@@ -160,7 +158,6 @@ hr {
     text-align: center;
     align-items: center;
     color: #FFF;
-    margin-right: 10px;
 }
 
 .participacion-escrutado {
@@ -180,7 +177,6 @@ hr {
 .juntos, .jp{
     display: flex;
     justify-content: center;
-    
 }
 
 .porcentaje-votos{
@@ -190,8 +186,6 @@ hr {
 #porcentaje-mesas-escrutada{
     font-weight: bold;
 }
-
-
 
 .ciudad-autonoma-ba-as {
     margin-top: -50px; 
