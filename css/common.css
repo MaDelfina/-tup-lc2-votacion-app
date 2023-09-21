@@ -66,6 +66,18 @@ h3{
     margin-top: 5px;
     }
 
+.footer-p a{
+color:var(--celeste)
+}
+
+.footer-p a:visited{
+color: rgb(160, 160, 247)
+}
+
+.footer-p a:hover{
+color: rgba(255, 255, 255, 0.931)
+}
+
 /*Paleta de colores*/
 :root {
     --magenta: #ee3d8f;

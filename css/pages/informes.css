@@ -10,10 +10,12 @@
     text-transform: uppercase;
     margin: 0px auto;
     gap: 15px;
+    font-size: 13px;
 }
 
 #barra-menu-paso,
 #barra-menu-generales {
+
     color: #FFF;
     border-radius: 5px;
     padding: 5px 20px;
@@ -52,9 +54,9 @@
 }
 
 /*Contenido principal de la página*/
-#sec-titulo-informe {
-    display: flex;
-    justify-content: center;
+/*Mensajes usuario*/
+.sec-titulo-mensajes {
+    padding-top: 30px;
 }
 
 .sec-titulo-exito {
@@ -67,6 +69,12 @@
 
 .sec-titulo-imcompleto {
     background-color: var(--mensaje-usuario-amarillo);
+}
+
+.fa-thumbs-up,
+.fa-exclamation-triangle .fa-exclamation {
+    color: white;
+    font-size: 15px;
 }
 
 .mensaje {
@@ -83,13 +91,13 @@
     justify-content: center;
 }
 
-/*Seccion para contenido de la página*/
-#sec-contenido{
-    margin: 40px 50px 40px 80px;
+/*Sec-contenido-titulo*/
+#sec-titulo {
+    padding: 0.5px 0 0.5px 5%;
 }
 
-/*Recuadro*/
-.recuadro-reporte-elecciones{
+/*sec-contenido-recuadro*/
+.sec-contenido-recuadro{
     width: 65rem;
     height: 300px;
     border-radius: 25px;

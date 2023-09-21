@@ -72,8 +72,8 @@ form {
     padding: 5px 30px;
     text-decoration: none;
     font-size: 13px;
-    position:absolute;
-    right:40px;
+    position: absolute;
+    right: 40px;
     transform: translate(0px, -65%);
 }
 
@@ -83,6 +83,10 @@ form {
 
 /*Contenido principal de la página*/
 /*Mensajes usuario*/
+.sec-titulo-mensajes {
+    padding-top: 30px;
+}
+
 .sec-titulo-exito {
     background-color: var(--mensaje-usuario-verde);
 }
@@ -96,8 +100,7 @@ form {
 }
 
 .fa-thumbs-up,
-.fa-exclamation-triangle
-.fa-exclamation{
+.fa-exclamation-triangle .fa-exclamation {
     color: white;
     font-size: 15px;
 }
@@ -118,42 +121,42 @@ form {
 
 /*Sec-contenido-titulo*/
 #sec-titulo {
-    margin:40px 50px 40px 80px;
+    padding: 1rem 0 2rem 8%;
 }
 
 #texto-path {
     font-size: 14px;
     font-family: "Roboto";
     color: var(--celeste);
-    margin:0px auto;
 }
 
 /*sec-contenido-botones*/
-#sec-contenido-botones{
+#sec-contenido-botones {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0px 40px 40px 40px
+    padding: 0px 10px 40px 60px;
+    gap: 15%
 }
 
-#boton-informe{
+#boton-informe {
     background-color: var(--gris-claro);
     font-size: 13px;
     padding: 10px 40px;
     border-radius: 5px;
     text-transform: uppercase;
     color: white;
-    margin-left:40px;
+    margin-left: 0px;
 }
 
-#boton-informe:hover{
+#boton-informe:hover {
     background-color: var(--textos);
 }
 
-#recuadro-resumen-info{
-    display:flex;
-    gap:15px;
-    margin-right:40px;
+#recuadro-resumen-info {
+    display: flex;
+    gap: 15px;
+    margin-right: 40px;
 }
 
 #boton-mesas-escrutadas {
@@ -163,19 +166,19 @@ form {
     padding: 0.5rem 1rem;
     height: 70px;
     width: 184px;
-    color:#FFF;
+    color: #FFF;
     font-size: 12px;
     display: flex;
     justify-content: center;
 }
 
 #texto-mesas-escrutadas,
-#porcentaje-mesas-escrutadas{
-    color:#FFF;
+#porcentaje-mesas-escrutadas {
+    color: #FFF;
     margin-right: 10px;
 }
 
-#texto-mesas-escrutadas{
+#texto-mesas-escrutadas {
     font-weight: bold;
 }
 
@@ -186,24 +189,24 @@ form {
     padding: 0.5rem 1rem;
     height: 70px;
     width: 184px;
-    color:#FFF;
+    color: #FFF;
     font-size: 12px;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
 #texto-electores,
-#porcentaje-electores{
+#porcentaje-electores {
     color: #FFF;
     margin-right: 60px;
 }
 
-#texto-electores{
+#texto-electores {
     font-weight: bold;
 }
 
-#svg-electores{
-    margin:10px 10px 0px 10px;
+#svg-electores {
+    margin: 10px 10px 0px 10px;
 }
 
 #boton-participacion-escrutado {
@@ -213,36 +216,36 @@ form {
     padding: 0.5rem 1rem;
     height: 70px;
     width: 184px;
-    color:#FFF;
+    color: #FFF;
     font-size: 12px;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
 #texto-part-escrutado,
-#porcentaje-part-escrutado{
+#porcentaje-part-escrutado {
     color: #FFF;
 }
 
-#texto-part-escrutado{
+#texto-part-escrutado {
     font-weight: bold;
 }
 
-#svg-part-escrutado{
-    margin:10px 10px 0px 0px; 
+#svg-part-escrutado {
+    margin: 10px 10px 0px 0px;
 }
 
 /*sec-contenido recuadros centrales*/
-#recuadros-centrales{
-    display:flex;
+#recuadros-centrales {
+    display: flex;
     justify-content: center;
-    gap:30px;
+    gap: 20px;
     padding-bottom: 50px;
 }
 
 .recuadro {
-    width: 350px;
-    height: 500px;
+    width: 300px;
+    height: 450px;
     border-radius: 25px;
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -250,7 +253,7 @@ form {
     align-items: center;
     justify-content: center;
     overflow-y: auto;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 .titulo {
@@ -261,23 +264,23 @@ form {
 }
 
 /*Recuadro 1*/
-.titulo-agrupaciones p{
+.titulo-agrupaciones p {
     font-size: 13px;
-    padding-top:15px;
+    padding-top: 15px;
     font-weight: bold;
     text-transform: uppercase;
-    color:var(--textos)
+    color: var(--textos)
 }
 
 .nombre-agrupaciones p,
-.texto-agrupaciones p{
-    font-size:11px;
-    color:var(--textos);
-    padding:5px;
+.texto-agrupaciones p {
+    font-size: 11px;
+    color: var(--textos);
+    padding: 5px;
     text-transform: uppercase;
 }
 
-.nombre-agrupaciones p{
+.nombre-agrupaciones p {
     font-weight: bold;
 }
 
@@ -288,7 +291,7 @@ form {
     justify-content: space-between;
 }
 
-hr{
+hr {
     border-radius: 15px;
     border: 1px solid var(--borde-Grilla);
     border-collapse: collapse;
@@ -307,7 +310,7 @@ hr{
     height: 100%;
     display: flex;
     align-items: center;
-    transition:widht 0.25s;
+    transition: widht 0.25s;
     border-radius: 5px;
 }
 
@@ -318,11 +321,19 @@ hr{
     font-size: 9px;
 }
 
+/*Recuadro 2*/
+#svg-baires {
+    display: flex;
+    align-items: center;
+    padding: 35px 0px 0px 5px;
+}
+
 /*Recuadro 3*/
+
 .chart-wrap {
-    --chart-width: 260px;
+    --chart-width: 200px;
     --grid-color: #aaa;
-    --bar-thickness: 25px;
+    --bar-thickness: 20px;
     --bar-rounded: 3px;
     --bar-spacing: 10px;
     font-family: sans-serif;
