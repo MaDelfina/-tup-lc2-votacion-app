@@ -2,7 +2,6 @@
 .barra-menu{
     color: #FFF;
     background-color: var(--fondo-Menu);
-    
     padding: 20px;
     list-style:none;
     display: flex;
@@ -11,6 +10,7 @@
     text-transform: uppercase;
     margin: 0px auto;
     gap:15px;
+    font-size:13px;
 }
 
 #barra-menu-informes{

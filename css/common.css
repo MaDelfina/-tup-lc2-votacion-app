@@ -15,7 +15,12 @@ body{
 #header-page{
     padding: 10px;
     background-color: var(--fondo-Cabecera);
-    margin:0px;
+    margin:0px auto;
+    max-width: 100%;
+}
+
+#header-page-contenido{
+    width: 90%;
 }
 
 #logo{
