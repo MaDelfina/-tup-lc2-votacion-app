@@ -93,7 +93,8 @@
 
 /*Sec-contenido-titulo*/
 #sec-titulo {
-    padding: 5px 0px 5px 40px;
+    width:  1024px;
+    margin:  20px auto 10px auto;
 }
 
 /*sec-contenido-recuadro*/
@@ -137,8 +138,10 @@
 }
 
 .grilla-texto{
-    padding: 0px 30px;
+    display: flex;
+    flex-direction: column;
     width: 70px;
+    margin-left:16px
 }
 
 .texto-elecciones-chico {
@@ -154,11 +157,11 @@
 
 .datos-generales{
     display: flex;
-    padding: 0px 10px;
-    width: 300px;
+    justify-content: center;
+    align-items: center;
 }
 
-#boton-mesas-escrutadas {
+.boton-mesas-escrutadas {
     background-color: var(--celeste);
     border-radius: 5px;
     margin: 2px;
@@ -170,17 +173,17 @@
     justify-content: center;
 }
 
-#texto-mesas-escrutadas,
-#porcentaje-mesas-escrutadas {
+.texto-mesas-escrutadas,
+.porcentaje-mesas-escrutadas {
     color: #FFF;
     font-size: 10px;
 }
 
-#texto-mesas-escrutadas {
+.texto-mesas-escrutadas {
     font-weight: bold;
 }
 
-#boton-electores {
+.boton-electores {
     background-color: var(--magenta);
     border-radius: 5px;
     margin: 2px;
@@ -192,17 +195,17 @@
     justify-content: center;
 }
 
-#texto-electores,
-#porcentaje-electores {
+.texto-electores,
+.porcentaje-electores {
     color: #FFF;
     font-size: 10px;
 }
 
-#texto-electores {
+.texto-electores {
     font-weight: bold;
 }
 
-#boton-participacion-escrutado {
+.boton-participacion-escrutado {
     background-color: var(--morado);
     border-radius: 5px;
     margin: 2px;
@@ -214,12 +217,30 @@
     justify-content: center;
 }
 
-#texto-part-escrutado,
-#porcentaje-part-escrutado {
+.texto-part-escrutado,
+.porcentaje-part-escrutado {
     color: #FFF;
     font-size: 10px;
 }
 
-#texto-part-escrutado {
+.texto-part-escrutado {
     font-weight: bold;
 }
+
+.juntos p,
+.pj p,
+.porcentaje-votos p{
+    font-size:12px;
+}
+
+.juntos,
+.pj{
+    display:flex;
+    justify-content: space-around;
+    padding:5px;
+}
+
+
+
+
+

@@ -121,7 +121,9 @@ form {
 
 /*Sec-contenido-titulo*/
 #sec-titulo {
-    padding: 1rem 0 2rem 8%;
+    width: 900px;
+    padding: 10px 0px 0px 100px;
+   
 }
 
 #texto-path {
