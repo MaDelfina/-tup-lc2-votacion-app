@@ -1,36 +1,36 @@
 /*Barra de menu*/
-.barra-menu{
+.barra-menu {
     color: #FFF;
     background-color: var(--fondo-Menu);
     padding: 12px;
-    list-style:none;
+    list-style: none;
     display: flex;
     align-items: baseline;
-    justify-content:left;
+    justify-content: left;
     text-transform: uppercase;
     margin: 0px auto;
-    gap:15px;
+    gap: 15px;
 }
 
-form{
-    display:flex;
+form {
+    display: flex;
 }
 
-.desplegable{
+.desplegable {
     font-size: 14px;
     background-color: transparent;
     border: none;
-    height:30px;
+    height: 30px;
     padding: 5px 0px;
     color: var(--celeste);
-    margin:0px 5px 0px 5px;
+    margin: 0px 5px 0px 5px;
 }
 
-#barra-menu-filtrar{
+#barra-menu-filtrar {
     background-color: white;
     border-radius: 15px;
-    padding:5px 15px;
-    color:var(--textos);
+    padding: 5px 15px;
+    color: var(--textos);
     text-align: center;
     font-size: 13px;
 }
@@ -39,45 +39,45 @@ form{
     color: var(--textos);
 }
 
-#barra-menu-generales{
+#barra-menu-generales {
     color: #FFF;
-    border-radius:5px;
-    padding:5px 20px;
-    text-decoration:none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    text-decoration: none;
     background-color: var(--celeste);
     margin-bottom: 20px;
     text-align: center;
-    font-size:13px;
+    font-size: 13px;
 }
 
-#barra-menu-informes{
+#barra-menu-informes {
     color: #FFF;
     border: 2px solid white;
     border-radius: 25px;
     padding: 5px 20px;
-    text-decoration:none;
+    text-decoration: none;
     text-align: center;
-    font-size:13px;
+    font-size: 13px;
 }
 
 #barra-menu-informes:hover,
-#barra-menu-paso:hover{
+#barra-menu-paso:hover {
     background-color: var(--gris-claro);
 }
 
 #barra-menu-inicio {
-    color: #070707;
+    color: #FFF;
     background-color: var(--gris-claro);
     border-radius: 5px;
     padding: 5px 30px;
     text-decoration: none;
     font-size: 13px;
-    position:absolute;
-    right:40px;
+    position: absolute;
+    right: 40px;
     transform: translate(0px, -65%);
 }
 
-#barra-menu-inicio:hover{
+#barra-menu-inicio:hover {
     background-color: var(--textos);
 }
 
@@ -121,8 +121,10 @@ form{
 
 /*Sec-contenido-titulo*/
 #sec-titulo {
-    padding: 1rem 0 2rem 8%;
+    width: 900px;
+    padding: 10px 0px 0px 100px;
 }
+
 
 #texto-path {
     font-size: 14px;
