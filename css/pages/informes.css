@@ -2,7 +2,7 @@
 .barra-menu {
     color: #FFF;
     background-color: var(--fondo-Menu);
-    padding: 20px;
+    padding: 10px;
     list-style: none;
     display: flex;
     align-items: baseline;
@@ -79,12 +79,11 @@
 
 .mensaje {
     margin: 20px auto;
-    padding: 15px;
     width: 400px;
-    padding: 15px;
+    padding: 10px;
     color: #FFffFF;
     font-size: 13px;
-    height: 50px;
+    height: 30px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -240,7 +239,6 @@
     padding:5px;
 }
 
-
-
-
-
+.porcentaje-votos{
+    color: var(--textos) !important;
+}

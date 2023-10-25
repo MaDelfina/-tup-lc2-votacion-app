@@ -59,6 +59,7 @@ h3{
 .footer-p{
     color: var(--texto-footer);
     margin: 40px;
+    line-height: normal;
 }
 
 .footer-img{
