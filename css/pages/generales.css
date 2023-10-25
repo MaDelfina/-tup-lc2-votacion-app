@@ -2,7 +2,7 @@
 .barra-menu {
     color: #FFF;
     background-color: var(--fondo-Menu);
-    padding: 3px;
+    padding: 6px;
     list-style: none;
     display: flex;
     align-items: baseline;
@@ -107,12 +107,11 @@ form {
 
 .mensaje {
     margin: 20px auto;
-    padding: 15px;
     width: 400px;
-    padding: 10px;
+    padding: 8px;
     color: #FFffFF;
     font-size: 13px;
-    height: 30px;
+    height: 50px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -215,7 +214,7 @@ form {
     background-color: var(--morado);
     border-radius: 10px;
     margin: 15px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
     height: 70px;
     width: 184px;
     color: #FFF;
@@ -234,7 +233,7 @@ form {
 }
 
 #svg-part-escrutado {
-    margin: 10px 10px 0px 0px;
+    margin: 8px 8px 0px 0px;
 }
 
 /*sec-contenido recuadros centrales*/
@@ -256,17 +255,34 @@ form {
     justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: #FFffFF;
-}
+    background-color: rgba(255, 255, 255, 0.88);}
 
 .titulo {
     font-weight: bold;
-    padding: 1.8em 0 1rem 0;
+    padding: 1rem 0 1rem 0;
     text-align: center;
     white-space: nowrap;
+    margin-top: 0;
+}
+
+#titulo-recuadro-tres{
+    font-weight: bold;
+    padding: 1rem 0 1rem 0;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0px 0px 0px 80px;
 }
 
 /*Recuadro 1*/
+.recuadro1{
+    max-height: 80%;
+    margin: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+
+
 .titulo-agrupaciones p {
     font-size: 13px;
     padding-top: 15px;
@@ -303,7 +319,7 @@ hr {
 
 /*barra de progreso de los recuadros*/
 .progress {
-    height: 35px;
+    height: 27px;
     width: 100%;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -328,10 +344,13 @@ hr {
 #svg-baires {
     display: flex;
     align-items: center;
-    padding: 35px 0px 0px 5px;
+    padding: 55px 0px 0px 5px;
 }
 
 /*Recuadro 3*/
+.grid{
+    margin-top: 30px;
+}
 
 .chart-wrap {
     --chart-width: 200px;

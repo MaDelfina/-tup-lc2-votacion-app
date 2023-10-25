@@ -2,7 +2,7 @@
 .barra-menu {
     color: #FFF;
     background-color: var(--fondo-Menu);
-    padding: 10px;
+    padding: 14px;
     list-style: none;
     display: flex;
     align-items: baseline;
@@ -79,11 +79,11 @@
 
 .mensaje {
     margin: 20px auto;
+    padding: 8px;
     width: 400px;
-    padding: 10px;
     color: #FFffFF;
     font-size: 13px;
-    height: 30px;
+    height: 50px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -111,6 +111,11 @@
 
 .tabla{
     width: 1010px;
+    border-collapse: collapse; /*una toda la linea divisoria*/
+}
+
+tr.encabezado {
+    border-bottom: 2px solid var(--borde-Grilla); /*aplica estilo a esa unica linea divisoria*/ 
 }
 
 .grilla thead th {
@@ -143,6 +148,18 @@
     margin-left:16px
 }
 
+.texto-porcentaje{
+    margin-right:15px;
+}
+
+.texto-electores{
+    margin-top:15px;
+}
+
+.texto-part-escrutado{
+    margin-top:5px;
+}
+
 .texto-elecciones-chico {
     font-size: 12px;
     color: var(--textos);
@@ -150,8 +167,9 @@
 }
 
 .texto-path-chico {
-    font-size: 11px;
+    font-size: 9px;
     color: var(--celeste);
+    font-weight: normal;
 }
 
 .datos-generales{
@@ -226,19 +244,25 @@
     font-weight: bold;
 }
 
+.porcentaje-votos{
+    font-weight: normal;
+}
+
 .juntos p,
 .pj p,
 .porcentaje-votos p{
     font-size:12px;
+    margin: 0px 7px 7px 7px;
 }
 
 .juntos,
 .pj{
     display:flex;
     justify-content: space-around;
-    padding:5px;
+    padding: 5px 5px 10px 5px
 }
 
-.porcentaje-votos{
-    color: var(--textos) !important;
-}
+
+
+
+
