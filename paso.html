@@ -28,32 +28,29 @@
             <ul class="barra-menu">
                 <form>
                     <li>
-                        <select class="desplegable">
+                        <select class="desplegable" id="seleccionAnio" onchange="consultaAnio()">
+                            <!--HACERLO EN JS-->
                             <option> Año: </option>
-                            <option> 2020 </option>
-                            <option> 2021 </option>
-                            <option> 2022 </option>
-                            <option> 2023 </option>
                         </select>
                     </li>
                     <li>
-                        <select class="desplegable">
+                        <select class="desplegable" id="seleccionCargo" onchange="consultaCargo()">
                             <option> Cargo: </option>
-                            <option> Presidente </option>
-                            <option> Senadores </option>
-                            <option> Diputados </option>
                         </select>
                     </li>
                     <li>
-                        <select class="desplegable">
+                        <select class="desplegable" id="seleccionDistrito" onchange="consultarDistrito()">
                             <option> Distrito: </option>
-                            <option> Buenos Aires </option>
-                            <option> Santa Fe </option>
-                            <option> Entre Ríos </option>
+                        </select>
+                    </li>
+                    <input type="hidden" id="hdSeccionProvincial" name="hdSeccionProvincial">
+                    <li>
+                        <select class="desplegable" id="seleccionSeccion" onchange="consultarSeccion()">
+                            <option> Seccion: </option>
                         </select>
                     </li>
                 </form>
-                <li id="barra-menu-filtrar"><i class="fa fa-search" aria-hidden="true"></i> &nbsp filtrar</li>
+                <li id="barra-menu-filtrar filtrar"><i class="fa fa-search" aria-hidden="true"></i> &nbsp filtrar</li>
                 <!--FALTA AGREGAR ICONO DE LUPITA-->
                 <li><a id="barra-menu-generales" href="generales.html"> generales </a></li>
                 <li><a id="barra-menu-informes" href="informes.html"> informes</a></li>
