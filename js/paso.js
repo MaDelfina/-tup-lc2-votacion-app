@@ -1,10 +1,12 @@
 const tipoEleccion = 1;
 const tipoRecuento = 1;
+
 let seleccionAnio = document.getElementById('seleccionAnio'); //select del año
 let seleccionCargo = document.getElementById('seleccionCargo'); //select del cargo
 let seleccionDistrito = document.getElementById('seleccionDistrito'); //select del distrito
 let seleccionSeccion = document.getElementById('seleccionSeccion'); //select de seccion
 let filtrar = document.getElementById('filtrar'); //boton filtrar
+let datosFiltros = []; //Inicializa datosFiltros como un arreglo vacío
 
 async function consultaAnio() {
     if (seleccionAnio.value === "") {
@@ -16,15 +18,15 @@ async function consultaAnio() {
             const respuesta = await fetch(url);
 
             if (respuesta.ok) {
-                const data = await respuesta.json();
+                const data = await respuesta.json(); //almacenar y transportar información
                 console.log(data);
                
-                //Se recorre la respuesta del json para llenar el combo de años con los años
+                //se llena el combo del año recorriendo la respuesta del json
                 data.forEach(anio => {
                     const option = document.createElement("option");
                     option.value = anio; //valor del combo
-                    option.textContent = anio.toString();  // Convertir a cadena para que el texto se pueda ver en el combo
-                    seleccionAnio.appendChild(option); // Se agregan las opciones en el select
+                    option.textContent = anio.toString(); //Convertir a cadena para que el texto se pueda ver en el combo
+                    seleccionAnio.appendChild(option); //Se agregan las opciones en el select
                 });
             } else {
                 alert("Error.");
@@ -40,13 +42,14 @@ async function consultaCargo(){
         alert('No seleccionó ningún año.');
         return false;
     } else {
-        const url = 'https://resultados.mininterior.gob.ar/api/menu?año=' + seleccionAnio.value;
         try {
-            const respuesta = await fetch(url);
+            const respuesta = fetch('https://resultados.mininterior.gob.ar/api/menu?año=' + seleccionAnio.value);
     
             if (respuesta.ok) {
-                const datosFiltros = await respuesta.json();
+                datosFiltros = await respuesta.json();
                 console.log(datosFiltros);
+
+                seleccionCargo.innerHTML = ''; //borra todas las opciones existentes dentro del elemento <select> con el id seleccionCargo
     
                 // Filtra los datos por el tipo de elección que estamos consultando
                 datosFiltros.forEach((eleccion) => {
@@ -69,15 +72,17 @@ async function consultaCargo(){
     }
 }
 
-async function consultarDistrito() {
-    if (seleccionCargo.value === "") {
+function consultarDistrito() {
+    const cargoSeleccionado = seleccionCargo.value; // Obtener el valor seleccionado en el combo de cargo
+    if (cargoSeleccionado === "") {
         alert('No seleccionó ningún cargo.');
         return false;
     } else {
+        /*datosFiltros.forEach((eleccion) => { ... }): Este es un bucle forEach que itera a través de los elementos en el arreglo datosFiltros. Cada elemento se refiere a un objeto que representa una elección. */
         datosFiltros.forEach((eleccion) => {
             if (eleccion.IdEleccion == tipoEleccion) {
                 eleccion.Cargos.forEach((cargo) => {
-                    if (cargo.IdCargo == seleccionCargo) {
+                    if (cargo.IdCargo == cargoSeleccionado) {
                         cargo.Distritos.forEach((distrito) => {
                             // Crea una opción para cada distrito y agrega al combo de distritos
                             const option = document.createElement("option");
@@ -92,13 +97,14 @@ async function consultarDistrito() {
     }
 }
 
-async function consultarSeccion(datosFiltros, seleccionDistrito){
+function consultarSeccion() {
     datosFiltros.forEach((eleccion) => {
-        if (eleccion.IdEleccion == tipoEleccion) {
+        if (eleccion.IdEleccion == tipoEleccion)//se verifica si el IdEleccion del objeto eleccion coincide con el valor almacenado en la variable tipoEleccion. Esto se utiliza para filtrar las elecciones que coinciden con el tipo de elección deseado
+         {
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo == seleccionCargo.value) {
                     cargo.Distritos.forEach((distrito) => {
-                        if (distrito.IdDistrito == seleccionDistrito) {
+                        if (distrito.IdDistrito == seleccionDistrito.value) {
                             distrito.SeccionesProvinciales.forEach((seccion) => {
                                 // Crea una opción para cada sección y agrega al combo de secciones
                                 const option = document.createElement("option");
@@ -114,39 +120,13 @@ async function consultarSeccion(datosFiltros, seleccionDistrito){
     });
 }
 
-seleccionDistrito.addEventListener("change", () => {
-    const seleccionadoDistrito = seleccionDistrito.value;
-    cargarSecciones(datosFiltros, seleccionadoDistrito);
-});
+/*consultaAnio():Esta función utiliza async/await para realizar una solicitud HTTP para obtener los años disponibles y llenar un combo. Esto es apropiado porque implica una operación asincrónica.
+consultaCargo():
 
-filtrar.addEventListener('click', async () => {
-    // Obtener valores de los elementos de selección
-    const anioEleccion = seleccionAnio.value;
-    const distritoId = seleccionDistrito.value;
-    const seccionProvincialId = document.getElementById('hdSeccionProvincial').value; // Obtener el valor del campo oculto
+Utiliza async/await para realizar una solicitud HTTP y obtener los datos relacionados con los cargos disponibles. Esto también es adecuado debido a la operación asincrónica involucrada.
+consultarDistrito():
 
-    // Realizar la validación de campos faltantes
-    if (!anioEleccion || !distritoId || !seccionProvincialId) {
-        alert('Por favor, complete todos los campos obligatorios en amarillo.');
-        return;
-    } else {
-        // Realizar la consulta al servicio con fetch
-        const url = 'https://resultados.mininterior.gob.ar/api/resultados/getResultados' +
-            `?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=2` +
-            `&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seleccionSeccion.value}` +
-            '&circuitoId=&mesaId=';
-    
-        try {
-            const respuesta = await fetch(url);
-    
-            if (respuesta.ok) {
-                const datosRespuesta = await respuesta.json();
-                console.log(datosRespuesta);
-            } else {
-                alert('Error en la consulta. Detalle del error: '); //FALTA DETALLE EN AMARILLO
-            }
-        } catch (error) {
-            alert('Error en la consulta. Detalle del error: '); //FALTA DETALLE EN ROJO
-        }
-    }
-});
+Esta función realiza operaciones de filtrado local en función de la selección del usuario en el combo de cargo. No implica operaciones asincrónicas ni llamadas a la red, por lo que no es necesario utilizar async/await.
+consultarSeccion():
+
+Similar a consultarDistrito, esta función realiza operaciones de filtrado local en función de las selecciones del usuario en los combos de cargo y distrito, por lo que no requiere async/await.*/
