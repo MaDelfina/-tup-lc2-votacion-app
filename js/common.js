@@ -36,4 +36,3 @@ async function consultarCargo() {
         throw new Error('Error al obtener los datos del servidor');
     }
 }
-

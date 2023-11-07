@@ -1,4 +1,3 @@
-
 const tipoEleccion = 2;
 const tipoRecuento = 1;
 
@@ -88,7 +87,6 @@ seleccionDistrito.onclick = function () {
     }
 }
 
-
 seleccionDistrito.onchange = function () {
     if (seleccionDistrito.value !== 'distrito') { //se eliminan valores del select
         for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
@@ -123,15 +121,3 @@ seleccionSeccion.onclick = function () {
         alert('Debe seleccionar las opciones anteriores para acceder a este campo');
     }
 }
-
-
-/*consultaAnio():Esta función utiliza async/await para realizar una solicitud HTTP para obtener los años disponibles y llenar un combo. Esto es apropiado porque implica una operación asincrónica.
-consultaCargo():
-
-Utiliza async/await para realizar una solicitud HTTP y obtener los datos relacionados con los cargos disponibles. Esto también es adecuado debido a la operación asincrónica involucrada.
-consultarDistrito():
-
-Esta función realiza operaciones de filtrado local en función de la selección del usuario en el combo de cargo. No implica operaciones asincrónicas ni llamadas a la red, por lo que no es necesario utilizar async/await.
-consultarSeccion():
-
-Similar a consultarDistrito, esta función realiza operaciones de filtrado local en función de las selecciones del usuario en los combos de cargo y distrito, por lo que no requiere async/await.*/
