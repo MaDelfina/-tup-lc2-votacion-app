@@ -13,6 +13,10 @@
 
     <!--Link font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Script -->
+    <script src="js/common.js" defer></script>
+    <script src="js/generales.js" defer> </script>
 </head>
 
 <body>
@@ -28,28 +32,24 @@
             <ul class="barra-menu">
                 <form>
                     <li>
-                        <select class="desplegable">
-                            <option> Año: </option>
-                            <option> 2020 </option>
-                            <option> 2021 </option>
-                            <option> 2022 </option>
-                            <option> 2023 </option>
+                        <select class="desplegable" id="seleccionAnio">
+                            <option disabled selected value='año'> Año: </option>
                         </select>
                     </li>
                     <li>
-                        <select class="desplegable">
-                            <option> Cargo: </option>
-                            <option> Presidente </option>
-                            <option> Senadores </option>
-                            <option> Diputados </option>
+                        <select class="desplegable" id="seleccionCargo">
+                            <option disabled selected value = 'cargo'> Cargo: </option>
                         </select>
                     </li>
                     <li>
-                        <select class="desplegable">
-                            <option> Distrito: </option>
-                            <option> Buenos Aires </option>
-                            <option> Santa Fe </option>
-                            <option> Entre Ríos </option>
+                        <select class="desplegable" id="seleccionDistrito">
+                            <option disabled selected value = "distrito"> Distrito: </option>
+                        </select>
+                    </li>
+                    <input type="hidden" id="hdSeccionProvincial" name="hdSeccionProvincial">
+                    <li>
+                        <select class="desplegable" id="seleccionSeccion">
+                            <option disabled selected value ="seccion"> Seccion: </option>
                         </select>
                     </li>
                 </form>

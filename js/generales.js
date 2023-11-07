@@ -1,3 +1,4 @@
+
 const tipoEleccion = 2;
 const tipoRecuento = 1;
 
@@ -6,101 +7,97 @@ let seleccionCargo = document.getElementById('seleccionCargo'); //select del car
 let seleccionDistrito = document.getElementById('seleccionDistrito'); //select del distrito
 let seleccionSeccion = document.getElementById('seleccionSeccion'); //select de seccion
 let filtrar = document.getElementById('filtrar'); //boton filtrar
-let datosFiltros = []; //Inicializa datosFiltros como un arreglo vacío
 
-async function consultaAnio() {
-    if (seleccionAnio.value === "") {
-        alert('No seleccionó ningún año.');
-        return false;
-    } else {
-        const url = 'https://resultados.mininterior.gob.ar/api/menu/periodos';
-        try {
-            const respuesta = await fetch(url);
 
-            if (respuesta.ok) {
-                const data = await respuesta.json(); //almacenar y transportar información
-                console.log(data);
-               
-                //se llena el combo del año recorriendo la respuesta del json
-                data.forEach(anio => {
-                    const option = document.createElement("option");
-                    option.value = anio; //valor del combo
-                    option.textContent = anio.toString(); //Convertir a cadena para que el texto se pueda ver en el combo
-                    seleccionAnio.appendChild(option); //Se agregan las opciones en el select
-                });
-            } else {
-                alert("Error.");
-            }
-        } catch (error) {
-            alert("Error");
-        }
+function borrarDatos() {
+    //se eliminan valores de todos los select menos el de año
+    for (let i = seleccionCargo.options.length - 1; i > 0; i--) { //recorre el select desde el último hasta la posición 1, no toca la 0 que seria la de "cargo"
+        seleccionCargo.value = 'cargo'
+        seleccionCargo.remove(i);
+    }
+    for (let i = seleccionDistrito.options.length - 1; i > 0; i--) {
+        seleccionDistrito.value = "distrito"
+        seleccionDistrito.remove(i);
+    }
+    for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
+        seleccionSeccion.value = "seccion"
+        seleccionSeccion.remove(i);
     }
 }
 
-async function consultaCargo(){
-    if (seleccionAnio.value === "") {
-        alert('No seleccionó ningún año.');
-        return false;
-    } else {
-        try {
-            const respuesta = fetch('https://resultados.mininterior.gob.ar/api/menu?año=' + seleccionAnio.value);
-    
-            if (respuesta.ok) {
-                datosFiltros = await respuesta.json();
-                console.log(datosFiltros);
-
-                seleccionCargo.innerHTML = ''; //borra todas las opciones existentes dentro del elemento <select> con el id seleccionCargo
-    
-                // Filtra los datos por el tipo de elección que estamos consultando
-                datosFiltros.forEach((eleccion) => {
-                    if (eleccion.IdEleccion == tipoEleccion) {
-                        eleccion.Cargos.forEach((cargo) => {
-                            // Crea una opción para cada cargo y agrega al combo de cargos
-                            const option = document.createElement("option");
-                            option.value = cargo.IdCargo;
-                            option.textContent = cargo.Cargo;
-                            seleccionCargo.appendChild(option);
-                        });
-                    }
-                });
-            } else {
-                alert("Error en la consulta de cargos.");
-            }
-        } catch (error) {
-            alert("Error en la consulta de cargos.");
-        }
+seleccionAnio.onchange = function () {
+    if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
+        borrarDatos()
     }
-}
-
-function consultarDistrito() {
-    const cargoSeleccionado = seleccionCargo.value; // Obtener el valor seleccionado en el combo de cargo
-    if (cargoSeleccionado === "") {
-        alert('No seleccionó ningún cargo.');
-        return false;
-    } else {
-        /*datosFiltros.forEach((eleccion) => { ... }): Este es un bucle forEach que itera a través de los elementos en el arreglo datosFiltros. Cada elemento se refiere a un objeto que representa una elección. */
-        datosFiltros.forEach((eleccion) => {
-            if (eleccion.IdEleccion == tipoEleccion) {
-                eleccion.Cargos.forEach((cargo) => {
-                    if (cargo.IdCargo == cargoSeleccionado) {
-                        cargo.Distritos.forEach((distrito) => {
-                            // Crea una opción para cada distrito y agrega al combo de distritos
-                            const option = document.createElement("option");
-                            option.value = distrito.IdDistrito;
-                            option.textContent = distrito.Distrito;
-                            seleccionDistrito.appendChild(option);
-                        });
-                    }
-                });
-            }
+    consultarCargo()
+        .then(function (datosFiltros) { /* recorro el forEach y lleno el combo, con la respuesta de la promesa del async*/
+            datosFiltros.forEach(function (eleccion) {
+                if (eleccion.IdEleccion == tipoEleccion) {
+                    eleccion.Cargos.forEach((cargo) => {
+                        // Crea una opción para cada cargo y agrega al combo de cargos
+                        const option = document.createElement("option");
+                        option.value = cargo.IdCargo;
+                        option.textContent = cargo.Cargo;
+                        seleccionCargo.appendChild(option);
+                    });
+                }
+            });
+        })
+        .catch(function (error) {
+            alert(error.message);
         });
+};
+
+seleccionCargo.onclick = function () { //lo hice para que salte el alert cuando haga click en cargo
+    if (seleccionAnio.value === 'año') {
+        alert('Debe seleccionar las opciones anteriores para acceder a este campo');
     }
 }
 
-function consultarSeccion() {
+seleccionCargo.onchange = function () {
+    if (seleccionCargo.value !== 'cargo') { //se elminan valores de los select siguientes
+        for (let i = seleccionDistrito.options.length - 1; i > 0; i--) {
+            seleccionDistrito.value = "distrito"
+            seleccionDistrito.remove(i);
+        }
+        for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
+            seleccionSeccion.value = "seccion"
+            seleccionSeccion.remove(i);
+        }
+    }
+    datosFiltros.forEach(function (eleccion) {
+        if (eleccion.IdEleccion == tipoEleccion) {
+            eleccion.Cargos.forEach((cargo) => {
+                if (cargo.IdCargo == seleccionCargo.value) {
+                    cargo.Distritos.forEach((distrito) => {
+                        // Crea una opción para cada distrito y agrega al combo de distritos
+                        const option = document.createElement("option");
+                        option.value = distrito.IdDistrito;
+                        option.textContent = distrito.Distrito;
+                        seleccionDistrito.appendChild(option);
+                    });
+                }
+            });
+        }
+    });
+}
+
+seleccionDistrito.onclick = function () {
+    if (seleccionAnio.value === 'año' || seleccionCargo.value === 'cargo') {
+        alert('Debe seleccionar las opciones anteriores para acceder a este campo');
+    }
+}
+
+
+seleccionDistrito.onchange = function () {
+    if (seleccionDistrito.value !== 'distrito') { //se eliminan valores del select
+        for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
+            seleccionSeccion.value = "seccion"
+            seleccionSeccion.remove(i);
+        }
+    }
     datosFiltros.forEach((eleccion) => {
-        if (eleccion.IdEleccion == tipoEleccion)//se verifica si el IdEleccion del objeto eleccion coincide con el valor almacenado en la variable tipoEleccion. Esto se utiliza para filtrar las elecciones que coinciden con el tipo de elección deseado
-         {
+        if (eleccion.IdEleccion == tipoEleccion) {//se verifica si el IdEleccion del objeto eleccion coincide con el valor almacenado en la variable tipoEleccion. Esto se utiliza para filtrar las elecciones que coinciden con el tipo de elección deseado
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo == seleccionCargo.value) {
                     cargo.Distritos.forEach((distrito) => {
@@ -118,7 +115,15 @@ function consultarSeccion() {
             });
         }
     });
+
 }
+
+seleccionSeccion.onclick = function () {
+    if (seleccionAnio.value === 'año' || seleccionCargo.value === 'cargo' || seleccionDistrito.value === 'distrito') {
+        alert('Debe seleccionar las opciones anteriores para acceder a este campo');
+    }
+}
+
 
 /*consultaAnio():Esta función utiliza async/await para realizar una solicitud HTTP para obtener los años disponibles y llenar un combo. Esto es apropiado porque implica una operación asincrónica.
 consultaCargo():

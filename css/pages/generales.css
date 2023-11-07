@@ -16,6 +16,7 @@ form {
     display: flex;
 }
 
+
 .desplegable {
     font-size: 14px;
     background-color: transparent;
@@ -24,6 +25,14 @@ form {
     padding: 5px 0px;
     color: var(--celeste);
     margin: 0px 5px 0px 5px;
+}
+
+#seleccionCargo{
+    max-width: 70px;
+}
+
+#seleccionDistrito{
+    max-width: 70px;
 }
 
 #barra-menu-filtrar {

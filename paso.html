@@ -13,6 +13,10 @@
 
     <!--Link font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Script -->
+    <script src="js/common.js" defer></script>
+    <script src="js/paso.js" defer> </script>
 </head>
 
 <body>
@@ -28,30 +32,28 @@
             <ul class="barra-menu">
                 <form>
                     <li>
-                        <select class="desplegable" id="seleccionAnio" onchange="consultaAnio()">
-                            <!--HACERLO EN JS-->
-                            <option> Año: </option>
+                        <select class="desplegable" id="seleccionAnio">
+                            <option disabled selected value='año'> Año: </option>
                         </select>
                     </li>
                     <li>
-                        <select class="desplegable" id="seleccionCargo" onchange="consultaCargo()">
-                            <option> Cargo: </option>
+                        <select class="desplegable" id="seleccionCargo" >
+                            <option disabled selected value="cargo"> Cargo: </option>
                         </select>
                     </li>
                     <li>
-                        <select class="desplegable" id="seleccionDistrito" onchange="consultarDistrito()">
-                            <option> Distrito: </option>
+                        <select class="desplegable" id="seleccionDistrito">
+                            <option disabled selected value = "distrito"> Distrito: </option>
                         </select>
                     </li>
                     <input type="hidden" id="hdSeccionProvincial" name="hdSeccionProvincial">
                     <li>
-                        <select class="desplegable" id="seleccionSeccion" onchange="consultarSeccion()">
-                            <option> Seccion: </option>
+                        <select class="desplegable" id="seleccionSeccion">
+                            <option disabled selected value ="seccion"> Seccion: </option>
                         </select>
                     </li>
                 </form>
-                <li id="barra-menu-filtrar filtrar"><i class="fa fa-search" aria-hidden="true"></i> &nbsp filtrar</li>
-                <!--FALTA AGREGAR ICONO DE LUPITA-->
+                <li id="barra-menu-filtrar"><i class="fa fa-search"></i>&nbsp filtrar</li>
                 <li><a id="barra-menu-generales" href="generales.html"> generales </a></li>
                 <li><a id="barra-menu-informes" href="informes.html"> informes</a></li>
                 <li><a id="barra-menu-inicio" href="index.html"> inicio </a></li>

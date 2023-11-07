@@ -26,6 +26,12 @@ form {
     margin: 0px 5px 0px 5px;
 }
 
+#seleccionCargo,
+#seleccionDistrito,
+#seleccionSeccion{
+    max-width: 70px;
+}
+
 #barra-menu-filtrar {
     background-color: white;
     border-radius: 15px;
