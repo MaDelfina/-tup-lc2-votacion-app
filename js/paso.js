@@ -11,7 +11,9 @@ let mensajeAmarillo = document.getElementById('mensajeAmarillo'); //mensaje en a
 let mensajeRojo = document.getElementById('mensajeRojo'); //mensaje en rojo
 let filtrar = document.getElementById('botonFiltrar'); //boton filtrar
 
+//COMBOS
 function borrarDatos() {
+    //se eliminan valores de todos los select menos el de año
     for (let i = seleccionCargo.options.length - 1; i > 0; i--) { //recorre el select desde el último hasta la posición 1, no toca la 0 que seria la de "cargo"
         seleccionCargo.value = 'cargo'
         seleccionCargo.remove(i);
@@ -27,7 +29,7 @@ function borrarDatos() {
 }
 
 seleccionAnio.onchange = function () {
-    if (seleccionAnio.value !== 'año') {
+    if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
         borrarDatos()
     }
     consultarCargo()
@@ -56,8 +58,7 @@ seleccionCargo.onclick = function () { //lo hice para que salte el alert cuando 
 }
 
 seleccionCargo.onchange = function () {
-    const cargoSeleccionado = seleccionCargo.value;
-    if (seleccionCargo.value !== 'cargo') {
+    if (seleccionCargo.value !== 'cargo') { //se elminan valores de los select siguientes
         for (let i = seleccionDistrito.options.length - 1; i > 0; i--) {
             seleccionDistrito.value = "distrito"
             seleccionDistrito.remove(i);
@@ -70,7 +71,7 @@ seleccionCargo.onchange = function () {
     datosFiltros.forEach(function (eleccion) {
         if (eleccion.IdEleccion == tipoEleccion) {
             eleccion.Cargos.forEach((cargo) => {
-                if (cargo.IdCargo == cargoSeleccionado) {
+                if (cargo.IdCargo == seleccionCargo.value) {
                     cargo.Distritos.forEach((distrito) => {
                         // Crea una opción para cada distrito y agrega al combo de distritos
                         const option = document.createElement("option");
@@ -97,26 +98,33 @@ seleccionDistrito.onchange = function () {
             seleccionSeccion.remove(i);
         }
     }
-    
     datosFiltros.forEach((eleccion) => {
+        console.log(datosFiltros)
         if (eleccion.IdEleccion == tipoEleccion) {//se verifica si el IdEleccion del objeto eleccion coincide con el valor almacenado en la variable tipoEleccion. Esto se utiliza para filtrar las elecciones que coinciden con el tipo de elección deseado
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo == seleccionCargo.value) {
                     cargo.Distritos.forEach((distrito) => {
                         if (distrito.IdDistrito == seleccionDistrito.value) {
-                            distrito.SeccionesProvinciales.forEach((seccion) => {
-                                // Crea una opción para cada sección y agrega al combo de secciones
-                                const option = document.createElement("option");
-                                option.value = seccion.IdSeccion;
-                                option.textContent = seccion.Seccion;
-                                seleccionSeccion.appendChild(option);
+                            distrito.SeccionesProvinciales.forEach((seccionProvincial) => {
+                                valorOculto = seccionProvincial.IDSeccionProvincial;
+                                document.getElementById("hdSeccionProvincial").value = valorOculto;
+                                console.log("seccionProvincial.IdSeccionProvincial:", seccionProvincial.IDSeccionProvincial);
+                                if (valorOculto === seccionProvincial.IDSeccionProvincial) {
+                                    seccionProvincial.Secciones.forEach((seccion) => {
+                                        const option = document.createElement("option");
+                                        option.value = seccion.IdSeccion;
+                                        option.textContent = seccion.Seccion;
+                                        seleccionSeccion.appendChild(option);
+                                    });
+                                }
                             });
                         }
                     });
                 }
             });
+
         }
-    });
+    })
 }
 
 seleccionSeccion.onclick = function () {
@@ -125,6 +133,7 @@ seleccionSeccion.onclick = function () {
     }
 }
 
+//BOTON FILTRAR
 filtrar.onclick = function () {
     // Verificar que todos los campos de selección estén completos
     if (
@@ -160,3 +169,14 @@ filtrar.onclick = function () {
             mensajeRojo.innerHTML = error;
         });
 };
+
+/*consultaAnio():Esta función utiliza async/await para realizar una solicitud HTTP para obtener los años disponibles y llenar un combo. Esto es apropiado porque implica una operación asincrónica.
+consultaCargo():
+
+Utiliza async/await para realizar una solicitud HTTP y obtener los datos relacionados con los cargos disponibles. Esto también es adecuado debido a la operación asincrónica involucrada.
+consultarDistrito():
+
+Esta función realiza operaciones de filtrado local en función de la selección del usuario en el combo de cargo. No implica operaciones asincrónicas ni llamadas a la red, por lo que no es necesario utilizar async/await.
+consultarSeccion():
+
+Similar a consultarDistrito, esta función realiza operaciones de filtrado local en función de las selecciones del usuario en los combos de cargo y distrito, por lo que no requiere async/await.*/
