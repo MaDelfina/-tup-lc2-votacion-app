@@ -132,4 +132,45 @@ seleccionSeccion.onclick = function () {
     }
 }
 
+seleccionSeccion.onchange = function () {
+    idSeccionElegida = seleccionSeccion.value
+}
 
+//BOTON FILTRAR
+filtrar.onclick = function () {
+    // Verificar que todos los campos de selección estén completos
+    if (seleccionAnio.value === "año" || seleccionCargo.value === "cargo" || seleccionDistrito.value === "distrito" || seleccionSeccion.value === "seccion") {
+        // Mostrar mensaje amarillo
+        mensajeAmarillo.style.display = "block";
+    } else {
+        mensajeAmarillo.style.display = "none";
+
+        // Recuperar los valores del filtro
+        const anioEleccion = año_elegido;
+        const categoriaId = 2;
+        const distritoId = idDistritoElegido
+        const seccionProvincialId = valorOculto;
+        const seccionId = idSeccionElegida;
+
+        // Realizar la consulta al servicio
+        datosFiltrar(anioEleccion, categoriaId, distritoId, seccionProvincialId, seccionId);
+    }
+};
+
+// Realizar la consulta al servicio
+async function datosFiltrar(anioEleccion, categoriaId, distritoId, seccionProvincialId, seccionId) {
+    try {
+        const respuesta = await fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`);
+        
+        if (respuesta.ok) {
+            const datos = await respuesta.json();
+            console.log(datos);
+        } else {
+            throw new Error('Error al obtener los datos del servidor');
+        }
+    } catch (error) {
+        console.error(error);
+        // Mostrar mensaje rojo en caso de error
+        mensajeRojo.style.display = "block";
+    }
+}

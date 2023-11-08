@@ -149,52 +149,35 @@ filtrar.onclick = function () {
     if (seleccionAnio.value === "año" || seleccionCargo.value === "cargo" || seleccionDistrito.value === "distrito" || seleccionSeccion.value === "seccion") {
         // Mostrar mensaje amarillo
         mensajeAmarillo.style.display = "block";
-    }
-    else {
+    } else {
         mensajeAmarillo.style.display = "none";
+
         // Recuperar los valores del filtro
         const anioEleccion = año_elegido;
         const categoriaId = 2;
         const distritoId = idDistritoElegido
         const seccionProvincialId = valorOculto;
         const seccionId = idSeccionElegida;
+
+        // Realizar la consulta al servicio
+        datosFiltrar(anioEleccion, categoriaId, distritoId, seccionProvincialId, seccionId);
     }
-
-}
-// Realizar la consulta al servicio
-
-/*async function datosFiltrar() {
-    const respuesta = await fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`);
-    if (respuesta.ok) {
-        datosFiltrar = await respuesta.json();
-        return datosFiltar
-    } else {
-        throw new Error('Error al obtener los datos del servidor');
-    }
-}
-
-    .then(datosFiltrar) => {
-        // Mostrar el JSON de la respuesta en consola
-        console.log(data);
-    })
-    .catch((error) => {
-        // Mostrar mensaje rojo
-        mensajeRojo.style.display = "block";
-        mensajeRojo.innerHTML = error;
-    });
 };
 
-
-
-
-
-/*consultaAnio():Esta función utiliza async/await para realizar una solicitud HTTP para obtener los años disponibles y llenar un combo. Esto es apropiado porque implica una operación asincrónica.
-consultaCargo():
-
-Utiliza async/await para realizar una solicitud HTTP y obtener los datos relacionados con los cargos disponibles. Esto también es adecuado debido a la operación asincrónica involucrada.
-consultarDistrito():
-
-Esta función realiza operaciones de filtrado local en función de la selección del usuario en el combo de cargo. No implica operaciones asincrónicas ni llamadas a la red, por lo que no es necesario utilizar async/await.
-consultarSeccion():
-
-Similar a consultarDistrito, esta función realiza operaciones de filtrado local en función de las selecciones del usuario en los combos de cargo y distrito, por lo que no requiere async/await.*/
+// Realizar la consulta al servicio
+async function datosFiltrar(anioEleccion, categoriaId, distritoId, seccionProvincialId, seccionId) {
+    try {
+        const respuesta = await fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`);
+        
+        if (respuesta.ok) {
+            const datos = await respuesta.json();
+            console.log(datos);
+        } else {
+            throw new Error('Error al obtener los datos del servidor');
+        }
+    } catch (error) {
+        console.error(error);
+        // Mostrar mensaje rojo en caso de error
+        mensajeRojo.style.display = "block";
+    }
+}
