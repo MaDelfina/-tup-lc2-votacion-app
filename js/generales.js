@@ -1,11 +1,20 @@
 const tipoEleccion = 2;
 const tipoRecuento = 1;
+const circuitoId = ""; //tiene que estan asi por defecto
+const mesaId = ""; //tiene que estan asi por defecto
 
 let seleccionAnio = document.getElementById('seleccionAnio'); //select del año
 let seleccionCargo = document.getElementById('seleccionCargo'); //select del cargo
 let seleccionDistrito = document.getElementById('seleccionDistrito'); //select del distrito
 let seleccionSeccion = document.getElementById('seleccionSeccion'); //select de seccion
-let filtrar = document.getElementById('filtrar'); //boton filtrar
+let mensajeAmarillo = document.getElementById("mensaje-amarillo");
+let mensajeVerde = document.getElementById("mensaje-verde");
+let mensajeRojo = document.getElementById("mensaje-rojo");
+let filtrar = document.getElementById("barra-menu-filtrar"); //boton filtrar
+let año_elegido;
+let idDistritoElegido;
+let valorOculto
+let idSeccionElegida;
 
 //COMBOS
 function borrarDatos() {
@@ -28,8 +37,10 @@ seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
         borrarDatos()
     }
+    año_elegido = seleccionAnio.value
     consultarCargo()
         .then(function (datosFiltros) { /* recorro el forEach y lleno el combo, con la respuesta de la promesa del async*/
+            console.log(datosFiltros)
             datosFiltros.forEach(function (eleccion) {
                 if (eleccion.IdEleccion == tipoEleccion) {
                     eleccion.Cargos.forEach((cargo) => {
@@ -95,16 +106,15 @@ seleccionDistrito.onchange = function () {
         }
     }
     datosFiltros.forEach((eleccion) => {
-        console.log(datosFiltros)
         if (eleccion.IdEleccion == tipoEleccion) {//se verifica si el IdEleccion del objeto eleccion coincide con el valor almacenado en la variable tipoEleccion. Esto se utiliza para filtrar las elecciones que coinciden con el tipo de elección deseado
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo == seleccionCargo.value) {
                     cargo.Distritos.forEach((distrito) => {
+                        idDistritoElegido = seleccionDistrito.value
                         if (distrito.IdDistrito == seleccionDistrito.value) {
                             distrito.SeccionesProvinciales.forEach((seccionProvincial) => {
                                 valorOculto = seccionProvincial.IDSeccionProvincial;
                                 document.getElementById("hdSeccionProvincial").value = valorOculto;
-                                console.log("seccionProvincial.IdSeccionProvincial:", seccionProvincial.IDSeccionProvincial);
                                 if (valorOculto === seccionProvincial.IDSeccionProvincial) {
                                     seccionProvincial.Secciones.forEach((seccion) => {
                                         const option = document.createElement("option");
@@ -129,42 +139,54 @@ seleccionSeccion.onclick = function () {
     }
 }
 
+seleccionSeccion.onchange = function () {
+    idSeccionElegida = seleccionSeccion.value
+}
+
 //BOTON FILTRAR
 filtrar.onclick = function () {
     // Verificar que todos los campos de selección estén completos
-    if (
-        seleccionAnio.value === "año" ||
-        seleccionCargo.value === "cargo" ||
-        seleccionDistrito.value === "distrito" ||
-        seleccionSeccion.value === "seccion"
-    ) {
+    if (seleccionAnio.value === "año" || seleccionCargo.value === "cargo" || seleccionDistrito.value === "distrito" || seleccionSeccion.value === "seccion") {
         // Mostrar mensaje amarillo
         mensajeAmarillo.style.display = "block";
-        return;
+    }
+    else {
+        mensajeAmarillo.style.display = "none";
+        // Recuperar los valores del filtro
+        const anioEleccion = año_elegido;
+        const categoriaId = 2;
+        const distritoId = idDistritoElegido
+        const seccionProvincialId = valorOculto;
+        const seccionId = idSeccionElegida;
     }
 
-    // Recuperar los valores del filtro
-    const anioEleccion = seleccionAnio.value;
-    const categoriaId = seleccionCargo.value;
-    const distritoId = seleccionDistrito.value;
-    const seccionProvincialId = seleccionSeccion.value;
-    const seccionId = seleccionSeccion.value;
+}
+// Realizar la consulta al servicio
 
-    // Realizar la consulta al servicio
-    const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`;
+/*async function datosFiltrar() {
+    const respuesta = await fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`);
+    if (respuesta.ok) {
+        datosFiltrar = await respuesta.json();
+        return datosFiltar
+    } else {
+        throw new Error('Error al obtener los datos del servidor');
+    }
+}
 
-    fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-            // Mostrar el JSON de la respuesta en consola
-            console.log(data);
-        })
-        .catch((error) => {
-            // Mostrar mensaje rojo
-            mensajeRojo.style.display = "block";
-            mensajeRojo.innerHTML = error;
-        });
+    .then(datosFiltrar) => {
+        // Mostrar el JSON de la respuesta en consola
+        console.log(data);
+    })
+    .catch((error) => {
+        // Mostrar mensaje rojo
+        mensajeRojo.style.display = "block";
+        mensajeRojo.innerHTML = error;
+    });
 };
+
+
+
+
 
 /*consultaAnio():Esta función utiliza async/await para realizar una solicitud HTTP para obtener los años disponibles y llenar un combo. Esto es apropiado porque implica una operación asincrónica.
 consultaCargo():
