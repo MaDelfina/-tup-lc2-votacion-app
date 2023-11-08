@@ -125,7 +125,7 @@ seleccionSeccion.onclick = function () {
     }
 }
 
-botonFiltrar.onclick = function () {
+filtrar.onclick = function () {
     // Verificar que todos los campos de selección estén completos
     if (
         seleccionAnio.value === "año" ||
@@ -140,8 +140,6 @@ botonFiltrar.onclick = function () {
 
     // Recuperar los valores del filtro
     const anioEleccion = seleccionAnio.value;
-    const tipoRecuento = tipoRecuento;
-    const tipoEleccion = tipoEleccion;
     const categoriaId = seleccionCargo.value;
     const distritoId = seleccionDistrito.value;
     const seccionProvincialId = seleccionSeccion.value;
