@@ -40,7 +40,7 @@ seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
         borrarDatos()
     }
-    añoElegido = seleccionAnio.value
+    añoElegido = seleccionAnio.value;
     consultarCargo()
         .then(function (datosFiltros) { /* recorro el forEach y lleno el combo, con la respuesta de la promesa del async*/
             datosFiltros.forEach(function (eleccion) {
@@ -172,6 +172,7 @@ filtrar.onclick = async function () {
         fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
                 if (response.ok) {
+                    console.log(response)
                     return response.json();
                 } else {
                     throw new Error('Error al obtener los datos del servidor. ');
