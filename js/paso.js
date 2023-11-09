@@ -40,16 +40,17 @@ seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
         borrarDatos()
     }
-    añoElegido = seleccionAnio.value;
+    añoElegido = seleccionAnio.value
     consultarCargo()
-        .then(function (datosFiltros) { /* recorro el forEach y lleno el combo, con la respuesta de la promesa del async*/
+        .then(function (datosFiltros) {
+            console.log(datosFiltros) /* recorro el forEach y lleno el combo, con la respuesta de la promesa del async*/
             datosFiltros.forEach(function (eleccion) {
                 if (eleccion.IdEleccion == tipoEleccion) {
                     eleccion.Cargos.forEach((cargo) => {
                         // Crea una opción para cada cargo y agrega al combo de cargos
                         const option = document.createElement("option");
                         option.value = cargo.IdCargo;
-                        option.textContent = cargo.Cargo;
+                        option.textContent = cargo.Cargo.toUpperCase();;
                         seleccionCargo.appendChild(option);
                     });
                 }
@@ -81,7 +82,7 @@ seleccionCargo.onchange = function () {
                         // Crea una opción para cada distrito y agrega al combo de distritos
                         const option = document.createElement("option");
                         option.value = distrito.IdDistrito;
-                        option.textContent = distrito.Distrito;
+                        option.textContent = distrito.Distrito.toUpperCase();;
                         seleccionDistrito.appendChild(option);
                     });
                 }
@@ -114,7 +115,7 @@ seleccionDistrito.onchange = function () {
                                     seccionProvincial.Secciones.forEach((seccion) => {
                                         const option = document.createElement("option");
                                         option.value = seccion.IdSeccion;
-                                        option.textContent = seccion.Seccion;
+                                        option.textContent = seccion.Seccion.toUpperCase();
                                         seleccionSeccion.appendChild(option);
                                     });
                                 }
@@ -166,13 +167,14 @@ filtrar.onclick = async function () {
         anioEleccion = añoElegido;
         categoriaId = 2;
         distritoId = idDistritoElegido
-        seccionProvincialId = valorOculto;
+        seccionProvincialId = "";
         seccionId = idSeccionElegida;
+        console.log(anioEleccion + distritoId + seccionId)
 
         fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
+                console.log(response)
                 if (response.ok) {
-                    console.log(response)
                     return response.json();
                 } else {
                     throw new Error('Error al obtener los datos del servidor. ');
@@ -184,12 +186,25 @@ filtrar.onclick = async function () {
                 console.log(dataFiltrar);
                 titulo.innerHTML = `Elecciones ${añoElegido} | Paso`;
                 subtitulo.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
-                if (dataFiltrar.length === 0) { //no hay datos en la consulta, mostrar mensaje amarillo
+                let mesasEscrutadas = document.getElementById("porcentaje-mesas-escrutadas");
+                let electores = document.getElementById("porcentaje-electores");
+                let participacionEscrutado= document.getElementById ("porcentaje-part-escrutado");
+                let distrito = document.getElementById("titulo-provincias");
+                let svgDistrito = document.getElementById("svg-provincias");
+
+                if (dataFiltrar.estadoRecuento.mesasTotalizadas === 0) { //no hay datos en la consulta, mostrar mensaje amarillo
                     mensajeAmarillo.style.display = "block";
                     textoAmarillo.innerText = "No se encontró información para la consulta realizada.";
+                    mesasEscrutadas.innerHTML = "-";
+                    electores.innerHTML = "-";
+                    participacionEscrutado.innerHTML = "-";   
                 } else {
-                    // hay datos, EXITO
-                    // Resto del codigo para trabajar con los datos
+                    mesasEscrutadas.innerHTML = dataFiltrar.estadoRecuento.mesasTotalizadas;
+                    electores.innerHTML = dataFiltrar.estadoRecuento.cantidadElectores;
+                    participacionEscrutado.innerHTML =  dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
+                    distrito.innerHTML = distritoElegido;
+                    svgDistrito.innerHTML = mapas[distritoElegido];
+
                 }
             })
             .catch(error => {

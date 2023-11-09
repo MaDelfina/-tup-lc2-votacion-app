@@ -345,7 +345,10 @@ hr {
 }
 
 /*Recuadro 2*/
-#svg-baires {
+#titulo-provincias{
+    text-align: center;
+}
+#svg-provincias {
     display: flex;
     align-items: center;
     padding: 55px 0px 0px 5px;
