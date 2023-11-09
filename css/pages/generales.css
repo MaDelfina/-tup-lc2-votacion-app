@@ -27,13 +27,12 @@ form {
     margin: 0px 5px 0px 5px;
 }
 
-#seleccionCargo{
+#seleccionCargo,
+#seleccionDistrito,
+#seleccionSeccion{
     max-width: 70px;
 }
 
-#seleccionDistrito{
-    max-width: 70px;
-}
 
 #barra-menu-filtrar {
     background-color: white;
@@ -108,23 +107,19 @@ form {
     background-color: var(--mensaje-usuario-amarillo);
 }
 
-.fa-thumbs-up,
-.fa-exclamation-triangle .fa-exclamation {
-    color: white;
-    font-size: 15px;
-}
-
 .mensaje {
     margin: 20px auto;
-    width: 400px;
-    padding: 8px;
+    width: 450px;
+    padding: 20px 10px 20px 10px;
     color: #FFffFF;
     font-size: 13px;
-    height: 50px;
+    height: auto;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+}
+
+.mensaje i{
+    margin-right:15px
 }
 
 /*Sec-contenido-titulo*/
@@ -134,7 +129,7 @@ form {
    
 }
 
-#texto-path {
+#subtitulo {
     font-size: 14px;
     font-family: "Roboto";
     color: var(--celeste);
