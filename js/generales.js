@@ -16,8 +16,9 @@ let idSeccionElegida;
 let seccionElegida;
 let dataFiltrar;
 let errorFiltrar;
-let titulo = document.getElementById('titulo');
-let subtitulo = document.getElementById('subtitulo');
+let titulo = document.getElementById('titulo'); //div de título
+let subtitulo = document.getElementById('subtitulo'); //div de subtítulo
+let informes = document.getElementById ("boton-informe") //botón de informes
 
 //COMBOS
 function borrarDatos() {
@@ -214,3 +215,4 @@ filtrar.onclick = async function () {
             });
     }
 }
+

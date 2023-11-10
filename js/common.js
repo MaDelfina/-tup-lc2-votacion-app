@@ -6,21 +6,31 @@ let mensajeVerde = document.getElementById("mensaje-verde");
 let textoVerde = document.getElementById("texto-verde");
 let mensajeRojo = document.getElementById("mensaje-rojo");
 let textoRojo = document.getElementById("texto-rojo");
+let mensajeAmarilloTitulo = document.getElementById("mensaje-amarillo-titulo");
+let mensajeRojoTitulo = document.getElementById("mensaje-rojo-titulo");
+let textoRojoTitulo = document.getElementById("texto-rojo-titu");
 let filtrar = document.getElementById("barra-menu-filtrar"); //boton filtrar
+let sectionContenido = document.getElementById("sec-contenido") //section que contiene mapas y cuadritos.
 
 //OCULTAR MENSAJES NI BIEN ABRO LA PAGINA. 
 
 document.addEventListener("DOMContentLoaded", function () {
     ocultarMensajes();
+    ocultarContenido();
 }); //esta forma de crear un evento la saque de internet, me pareció muy buena. se utiliza para escuchar eventos en elementos del DOM
 //en este caso los mensajes se ocultaran tan pronto como la página se inicie sin esperar a que se cargue por completo (lo que window.onload haría)
 
 function ocultarMensajes() {
     mensajeVerde.style.display = "none";
     mensajeRojo.style.display = "none";
+    mensajeRojoTitulo.style.display="none";
+    mensajeAmarilloTitulo.style.display="none";
 }
 
-
+function ocultarContenido()
+{
+    sectionContenido.style.display = "none"
+}
 
 //COMBOS
 async function consultaAnio() {

@@ -9,15 +9,16 @@ let seleccionDistrito = document.getElementById('seleccionDistrito'); //select d
 let seleccionSeccion = document.getElementById('seleccionSeccion'); //select de seccion
 let añoElegido;
 let cargoElegido;
+let categoriaId;
 let distritoElegido;
 let idDistritoElegido;
 let valorOculto
 let idSeccionElegida;
 let seccionElegida;
 let dataFiltrar;
-let errorFiltrar;
 let titulo = document.getElementById('titulo');
 let subtitulo = document.getElementById('subtitulo');
+let informes = document.getElementById("boton-informe") //botón de informes
 
 //COMBOS
 function borrarDatos() {
@@ -78,6 +79,7 @@ seleccionCargo.onchange = function () {
         if (eleccion.IdEleccion == tipoEleccion) {
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo == seleccionCargo.value) {
+                    categoriaId = seleccionCargo.value;
                     cargo.Distritos.forEach((distrito) => {
                         // Crea una opción para cada distrito y agrega al combo de distritos
                         const option = document.createElement("option");
@@ -94,7 +96,7 @@ seleccionCargo.onchange = function () {
 
 seleccionDistrito.onchange = function () {
     if (seleccionDistrito.value !== 'distrito') {
-        distritoElegido = seleccionDistrito.options[seleccionDistrito.selectedIndex].text; 
+        distritoElegido = seleccionDistrito.options[seleccionDistrito.selectedIndex].text;
         for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
             seleccionSeccion.value = "seccion"
             seleccionSeccion.remove(i);
@@ -131,12 +133,12 @@ seleccionDistrito.onchange = function () {
 
 seleccionSeccion.onchange = function () {
     idSeccionElegida = seleccionSeccion.value
-    seccionElegida = seleccionSeccion.options[seleccionSeccion.selectedIndex].text; 
+    seccionElegida = seleccionSeccion.options[seleccionSeccion.selectedIndex].text;
 }
 
 //BOTON FILTRAR
 filtrar.onclick = async function () {
-    let anioEleccion, categoriaId, distritoId, seccionProvincialId, seccionId;
+    let anioEleccion, distritoId, seccionProvincialId, seccionId;
 
     // Verificar que campos faltan llenar
     let camposFaltantes = [];
@@ -163,11 +165,16 @@ filtrar.onclick = async function () {
         textoAmarillo.innerText = `Por favor complete los campos: ${camposFaltantes.join(',')}.`; //${} permite agregar variables -- camposFaltantes.join(,) va a mostrar los componentes de la variable array separados por una coma
 
     } else {
+        sectionContenido.style.display = "block"
         mensajeAmarillo.style.display = "none";
         anioEleccion = añoElegido;
-        categoriaId = 2;
-        distritoId = idDistritoElegido
-        seccionProvincialId = "";
+        distritoId = idDistritoElegido;
+        if (seccionProvincialId == null) {
+            seccionProvincialId = ""
+        }
+        else {
+            seccionProvincialId = valorOculto;
+        }
         seccionId = idSeccionElegida;
         console.log(anioEleccion + distritoId + seccionId)
 
@@ -188,29 +195,63 @@ filtrar.onclick = async function () {
                 subtitulo.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
                 let mesasEscrutadas = document.getElementById("porcentaje-mesas-escrutadas");
                 let electores = document.getElementById("porcentaje-electores");
-                let participacionEscrutado= document.getElementById ("porcentaje-part-escrutado");
+                let participacionEscrutado = document.getElementById("porcentaje-part-escrutado");
                 let distrito = document.getElementById("titulo-provincias");
                 let svgDistrito = document.getElementById("svg-provincias");
 
                 if (dataFiltrar.estadoRecuento.mesasTotalizadas === 0) { //no hay datos en la consulta, mostrar mensaje amarillo
-                    mensajeAmarillo.style.display = "block";
-                    textoAmarillo.innerText = "No se encontró información para la consulta realizada.";
-                    mesasEscrutadas.innerHTML = "-";
-                    electores.innerHTML = "-";
-                    participacionEscrutado.innerHTML = "-";   
+                    mensajeAmarilloTitulo.style.display = "block";
+
                 } else {
                     mesasEscrutadas.innerHTML = dataFiltrar.estadoRecuento.mesasTotalizadas;
                     electores.innerHTML = dataFiltrar.estadoRecuento.cantidadElectores;
-                    participacionEscrutado.innerHTML =  dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
+                    participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
                     distrito.innerHTML = distritoElegido;
                     svgDistrito.innerHTML = mapas[distritoElegido];
 
                 }
             })
             .catch(error => {
-                errorFiltrar = error
-                mensajeRojo.style.display = "block";
-                textoRojo.innerHTML = error.message
+                mensajeRojoTitulo.style.display = "block";
+                textoRojoTitulo.innerHTML = error.message
             });
     }
 }
+
+//BOTON INFORMES
+informes.onclick = function () {
+    let arrayDatosString;
+    let arrayDatos;
+    let valorAño = añoElegido.toString();
+    let valorTipoRecuento = tipoRecuento.toString();
+    let valorTipoEleccion = tipoEleccion.toString();
+    let valorCategoriaId = categoriaId.toString();
+    let valorDistritoId = idDistritoElegido.toString();
+    let valorSeccionProvincialId = "";
+    let valorSeccionId = idSeccionElegida.toString();
+    let valorCircuitoId = circuitoId;
+    let valorMesaId = mesaId;
+
+    if (arrayDatosString.some(value => value == null || value === undefined)) {
+        mensajeRojo.style.display = "block";
+        textoRojo.innerHTML = "Hubo un error al almacenar los datos.";
+        console.error('Error al almacenar los datos: Al menos uno de los valores es null o undefined');
+    } else if (arrayDatosString.includes(valorAño) && arrayDatosString.includes(valorTipoRecuento) && arrayDatosString.includes(valorTipoEleccion) && arrayDatosString.includes(valorCategoriaId) && arrayDatosString.includes(valorDistritoId) && arrayDatosString.includes(valorSeccionProvincialId) && arrayDatosString.includes(valorSeccionId) && arrayDatosString.includes(valorCircuitoId) && arrayDatosString.includes(valorMesaId)) {
+        mensajeAmarillo.style.display = "block";
+        textoAmarillo.innerHTML = "La información ya se encuentra agregada al informe. Por favor, seleccione nueva información."
+    } else {
+        arrayDatos = [valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId, valorDistritoId, valorSeccionProvincialId, valorSeccionId, valorCircuitoId, valorMesaId];
+        arrayDatosString = arrayDatos.join();
+        localStorage.setItem('INFORMES', arrayDatosString);
+        mensajeVerde.style.display = "block";
+        textoVerde.innerHTML = "La operación fue exitosa. Consulta agregada al informe."
+    }
+}
+
+
+
+
+
+
+
+
