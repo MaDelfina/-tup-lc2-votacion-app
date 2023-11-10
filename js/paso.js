@@ -93,7 +93,6 @@ seleccionCargo.onchange = function () {
     });
 }
 
-
 seleccionDistrito.onchange = function () {
     if (seleccionDistrito.value !== 'distrito') {
         distritoElegido = seleccionDistrito.options[seleccionDistrito.selectedIndex].text;
@@ -208,7 +207,6 @@ filtrar.onclick = async function () {
                     participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
                     distrito.innerHTML = distritoElegido;
                     svgDistrito.innerHTML = mapas[distritoElegido];
-
                 }
             })
             .catch(error => {
@@ -220,38 +218,44 @@ filtrar.onclick = async function () {
 
 //BOTON INFORMES
 informes.onclick = function () {
-    let arrayDatosString;
-    let arrayDatos;
     let valorAño = añoElegido.toString();
     let valorTipoRecuento = tipoRecuento.toString();
     let valorTipoEleccion = tipoEleccion.toString();
     let valorCategoriaId = categoriaId.toString();
     let valorDistritoId = idDistritoElegido.toString();
-    let valorSeccionProvincialId = "";
+    let valorSeccionProvincialId = '';
     let valorSeccionId = idSeccionElegida.toString();
     let valorCircuitoId = circuitoId;
     let valorMesaId = mesaId;
+    let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
+    let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
 
-    if (arrayDatosString.some(value => value == null || value === undefined)) {
-        mensajeRojo.style.display = "block";
-        textoRojo.innerHTML = "Hubo un error al almacenar los datos.";
+    //verifica si son null o indefinido y tira el cartel de error
+    if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
+        valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
+        valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {
+        mensajeRojo.style.display = 'block';
+        textoRojo.innerHTML = 'Hubo un error al almacenar los datos.';
         console.error('Error al almacenar los datos: Al menos uno de los valores es null o undefined');
-    } else if (arrayDatosString.includes(valorAño) && arrayDatosString.includes(valorTipoRecuento) && arrayDatosString.includes(valorTipoEleccion) && arrayDatosString.includes(valorCategoriaId) && arrayDatosString.includes(valorDistritoId) && arrayDatosString.includes(valorSeccionProvincialId) && arrayDatosString.includes(valorSeccionId) && arrayDatosString.includes(valorCircuitoId) && arrayDatosString.includes(valorMesaId)) {
-        mensajeAmarillo.style.display = "block";
-        textoAmarillo.innerHTML = "La información ya se encuentra agregada al informe. Por favor, seleccione nueva información."
     } else {
-        arrayDatos = [valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId, valorDistritoId, valorSeccionProvincialId, valorSeccionId, valorCircuitoId, valorMesaId];
-        arrayDatosString = arrayDatos.join();
-        localStorage.setItem('INFORMES', arrayDatosString);
-        mensajeVerde.style.display = "block";
-        textoVerde.innerHTML = "La operación fue exitosa. Consulta agregada al informe."
+        let nuevoRegistro = [
+            valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
+            valorDistritoId, valorSeccionProvincialId, valorSeccionId,
+            valorCircuitoId, valorMesaId
+        ].join('|'); //separa los valores como decia en el tp con |
+
+        //verificar si ya esta incluida
+        if (arrayDatos.includes(nuevoRegistro)) {
+            mensajeAmarillo.style.display = 'block';
+            textoAmarillo.innerHTML = 'La información ya se encuentra agregada al informe. Por favor, seleccione nueva información.';
+            mensajeVerde.style.display = 'none';
+        } else {
+            // Agrega nuevoRegistro al arrayDatos y actualizar localStorage
+            arrayDatos.push(nuevoRegistro);
+            arrayDatosString = arrayDatos.join(',');
+            localStorage.setItem('INFORMES', arrayDatosString); //almacena la informacion
+            mensajeVerde.style.display = 'block';
+            textoVerde.innerHTML = 'La operación fue exitosa. Consulta agregada al informe.';
+        }
     }
 }
-
-
-
-
-
-
-
-

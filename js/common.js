@@ -13,7 +13,6 @@ let filtrar = document.getElementById("barra-menu-filtrar"); //boton filtrar
 let sectionContenido = document.getElementById("sec-contenido") //section que contiene mapas y cuadritos.
 
 //OCULTAR MENSAJES NI BIEN ABRO LA PAGINA. 
-
 document.addEventListener("DOMContentLoaded", function () {
     ocultarMensajes();
     ocultarContenido();
@@ -27,8 +26,7 @@ function ocultarMensajes() {
     mensajeAmarilloTitulo.style.display="none";
 }
 
-function ocultarContenido()
-{
+function ocultarContenido(){
     sectionContenido.style.display = "none"
 }
 
@@ -71,7 +69,6 @@ async function consultarCargo() {
 }
 
 //BOTON FILTRAR
-
 filtrar.addEventListener("mouseover", function () { //función para que el cursor cambie al pasar por el botón filtrar. 
     filtrar.style.cursor = "pointer";
 });
