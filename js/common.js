@@ -10,12 +10,17 @@ let mensajeAmarilloTitulo = document.getElementById("mensaje-amarillo-titulo");
 let mensajeRojoTitulo = document.getElementById("mensaje-rojo-titulo");
 let textoRojoTitulo = document.getElementById("texto-rojo-titu");
 let filtrar = document.getElementById("barra-menu-filtrar"); //boton filtrar
-let sectionContenido = document.getElementById("sec-contenido") //section que contiene mapas y cuadritos.
+let sectionContenido = document.getElementById("sec-contenido"); //section que contiene mapas y cuadritos.
+let footer = document.getElementById("fijar-footer"); //div que contiene el footer
+let tituloInicio = document.getElementById('titulo-inicio');
 
 //OCULTAR MENSAJES NI BIEN ABRO LA PAGINA. 
 document.addEventListener("DOMContentLoaded", function () {
     ocultarMensajes();
     ocultarContenido();
+    fijarFooter();
+    mostrarTitulo();
+
 }); //esta forma de crear un evento la saque de internet, me pareció muy buena. se utiliza para escuchar eventos en elementos del DOM
 //en este caso los mensajes se ocultaran tan pronto como la página se inicie sin esperar a que se cargue por completo (lo que window.onload haría)
 
@@ -28,6 +33,17 @@ function ocultarMensajes() {
 
 function ocultarContenido(){
     sectionContenido.style.display = "none"
+}
+
+function fijarFooter(){
+    footer.style.position = 'fixed';
+    footer.style.bottom = '0';
+}
+
+function mostrarTitulo(){
+    tituloInicio.style.display = "block";
+    tituloInicio.style.paddingTop = "25px";
+    mensajeAmarillo.style. marginTop = "0px";
 }
 
 //COMBOS

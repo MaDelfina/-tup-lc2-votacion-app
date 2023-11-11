@@ -50,10 +50,12 @@ h3{
 }
 
 /*Footer*/
+
 .footer{
     background-color: var(--fondo-Footer);
     display: flex;
     justify-content: space-between;
+    position:relative;
 }
 
 .footer-p{

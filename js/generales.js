@@ -9,16 +9,16 @@ let seleccionDistrito = document.getElementById('seleccionDistrito'); //select d
 let seleccionSeccion = document.getElementById('seleccionSeccion'); //select de seccion
 let añoElegido;
 let cargoElegido;
+let categoriaId;
 let distritoElegido;
 let idDistritoElegido;
 let valorOculto
 let idSeccionElegida;
 let seccionElegida;
 let dataFiltrar;
-let errorFiltrar;
-let titulo = document.getElementById('titulo'); //div de título
-let subtitulo = document.getElementById('subtitulo'); //div de subtítulo
-let informes = document.getElementById ("boton-informe") //botón de informes
+let subtitulo = document.getElementById('subtitulo');
+let informes = document.getElementById("boton-informe") //botón de informes
+let titulo = document.getElementById('titulo');
 
 //COMBOS
 function borrarDatos() {
@@ -41,7 +41,7 @@ seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
         borrarDatos()
     }
-    añoElegido = seleccionAnio.value
+    añoElegido = seleccionAnio.value; 
     consultarCargo()
         .then(function (datosFiltros) {
             console.log(datosFiltros) /* recorro el forEach y lleno el combo, con la respuesta de la promesa del async*/
@@ -66,6 +66,7 @@ seleccionAnio.onchange = function () {
 seleccionCargo.onchange = function () {
     if (seleccionCargo.value !== 'cargo') { //se elminan valores de los select siguientes
         cargoElegido = seleccionCargo.options[seleccionCargo.selectedIndex].text;
+        categoriaId = seleccionCargo.value;
         for (let i = seleccionDistrito.options.length - 1; i > 0; i--) {
             seleccionDistrito.value = "distrito"
             seleccionDistrito.remove(i);
@@ -92,10 +93,10 @@ seleccionCargo.onchange = function () {
     });
 }
 
-
 seleccionDistrito.onchange = function () {
     if (seleccionDistrito.value !== 'distrito') {
-        distritoElegido = seleccionDistrito.options[seleccionDistrito.selectedIndex].text; 
+        distritoElegido = seleccionDistrito.options[seleccionDistrito.selectedIndex].text;
+        idDistritoElegido = seleccionDistrito.value
         for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
             seleccionSeccion.value = "seccion"
             seleccionSeccion.remove(i);
@@ -106,13 +107,11 @@ seleccionDistrito.onchange = function () {
             eleccion.Cargos.forEach((cargo) => {
                 if (cargo.IdCargo == seleccionCargo.value) {
                     cargo.Distritos.forEach((distrito) => {
-                        idDistritoElegido = seleccionDistrito.value
                         if (distrito.IdDistrito == seleccionDistrito.value) {
                             distrito.SeccionesProvinciales.forEach((seccionProvincial) => {
                                 valorOculto = seccionProvincial.IDSeccionProvincial;
                                 document.getElementById("hdSeccionProvincial").value = valorOculto;
-                                console.log("seccionProvincial.IdSeccionProvincial:", seccionProvincial.IDSeccionProvincial);
-                                if (valorOculto === seccionProvincial.IDSeccionProvincial) {
+                                if (valorOculto == seccionProvincial.IDSeccionProvincial) {
                                     seccionProvincial.Secciones.forEach((seccion) => {
                                         const option = document.createElement("option");
                                         option.value = seccion.IdSeccion;
@@ -132,13 +131,15 @@ seleccionDistrito.onchange = function () {
 
 seleccionSeccion.onchange = function () {
     idSeccionElegida = seleccionSeccion.value
-    seccionElegida = seleccionSeccion.options[seleccionSeccion.selectedIndex].text; 
+    seccionElegida = seleccionSeccion.options[seleccionSeccion.selectedIndex].text;
+    console.log("id de la sección: " + idSeccionElegida)
+    console.log("sección elegida:" + seccionElegida)
 }
 
 //BOTON FILTRAR
-filtrar.onclick = async function () {
-    let anioEleccion, categoriaId, distritoId, seccionProvincialId, seccionId;
+let seccionProvincialId 
 
+filtrar.onclick = async function () { 
     // Verificar que campos faltan llenar
     let camposFaltantes = [];
 
@@ -162,17 +163,24 @@ filtrar.onclick = async function () {
         // Mostrar mensaje amarillo
         mensajeAmarillo.style.display = "block";
         textoAmarillo.innerText = `Por favor complete los campos: ${camposFaltantes.join(',')}.`; //${} permite agregar variables -- camposFaltantes.join(,) va a mostrar los componentes de la variable array separados por una coma
+        sectionContenido.style.display = "none";
+        titulo.style.display = "none";
+        subtitulo.style.display = "none";
+        mostrarTitulo();
+        fijarFooter();
+        
 
     } else {
+        footer.style.position = "relative";
         mensajeAmarillo.style.display = "none";
-        anioEleccion = añoElegido;
-        categoriaId = 2;
-        distritoId = idDistritoElegido
-        seccionProvincialId = "";
-        seccionId = idSeccionElegida;
-        console.log(anioEleccion + distritoId + seccionId)
+        tituloInicio.style.display = "none";
+        titulo.style.display = "block";
+        subtitulo.style.display = "block";
+        seccionProvincialId = "" //lo vacío antes hice un if para tomar el valor del id de sección provincial cuando no fuera "null", pero cuando le pase como parametro un número y no vació me devolvía todo 0 asi que va siempre ""
+        
+        console.log("año eleccion:"+ añoElegido + "distrito id:"+idDistritoElegido + "seccion id:" + idSeccionElegida+ "seccion provincial id:"+ seccionProvincialId + "id cargo"+ categoriaId)
 
-        fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${anioEleccion}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoId}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionId}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+        fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
                 console.log(response)
                 if (response.ok) {
@@ -185,34 +193,81 @@ filtrar.onclick = async function () {
                 //imprimo JSON en consola
                 dataFiltrar = data
                 console.log(dataFiltrar);
+                sectionContenido.style.display = "block";
                 titulo.innerHTML = `Elecciones ${añoElegido} | Generales`;
                 subtitulo.innerHTML = `${añoElegido} > Generales > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
+                
+                informes.addEventListener("mouseover", function () { //función para que el cursor cambie al pasar por el botón filtrar. 
+                    informes.style.cursor = "pointer";
+                });
+
                 let mesasEscrutadas = document.getElementById("porcentaje-mesas-escrutadas");
                 let electores = document.getElementById("porcentaje-electores");
-                let participacionEscrutado= document.getElementById ("porcentaje-part-escrutado");
+                let participacionEscrutado = document.getElementById("porcentaje-part-escrutado");
                 let distrito = document.getElementById("titulo-provincias");
                 let svgDistrito = document.getElementById("svg-provincias");
 
                 if (dataFiltrar.estadoRecuento.mesasTotalizadas === 0) { //no hay datos en la consulta, mostrar mensaje amarillo
-                    mensajeAmarillo.style.display = "block";
-                    textoAmarillo.innerText = "No se encontró información para la consulta realizada.";
-                    mesasEscrutadas.innerHTML = "-";
-                    electores.innerHTML = "-";
-                    participacionEscrutado.innerHTML = "-";   
+                    mensajeAmarilloTitulo.style.display = "block";
+                    mensajeAmarilloTitulo.style.margin = "40px 40%"
+                    sectionContenido.style.display = "none";
+                    fijarFooter()
+
                 } else {
                     mesasEscrutadas.innerHTML = dataFiltrar.estadoRecuento.mesasTotalizadas;
                     electores.innerHTML = dataFiltrar.estadoRecuento.cantidadElectores;
-                    participacionEscrutado.innerHTML =  dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
+                    participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
                     distrito.innerHTML = distritoElegido;
                     svgDistrito.innerHTML = mapas[distritoElegido];
-
                 }
             })
             .catch(error => {
-                errorFiltrar = error
-                mensajeRojo.style.display = "block";
-                textoRojo.innerHTML = error.message
+                mensajeRojoTitulo.style.display = "block";
+                textoRojoTitulo.innerHTML = error.message
+                mensajeRojoTitulo.style.margin = "40px 40%";
             });
     }
 }
 
+//BOTON INFORMES
+informes.onclick = function () {
+    let valorAño = añoElegido.toString();
+    let valorTipoRecuento = tipoRecuento.toString();
+    let valorTipoEleccion = tipoEleccion.toString();
+    let valorCategoriaId = categoriaId.toString();
+    let valorDistritoId = idDistritoElegido.toString();
+    let valorSeccionProvincialId = '';
+    let valorSeccionId = idSeccionElegida.toString();
+    let valorCircuitoId = circuitoId;
+    let valorMesaId = mesaId;
+    let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
+    let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
+
+    //verifica si son null o indefinido y tira el cartel de error
+    if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
+        valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
+        valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {
+        mensajeRojo.style.display = 'block';
+        textoRojo.innerHTML = 'Hubo un error al almacenar los datos.';
+    } else {
+        let nuevoRegistro = [
+            valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
+            valorDistritoId, valorSeccionProvincialId, valorSeccionId,
+            valorCircuitoId, valorMesaId
+        ].join('|'); //separa los valores como decia en el tp con |
+
+        //verificar si ya esta incluida
+        if (arrayDatos.includes(nuevoRegistro)) {
+            mensajeAmarillo.style.display = 'block';
+            textoAmarillo.innerHTML = 'La información ya se encuentra agregada al informe. Por favor, seleccione nueva información.';
+            mensajeVerde.style.display = 'none';
+        } else {
+            // Agrega nuevoRegistro al arrayDatos y actualizar localStorage
+            arrayDatos.push(nuevoRegistro);
+            arrayDatosString = arrayDatos.join(',');
+            localStorage.setItem('INFORMES', arrayDatosString); //almacena la informacion
+            mensajeVerde.style.display = 'block';
+            textoVerde.innerHTML = 'La operación fue exitosa. Consulta agregada al informe.';
+        }
+    }
+}
