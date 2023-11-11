@@ -215,16 +215,10 @@ filtrar.onclick = async function () {
                     participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
 
                     //primer recuadro
-                    let nuevasKeys = dataFiltrar.valoresTotalizadosPositivos.map((valorId) => valorId.idAgrupacion);
-                    let nuevoColoresAgrupaciones = {};
-                    for (let [key, colores] of Object.entries(coloresAgrupaciones)) {
-                        nuevoColoresAgrupaciones[nuevasKeys[key]] = {
-                            colorPleno: colores.colorPleno,
-                            colorLiviano: colores.colorLiviano,
-                        };
+                    for (let i = 0; i < dataFiltrar.valoresTotalizadosPositivos.length; i++)  { //valoresTotalizadosPositivos.lenght me devuelve la cantiadad de elementos contenidos en el array, por ende la cantidad de partidos. 
+                        dataFiltrar.valoresTotalizadosPositivos[i].idAgrupacion = (i + 1).toString(); //accedo a cada posición del array y a cada valor de id agrupación y reemplazo el valor del id por número del 1 a la cantidad de elementos que contenga. 
                     }
-
-                    console.log(nuevoColoresAgrupaciones);
+                    console.log(dataFiltrar);
 
                     //segundo recuadro
                     distrito.innerHTML = distritoElegido;
@@ -234,7 +228,7 @@ filtrar.onclick = async function () {
             })
             .catch(error => {
                 mensajeRojoTitulo.style.display = "block";
-                textoRojoTitulo.innerHTML = error.message
+                textoRojoTitulo.innerHTML = error.message 
                 mensajeRojoTitulo.style.margin = "40px 40%";
             });
     }

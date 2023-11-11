@@ -40,31 +40,32 @@ let coloresAgrupaciones = {
         colorLiviano: 'var(--grafica-aqua)',
     },
     '11': {
-        colorPleno: 'var(--grafica-gris-claro)',
-        colorLiviano: 'var(--grafica-gris)',
+        colorPleno: 'var(--grafica-celeste2-claro)',
+        colorLiviano: 'var(--grafica-celeste2)',
     },
-    '12': {  colorPleno: 'var(--grafica-gris-claro)',
-        colorLiviano: 'var(--grafica-gris)',
+    '12': {  
+        colorPleno: 'var(--grafica-amarillo2-claro)',
+        colorLiviano: 'var(--grafica-amarillo2)',
     },
     '13': {
-        colorPleno: 'var(--grafica-gris-claro)',
-        colorLiviano: 'var(--grafica-gris)',
+        colorPleno: 'var(--grafica-bordo2-claro)',
+        colorLiviano: 'var(--grafica-bordo2)',
     },
     '14': {
-        colorPleno: 'var(--grafica-gris-claro)',
-        colorLiviano: 'var(--grafica-gris)',
+        colorPleno: 'var(--grafica-verde2-claro)',
+        colorLiviano: 'var(--grafica-verde2)',
     },
     '15': {
-        colorPleno: 'var(--grafica-gris-claro)',
-        colorLiviano: 'var(--grafica-gris)',
+        colorPleno: 'var(--grafica-rosa2-claro)',
+        colorLiviano: 'var(--grafica-rosa2)',
     },
     '16': {
-        colorPleno: 'var(--grafica-gris-claro)',
-        colorLiviano: 'var(--grafica-gris)',
+        colorPleno: 'var(--grafica-naranja2-claro)',
+        colorLiviano: 'var(--grafica-naranja2)',
     },
     '17': {
-        colorPleno: 'var(--grafica-gris-claro)',
-        colorLiviano: 'var(--grafica-gris)',
+        colorPleno: 'var(--grafica-aqua2-claro)',
+        colorLiviano: 'var(--grafica-aqua2)',
     },
     '18': {
         colorPleno: 'var(--grafica-gris-claro)',
@@ -74,7 +75,43 @@ let coloresAgrupaciones = {
         colorPleno: 'var(--grafica-gris-claro)',
         colorLiviano: 'var(--grafica-gris)',
     },
-    '20': {
+    '21': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '22': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '23': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '24': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '25': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '26': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '27': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '28': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '29': {
+        colorPleno: 'var(--grafica-gris-claro)',
+        colorLiviano: 'var(--grafica-gris)',
+    },
+    '30': {
         colorPleno: 'var(--grafica-gris-claro)',
         colorLiviano: 'var(--grafica-gris)',
     },

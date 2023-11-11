@@ -216,16 +216,14 @@ filtrar.onclick = async function () {
                     participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
 
                     //primer recuadro
-                    let nuevasKeys = dataFiltrar.valoresTotalizadosPositivos.map((valorId) => valorId.idAgrupacion);
-                    let nuevoColoresAgrupaciones = {};
-                    for (const [key, colores] of Object.entries(coloresAgrupaciones)) {
-                        nuevoColoresAgrupaciones[nuevasKeys[key]] = {
-                            colorPleno: colores.colorPleno,
-                            colorLiviano: colores.colorLiviano,
-                        };
+                    
+                    //cambio los id de los partidos del jason por numeros del 1 a n (cantidad de partidos que devuelva la api en la consulta)
+                    for (let i = 0; i < dataFiltrar.valoresTotalizadosPositivos.length; i++)  { //valoresTotalizadosPositivos.lenght me devuelve la cantiadad de elementos contenidos en el array, por ende la cantidad de partidos. 
+                        dataFiltrar.valoresTotalizadosPositivos[i].idAgrupacion = (i + 1).toString(); //accedo a cada posición del array y a cada valor de id agrupación y reemplazo el valor del id por número del 1 a la cantidad de elementos que contenga. 
                     }
+                    console.log(dataFiltrar);
 
-                    console.log(nuevoColoresAgrupaciones);
+
 
                     //segundo recuadro
                     distrito.innerHTML = distritoElegido;
