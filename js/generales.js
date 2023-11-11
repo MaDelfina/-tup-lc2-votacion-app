@@ -21,25 +21,22 @@ let informes = document.getElementById("boton-informe") //botón de informes
 let titulo = document.getElementById('titulo');
 
 //COMBOS
-function borrarDatos() {
-    //se eliminan valores de todos los select menos el de año
-    for (let i = seleccionCargo.options.length - 1; i > 0; i--) { //recorre el select desde el último hasta la posición 1, no toca la 0 que seria la de "cargo"
-        seleccionCargo.value = 'cargo'
-        seleccionCargo.remove(i);
-    }
-    for (let i = seleccionDistrito.options.length - 1; i > 0; i--) {
-        seleccionDistrito.value = "distrito"
-        seleccionDistrito.remove(i);
-    }
-    for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
-        seleccionSeccion.value = "seccion"
-        seleccionSeccion.remove(i);
-    }
-}
+
 
 seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
-        borrarDatos()
+        for (let i = seleccionCargo.options.length - 1; i > 0; i--) { //recorre el select desde el último hasta la posición 1, no toca la 0 que seria la de "cargo"
+            seleccionCargo.value = 'cargo'
+            seleccionCargo.remove(i);
+        }
+        for (let i = seleccionDistrito.options.length - 1; i > 0; i--) {
+            seleccionDistrito.value = "distrito"
+            seleccionDistrito.remove(i);
+        }
+        for (let i = seleccionSeccion.options.length - 1; i > 0; i--) {
+            seleccionSeccion.value = "seccion"
+            seleccionSeccion.remove(i);
+        }
     }
     añoElegido = seleccionAnio.value; 
     consultarCargo()
@@ -132,14 +129,12 @@ seleccionDistrito.onchange = function () {
 seleccionSeccion.onchange = function () {
     idSeccionElegida = seleccionSeccion.value
     seccionElegida = seleccionSeccion.options[seleccionSeccion.selectedIndex].text;
-    console.log("id de la sección: " + idSeccionElegida)
-    console.log("sección elegida:" + seccionElegida)
 }
 
 //BOTON FILTRAR
-let seccionProvincialId 
+let seccionProvincialId
 
-filtrar.onclick = async function () { 
+filtrar.onclick = async function () {
     // Verificar que campos faltan llenar
     let camposFaltantes = [];
 
@@ -161,6 +156,7 @@ filtrar.onclick = async function () {
 
     if (camposFaltantes.length > 0) {
         // Mostrar mensaje amarillo
+        mensajeAmarilloTitulo.style.display = "none"
         mensajeAmarillo.style.display = "block";
         textoAmarillo.innerText = `Por favor complete los campos: ${camposFaltantes.join(',')}.`; //${} permite agregar variables -- camposFaltantes.join(,) va a mostrar los componentes de la variable array separados por una coma
         sectionContenido.style.display = "none";
@@ -168,7 +164,7 @@ filtrar.onclick = async function () {
         subtitulo.style.display = "none";
         mostrarTitulo();
         fijarFooter();
-        
+
 
     } else {
         footer.style.position = "relative";
@@ -177,8 +173,8 @@ filtrar.onclick = async function () {
         titulo.style.display = "block";
         subtitulo.style.display = "block";
         seccionProvincialId = "" //lo vacío antes hice un if para tomar el valor del id de sección provincial cuando no fuera "null", pero cuando le pase como parametro un número y no vació me devolvía todo 0 asi que va siempre ""
-        
-        console.log("año eleccion:"+ añoElegido + "distrito id:"+idDistritoElegido + "seccion id:" + idSeccionElegida+ "seccion provincial id:"+ seccionProvincialId + "id cargo"+ categoriaId)
+
+        console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
 
         fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
@@ -196,8 +192,8 @@ filtrar.onclick = async function () {
                 sectionContenido.style.display = "block";
                 titulo.innerHTML = `Elecciones ${añoElegido} | Generales`;
                 subtitulo.innerHTML = `${añoElegido} > Generales > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
-                
-                informes.addEventListener("mouseover", function () { //función para que el cursor cambie al pasar por el botón filtrar. 
+
+                informes.addEventListener("mouseover", function () { //función para que el cursor cambie al pasar por el botón informes. 
                     informes.style.cursor = "pointer";
                 });
 
@@ -217,8 +213,23 @@ filtrar.onclick = async function () {
                     mesasEscrutadas.innerHTML = dataFiltrar.estadoRecuento.mesasTotalizadas;
                     electores.innerHTML = dataFiltrar.estadoRecuento.cantidadElectores;
                     participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
+
+                    //primer recuadro
+                    let nuevasKeys = dataFiltrar.valoresTotalizadosPositivos.map((valorId) => valorId.idAgrupacion);
+                    let nuevoColoresAgrupaciones = {};
+                    for (let [key, colores] of Object.entries(coloresAgrupaciones)) {
+                        nuevoColoresAgrupaciones[nuevasKeys[key]] = {
+                            colorPleno: colores.colorPleno,
+                            colorLiviano: colores.colorLiviano,
+                        };
+                    }
+
+                    console.log(nuevoColoresAgrupaciones);
+
+                    //segundo recuadro
                     distrito.innerHTML = distritoElegido;
                     svgDistrito.innerHTML = mapas[distritoElegido];
+
                 }
             })
             .catch(error => {
@@ -228,6 +239,7 @@ filtrar.onclick = async function () {
             });
     }
 }
+
 
 //BOTON INFORMES
 informes.onclick = function () {

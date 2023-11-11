@@ -14,6 +14,8 @@ let sectionContenido = document.getElementById("sec-contenido"); //section que c
 let footer = document.getElementById("fijar-footer"); //div que contiene el footer
 let tituloInicio = document.getElementById('titulo-inicio');
 
+
+
 //OCULTAR MENSAJES NI BIEN ABRO LA PAGINA. 
 document.addEventListener("DOMContentLoaded", function () {
     ocultarMensajes();
@@ -27,23 +29,23 @@ document.addEventListener("DOMContentLoaded", function () {
 function ocultarMensajes() {
     mensajeVerde.style.display = "none";
     mensajeRojo.style.display = "none";
-    mensajeRojoTitulo.style.display="none";
-    mensajeAmarilloTitulo.style.display="none";
+    mensajeRojoTitulo.style.display = "none";
+    mensajeAmarilloTitulo.style.display = "none";
 }
 
-function ocultarContenido(){
+function ocultarContenido() {
     sectionContenido.style.display = "none"
 }
 
-function fijarFooter(){
+function fijarFooter() {
     footer.style.position = 'fixed';
     footer.style.bottom = '0';
 }
 
-function mostrarTitulo(){
+function mostrarTitulo() {
     tituloInicio.style.display = "block";
     tituloInicio.style.paddingTop = "25px";
-    mensajeAmarillo.style. marginTop = "0px";
+    mensajeAmarillo.style.marginTop = "0px";
 }
 
 //COMBOS
