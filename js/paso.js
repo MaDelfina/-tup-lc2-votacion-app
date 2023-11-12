@@ -209,14 +209,19 @@ filtrar.onclick = async function () {
                     mensajeAmarilloTitulo.style.margin = "40px 40%"
                     sectionContenido.style.display = "none";
                     fijarFooter()
+                    return
 
                 } else {
                     mesasEscrutadas.innerHTML = dataFiltrar.estadoRecuento.mesasTotalizadas;
                     electores.innerHTML = dataFiltrar.estadoRecuento.cantidadElectores;
                     participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
 
-                    //primer recuadro
-                    
+                    //PRIMER RECUADRO
+
+                    //ordeno los partidos que me devuelve el jason de mas votados a menos votados
+                    //sort es una función que se encarga de eso, a y b, luego vemos con chat como funciona bien, es facil. 
+                    dataFiltrar.valoresTotalizadosPositivos.sort((partidoA, partidoB) => partidoB.votos - partidoA.votos);
+
                     //cambio los id de los partidos del jason por numeros del 1 a n (cantidad de partidos que devuelva la api en la consulta)
                     for (let i = 0; i < dataFiltrar.valoresTotalizadosPositivos.length; i++)  { //valoresTotalizadosPositivos.lenght me devuelve la cantiadad de elementos contenidos en el array, por ende la cantidad de partidos. 
                         dataFiltrar.valoresTotalizadosPositivos[i].idAgrupacion = (i + 1).toString(); //accedo a cada posición del array y a cada valor de id agrupación y reemplazo el valor del id por número del 1 a la cantidad de elementos que contenga. 
@@ -225,7 +230,7 @@ filtrar.onclick = async function () {
 
 
 
-                    //segundo recuadro
+                    //SEGUNDO RECUADRO
                     distrito.innerHTML = distritoElegido;
                     svgDistrito.innerHTML = mapas[distritoElegido];
 
@@ -253,8 +258,8 @@ informes.onclick = function () {
     let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
     let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
 
-    //verifica si son null o indefinido y tira el cartel de error
-    if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
+    //verifica si son null y tira el cartel de error
+    if (valorAño == null  || valorTipoRecuento == null || valorTipoEleccion == null ||
         valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
         valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {
         mensajeRojo.style.display = 'block';
