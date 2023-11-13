@@ -82,7 +82,7 @@ async function consultarCargo() {
         datosFiltros = await respuesta.json();
         return datosFiltros
     } else {
-        throw new Error('Error al obtener los datos del servidor. ');
+        throw new Error('Error al obtener los datos del servidor.');
     }
 }
 

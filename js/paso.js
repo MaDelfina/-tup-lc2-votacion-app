@@ -177,7 +177,7 @@ filtrar.onclick = async function () {
 
         console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
 
-        fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+        fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
                 console.log(response)
                 if (response.ok) {
@@ -189,7 +189,6 @@ filtrar.onclick = async function () {
             .then(data => {
                 //imprimo JSON en consola
                 dataFiltrar = data
-                console.log(dataFiltrar);
                 sectionContenido.style.display = "block";
                 titulo.innerHTML = `Elecciones ${añoElegido} | Paso`;
                 subtitulo.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
@@ -228,7 +227,45 @@ filtrar.onclick = async function () {
                     }
                     console.log(dataFiltrar);
 
+                    var contenedorPrincipal = document.getElementById("recuadro-agrupaciones");
 
+                    // Crear y agregar los divs dinámicamente
+                    dataFiltrar.valoresTotalizadosPositivos.forEach(agrupacion => {
+                        // Crear un nuevo div para cada agrupación
+                        var recuadroDiv = document.createElement('div');
+                        recuadroDiv.classList.add('recuadro1');
+                        let colores = coloresAgrupaciones[agrupacion.idAgrupacion];
+                        // Crear el contenido dinámicamente
+                        recuadroDiv.innerHTML = `
+                            <div class="titulo-agrupaciones">
+                                <p id="nombre-partido">${agrupacion.nombreAgrupacion}</p>
+                            </div>
+                            <hr>
+                            <div class="listas">
+                                ${agrupacion.listas.map( lista => 
+                                    let porcentajeLista = ((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2)),
+                                    return `
+                                <div class="listas-data">
+                                        <div class="nombre-agrupaciones">
+                                            <p>${lista.nombre}</p>
+                                        </div>  
+                                        <div class="texto-agrupaciones">
+                                            <p>${((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2))}%</p>
+                                            <p>${lista.votos} votos </p>
+                                        </div>
+                                    </div>
+                                    <div class="progress" style="background:${colores.colorPleno};">
+                                    <div class="progress-bar" style="width:75%; background:${colores.colorLiviano};">
+                                    <span class="progress-bar-text">75%</span>
+                                </div>
+                                    </div>
+                                `).join('')} 
+                            </div>
+                        `;
+
+                        // Agregar el nuevo div al contenedor principal
+                        contenedorPrincipal.appendChild(recuadroDiv);
+                    });
 
                     //SEGUNDO RECUADRO
                     distrito.innerHTML = distritoElegido;

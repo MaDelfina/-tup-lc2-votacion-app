@@ -176,7 +176,7 @@ filtrar.onclick = async function () {
 
         console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
 
-        fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+        fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
                 console.log(response)
                 if (response.ok) {
@@ -216,7 +216,6 @@ filtrar.onclick = async function () {
                     participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
                     
                     //PRIMER RECUADRO
-
                     //ordeno los partidos que me devuelve el jason de mas votados a menos votados
                     //sort es una función que se encarga de eso, a y b, luego vemos con chat como funciona bien, es facil. 
                     dataFiltrar.valoresTotalizadosPositivos.sort((partidoA, partidoB) => partidoB.votos - partidoA.votos);
