@@ -242,24 +242,25 @@ filtrar.onclick = async function () {
                             </div>
                             <hr>
                             <div class="listas">
-                                ${agrupacion.listas.map( lista => 
-                                    let porcentajeLista = ((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2)),
+                                ${agrupacion.listas.map(lista => {
+                                    let porcentajeLista = ((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2));
                                     return `
-                                <div class="listas-data">
-                                        <div class="nombre-agrupaciones">
-                                            <p>${lista.nombre}</p>
-                                        </div>  
-                                        <div class="texto-agrupaciones">
-                                            <p>${((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2))}%</p>
-                                            <p>${lista.votos} votos </p>
+                                        <div class="listas-data">
+                                            <div class="nombre-agrupaciones">
+                                                <p>${lista.nombre}</p>
+                                            </div>  
+                                            <div class="texto-agrupaciones">
+                                                <p>${porcentajeLista}%</p>
+                                                <p>${lista.votos} votos </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="progress" style="background:${colores.colorPleno};">
-                                    <div class="progress-bar" style="width:75%; background:${colores.colorLiviano};">
-                                    <span class="progress-bar-text">75%</span>
-                                </div>
-                                    </div>
-                                `).join('')} 
+                                        <div class="progress" style="background:${colores.colorPleno};">
+                                            <div class="progress-bar" style="width:${porcentajeLista}%; background:${colores.colorLiviano};">
+                                                <span class="progress-bar-text">${porcentajeLista}%</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
                             </div>
                         `;
 
