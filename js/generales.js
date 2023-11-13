@@ -22,7 +22,6 @@ let titulo = document.getElementById('titulo');
 
 //COMBOS
 
-
 seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
         for (let i = seleccionCargo.options.length - 1; i > 0; i--) { //recorre el select desde el último hasta la posición 1, no toca la 0 que seria la de "cargo"
@@ -38,7 +37,7 @@ seleccionAnio.onchange = function () {
             seleccionSeccion.remove(i);
         }
     }
-    añoElegido = seleccionAnio.value; 
+    añoElegido = seleccionAnio.value;
     consultarCargo()
         .then(function (datosFiltros) {
             console.log(datosFiltros) /* recorro el forEach y lleno el combo, con la respuesta de la promesa del async*/
@@ -129,6 +128,8 @@ seleccionDistrito.onchange = function () {
 seleccionSeccion.onchange = function () {
     idSeccionElegida = seleccionSeccion.value
     seccionElegida = seleccionSeccion.options[seleccionSeccion.selectedIndex].text;
+    console.log("id de la sección: " + idSeccionElegida)
+    console.log("sección elegida:" + seccionElegida)
 }
 
 //BOTON FILTRAR
@@ -182,18 +183,17 @@ filtrar.onclick = async function () {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    throw new Error('Error al obtener los datos del servidor.');
-                }   
+                    throw new Error('Error al obtener los datos del servidor. ');
+                }
             })
             .then(data => {
                 //imprimo JSON en consola
                 dataFiltrar = data
-                console.log(dataFiltrar);
                 sectionContenido.style.display = "block";
                 titulo.innerHTML = `Elecciones ${añoElegido} | Generales`;
                 subtitulo.innerHTML = `${añoElegido} > Generales > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
 
-                informes.addEventListener("mouseover", function () { //función para que el cursor cambie al pasar por el botón informes. 
+                informes.addEventListener("mouseover", function () { //función para que el cursor cambie al pasar por el botón filtrar. 
                     informes.style.cursor = "pointer";
                 });
 
@@ -214,36 +214,99 @@ filtrar.onclick = async function () {
                     mesasEscrutadas.innerHTML = dataFiltrar.estadoRecuento.mesasTotalizadas;
                     electores.innerHTML = dataFiltrar.estadoRecuento.cantidadElectores;
                     participacionEscrutado.innerHTML = dataFiltrar.estadoRecuento.participacionPorcentaje + "%";
-                    
+
                     //PRIMER RECUADRO
+
                     //ordeno los partidos que me devuelve el jason de mas votados a menos votados
                     //sort es una función que se encarga de eso, a y b, luego vemos con chat como funciona bien, es facil. 
                     dataFiltrar.valoresTotalizadosPositivos.sort((partidoA, partidoB) => partidoB.votos - partidoA.votos);
 
                     //cambio los id de los partidos del jason por numeros del 1 a n (cantidad de partidos que devuelva la api en la consulta)
-                    for (let i = 0; i < dataFiltrar.valoresTotalizadosPositivos.length; i++)  { //valoresTotalizadosPositivos.lenght me devuelve la cantiadad de elementos contenidos en el array, por ende la cantidad de partidos. 
+                    for (let i = 0; i < dataFiltrar.valoresTotalizadosPositivos.length; i++) { //valoresTotalizadosPositivos.lenght me devuelve la cantiadad de elementos contenidos en el array, por ende la cantidad de partidos. 
                         dataFiltrar.valoresTotalizadosPositivos[i].idAgrupacion = (i + 1).toString(); //accedo a cada posición del array y a cada valor de id agrupación y reemplazo el valor del id por número del 1 a la cantidad de elementos que contenga. 
                     }
                     console.log(dataFiltrar);
 
+                    var contenedorPrincipal = document.getElementById("recuadro-agrupaciones");
 
+                    // Crear y agregar los divs dinámicamente
+                    dataFiltrar.valoresTotalizadosPositivos.forEach(agrupacion => {
+                        console.log('Agrupacion:', agrupacion);
+                        console.log('Listas:', agrupacion.listas); //la carpeta listas existe en paso pero no en generales. 
+                        // Crear un nuevo div para cada agrupación
+                        var recuadroDiv = document.createElement('div');
+                        recuadroDiv.classList.add('recuadro1');
+                        let colores = coloresAgrupaciones[agrupacion.idAgrupacion];
+                        // Crear el contenido dinámicamente
+                        recuadroDiv.innerHTML = `
+                            <div class="titulo-agrupaciones">
+                                <p id="nombre-partido">${agrupacion.nombreAgrupacion}</p>
+                            </div>
+                            <hr>
+                            <div class="listas">
+                                ${agrupacion.listas.map(lista => {
+                            let porcentajeLista = ((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2));
+                            return `
+                                        <div class="listas-data">
+                                            <div class="nombre-agrupaciones">
+                                                <p>${lista.nombre}</p>
+                                            </div>  
+                                            <div class="texto-agrupaciones">
+                                                <p>${porcentajeLista}%</p>
+                                                <p>${lista.votos} votos </p>
+                                            </div>
+                                        </div>
+                                        <div class="progress" style="background:${colores.colorPleno};">
+                                            <div class="progress-bar" style="width:${porcentajeLista}%; background:${colores.colorLiviano};">
+                                                <span class="progress-bar-text">${porcentajeLista}%</span>
+                                            </div>
+                                        </div>
+                                    `;
+                        }).join('')}
+                            </div>
+                        `;
+
+                        // Agregar el nuevo div al contenedor principal
+                        contenedorPrincipal.appendChild(recuadroDiv);
+                    });
 
                     //SEGUNDO RECUADRO
                     distrito.innerHTML = distritoElegido;
-                    svgDistrito.innerHTML = mapas[distritoElegido];   
+                    svgDistrito.innerHTML = mapas[distritoElegido];
+
+                    //TERCER RECUADRO
+                    let primeros7Partidos = dataFiltrar.valoresTotalizadosPositivos.slice(0, 7);
+
+                    // Obtén el contenedor principal donde agregarás los elementos dinámicos
+                    var contenedorGrid = document.getElementById("grid");
+
+                    primeros7Partidos.forEach((partido, index) => {
+                        // Crea el elemento div con la clase "bar"
+                        var barDiv = document.createElement('div');
+                        barDiv.classList.add('bar');
+
+                        // Establece los estilos y atributos dinámicamente
+                        barDiv.style.setProperty('--bar-value', `${partido.votosPorcentaje}%`);
+                        barDiv.style.setProperty('--bar-color', `${coloresAgrupaciones[partido.idAgrupacion].colorLiviano}`);
+                        barDiv.dataset.name = `Partido ${index + 1}`
+                        barDiv.title = `${partido.nombreAgrupacion} ${partido.votosPorcentaje}%`;
+
+                        // Agrega el nuevo div al contenedor principal
+                        contenedorGrid.appendChild(barDiv);
+                    });
+
                 }
             })
             .catch(error => {
                 titulo.innerHTML = `Elecciones ${añoElegido} | Generales`;
                 subtitulo.innerHTML = `${añoElegido} > Generales > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
                 mensajeRojoTitulo.style.display = "block";
-                textoRojoTitulo.innerHTML = error.message 
+                textoRojoTitulo.innerHTML = error.message
                 mensajeRojoTitulo.style.margin = "40px 40%";
                 fijarFooter()
             });
     }
 }
-
 
 //BOTON INFORMES
 informes.onclick = function () {
@@ -259,7 +322,7 @@ informes.onclick = function () {
     let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
     let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
 
-    //verifica si son null o indefinido y tira el cartel de error
+    //verifica si son null y tira el cartel de error
     if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
         valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
         valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {

@@ -243,8 +243,8 @@ filtrar.onclick = async function () {
                             <hr>
                             <div class="listas">
                                 ${agrupacion.listas.map(lista => {
-                                    let porcentajeLista = ((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2));
-                                    return `
+                            let porcentajeLista = ((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2));
+                            return `
                                         <div class="listas-data">
                                             <div class="nombre-agrupaciones">
                                                 <p>${lista.nombre}</p>
@@ -260,7 +260,7 @@ filtrar.onclick = async function () {
                                             </div>
                                         </div>
                                     `;
-                                }).join('')}
+                        }).join('')}
                             </div>
                         `;
 
@@ -271,6 +271,27 @@ filtrar.onclick = async function () {
                     //SEGUNDO RECUADRO
                     distrito.innerHTML = distritoElegido;
                     svgDistrito.innerHTML = mapas[distritoElegido];
+
+                    //TERCER RECUADR
+                    let primeros7Partidos = dataFiltrar.valoresTotalizadosPositivos.slice(0, 7);
+
+                    // Obtén el contenedor principal donde agregarás los elementos dinámicos
+                    var contenedorGrid = document.getElementById("grid");
+
+                    primeros7Partidos.forEach((partido, index) => {
+                        // Crea el elemento div con la clase "bar"
+                        var barDiv = document.createElement('div');
+                        barDiv.classList.add('bar');
+
+                        // Establece los estilos y atributos dinámicamente
+                        barDiv.style.setProperty('--bar-value', `${partido.votosPorcentaje}%`);
+                        barDiv.style.setProperty('--bar-color', `${coloresAgrupaciones[partido.idAgrupacion].colorLiviano}`);
+                        barDiv.dataset.name = `Partido ${index + 1}`
+                        barDiv.title = `${partido.nombreAgrupacion} ${partido.votosPorcentaje}%`;
+
+                        // Agrega el nuevo div al contenedor principal
+                        contenedorGrid.appendChild(barDiv);
+                    });
 
                 }
             })
