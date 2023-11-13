@@ -182,8 +182,8 @@ filtrar.onclick = async function () {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    throw new Error('Error al obtener los datos del servidor. ');
-                }
+                    throw new Error('Error al obtener los datos del servidor.');
+                }   
             })
             .then(data => {
                 //imprimo JSON en consola
@@ -231,15 +231,16 @@ filtrar.onclick = async function () {
 
                     //SEGUNDO RECUADRO
                     distrito.innerHTML = distritoElegido;
-                    svgDistrito.innerHTML = mapas[distritoElegido];
-                    
-
+                    svgDistrito.innerHTML = mapas[distritoElegido];   
                 }
             })
             .catch(error => {
+                titulo.innerHTML = `Elecciones ${añoElegido} | Generales`;
+                subtitulo.innerHTML = `${añoElegido} > Generales > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
                 mensajeRojoTitulo.style.display = "block";
                 textoRojoTitulo.innerHTML = error.message 
                 mensajeRojoTitulo.style.margin = "40px 40%";
+                fijarFooter()
             });
     }
 }

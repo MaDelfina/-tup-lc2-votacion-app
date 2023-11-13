@@ -223,7 +223,7 @@ filtrar.onclick = async function () {
                     dataFiltrar.valoresTotalizadosPositivos.sort((partidoA, partidoB) => partidoB.votos - partidoA.votos);
 
                     //cambio los id de los partidos del jason por numeros del 1 a n (cantidad de partidos que devuelva la api en la consulta)
-                    for (let i = 0; i < dataFiltrar.valoresTotalizadosPositivos.length; i++)  { //valoresTotalizadosPositivos.lenght me devuelve la cantiadad de elementos contenidos en el array, por ende la cantidad de partidos. 
+                    for (let i = 0; i < dataFiltrar.valoresTotalizadosPositivos.length; i++) { //valoresTotalizadosPositivos.lenght me devuelve la cantiadad de elementos contenidos en el array, por ende la cantidad de partidos. 
                         dataFiltrar.valoresTotalizadosPositivos[i].idAgrupacion = (i + 1).toString(); //accedo a cada posición del array y a cada valor de id agrupación y reemplazo el valor del id por número del 1 a la cantidad de elementos que contenga. 
                     }
                     console.log(dataFiltrar);
@@ -237,9 +237,12 @@ filtrar.onclick = async function () {
                 }
             })
             .catch(error => {
+                titulo.innerHTML = `Elecciones ${añoElegido} | Paso`;
+                subtitulo.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
                 mensajeRojoTitulo.style.display = "block";
                 textoRojoTitulo.innerHTML = error.message
                 mensajeRojoTitulo.style.margin = "40px 40%";
+                fijarFooter()
             });
     }
 }
@@ -259,7 +262,7 @@ informes.onclick = function () {
     let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
 
     //verifica si son null y tira el cartel de error
-    if (valorAño == null  || valorTipoRecuento == null || valorTipoEleccion == null ||
+    if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
         valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
         valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {
         mensajeRojo.style.display = 'block';
