@@ -177,7 +177,7 @@ filtrar.onclick = async function () {
 
         console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
 
-        fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+        fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
                 console.log(response)
                 if (response.ok) {
@@ -226,46 +226,25 @@ filtrar.onclick = async function () {
                         dataFiltrar.valoresTotalizadosPositivos[i].idAgrupacion = (i + 1).toString(); //accedo a cada posición del array y a cada valor de id agrupación y reemplazo el valor del id por número del 1 a la cantidad de elementos que contenga. 
                     }
                     console.log(dataFiltrar);
-
                     var contenedorPrincipal = document.getElementById("recuadro-agrupaciones");
-
+                    contenedorPrincipal.innerText = "";
                     // Crear y agregar los divs dinámicamente
-                    dataFiltrar.valoresTotalizadosPositivos.forEach(agrupacion => {
-                        console.log('Agrupacion:', agrupacion);
-                        console.log('Listas:', agrupacion.listas); //la carpeta listas existe en paso pero no en generales. 
+                    dataFiltrar.valoresTotalizadosPositivos.forEach(agrupacion => { 
                         // Crear un nuevo div para cada agrupación
                         var recuadroDiv = document.createElement('div');
                         recuadroDiv.classList.add('recuadro1');
-                        let colores = coloresAgrupaciones[agrupacion.idAgrupacion];
+                        let colores = coloresAgrupaciones[agrupacion.idAgrupacion]
                         // Crear el contenido dinámicamente
                         recuadroDiv.innerHTML = `
-                            <div class="titulo-agrupaciones">
-                                <p id="nombre-partido">${agrupacion.nombreAgrupacion}</p>
-                            </div>
-                            <hr>
-                            <div class="listas">
-                                ${agrupacion.listas.map(lista => {
-                            let porcentajeLista = ((parseFloat(lista.votos) !== 0 ? (parseFloat(lista.votos) * 100) / parseFloat(agrupacion.votos) : 0).toFixed(2));
-                            return `
-                                        <div class="listas-data">
-                                            <div class="nombre-agrupaciones">
-                                                <p>${lista.nombre}</p>
-                                            </div>  
-                                            <div class="texto-agrupaciones">
-                                                <p>${porcentajeLista}%</p>
-                                                <p>${lista.votos} votos </p>
-                                            </div>
-                                        </div>
-                                        <div class="progress" style="background:${colores.colorPleno};">
-                                            <div class="progress-bar" style="width:${porcentajeLista}%; background:${colores.colorLiviano};">
-                                                <span class="progress-bar-text">${porcentajeLista}%</span>
-                                            </div>
-                                        </div>
-                                    `;
-                        }).join('')}
-                            </div>
-                        `;
-
+                        <div class="titulo-agrupaciones">
+                        <p id="nombre-partido">${agrupacion.nombreAgrupacion}</p>
+                    </div>
+                    <div class="progress" style="background:${colores.colorPleno};">
+                        <div class="progress-bar" style="width:${agrupacion.votosPorcentaje}%; background:${colores.colorLiviano};">
+                            <span class="progress-bar-text">${agrupacion.votosPorcentaje}%</span>
+                        </div>
+                    </div>
+                `;
                         // Agregar el nuevo div al contenedor principal
                         contenedorPrincipal.appendChild(recuadroDiv);
                     });
@@ -279,7 +258,7 @@ filtrar.onclick = async function () {
 
                     // Obtén el contenedor principal donde agregarás los elementos dinámicos
                     var contenedorGrid = document.getElementById("grid");
-
+                    contenedorGrid.innerHTML = "";
                     primeros7Partidos.forEach((partido, index) => {
                         // Crea el elemento div con la clase "bar"
                         var barDiv = document.createElement('div');
@@ -320,7 +299,7 @@ informes.onclick = function () {
     let valorCircuitoId = circuitoId;
     let valorMesaId = mesaId;
     let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
-    let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
+    let arrayDatos = arrayDatosString ? arrayDatosString.split('|') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
 
     //verifica si son null y tira el cartel de error
     if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
@@ -333,7 +312,7 @@ informes.onclick = function () {
             valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
             valorDistritoId, valorSeccionProvincialId, valorSeccionId,
             valorCircuitoId, valorMesaId
-        ].join('|'); //separa los valores como decia en el tp con |
+        ].join(','); //separa los valores como decia en el tp con |
 
         //verificar si ya esta incluida
         if (arrayDatos.includes(nuevoRegistro)) {
@@ -343,7 +322,7 @@ informes.onclick = function () {
         } else {
             // Agrega nuevoRegistro al arrayDatos y actualizar localStorage
             arrayDatos.push(nuevoRegistro);
-            arrayDatosString = arrayDatos.join(',');
+            arrayDatosString = arrayDatos.join('|');
             localStorage.setItem('INFORMES', arrayDatosString); //almacena la informacion
             mensajeVerde.style.display = 'block';
             textoVerde.innerHTML = 'La operación fue exitosa. Consulta agregada al informe.';

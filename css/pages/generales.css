@@ -278,7 +278,7 @@ form {
 }
 
 /*Recuadro 1*/
-.recuadro1{
+#recuadro-agrupaciones{
     max-height: 80%;
     margin: auto;
     overflow-y: scroll;
@@ -305,13 +305,6 @@ form {
 
 .nombre-agrupaciones p {
     font-weight: bold;
-}
-
-.juntos-por-el-cambio,
-.partido-justicialista,
-.partido-eco {
-    display: flex;
-    justify-content: space-between;
 }
 
 hr {

@@ -177,7 +177,7 @@ filtrar.onclick = async function () {
 
         console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
 
-        fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+        fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
                 console.log(response)
                 if (response.ok) {
@@ -228,7 +228,7 @@ filtrar.onclick = async function () {
                     console.log(dataFiltrar);
 
                     var contenedorPrincipal = document.getElementById("recuadro-agrupaciones");
-
+                    contenedorPrincipal.innerHTML = "";
                     // Crear y agregar los divs dinámicamente
                     dataFiltrar.valoresTotalizadosPositivos.forEach(agrupacion => {
                         // Crear un nuevo div para cada agrupación
@@ -277,7 +277,8 @@ filtrar.onclick = async function () {
 
                     // Obtén el contenedor principal donde agregarás los elementos dinámicos
                     var contenedorGrid = document.getElementById("grid");
-
+                    contenedorGrid.innerHTML="";
+                    
                     primeros7Partidos.forEach((partido, index) => {
                         // Crea el elemento div con la clase "bar"
                         var barDiv = document.createElement('div');
