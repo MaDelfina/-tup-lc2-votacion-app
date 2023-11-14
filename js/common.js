@@ -14,15 +14,12 @@ let sectionContenido = document.getElementById("sec-contenido"); //section que c
 let footer = document.getElementById("fijar-footer"); //div que contiene el footer
 let tituloInicio = document.getElementById('titulo-inicio');
 
-
-
 //OCULTAR MENSAJES NI BIEN ABRO LA PAGINA. 
 document.addEventListener("DOMContentLoaded", function () {
     ocultarMensajes();
     ocultarContenido();
     fijarFooter();
     mostrarTitulo();
-
 }); //esta forma de crear un evento la saque de internet, me pareció muy buena. se utiliza para escuchar eventos en elementos del DOM
 //en este caso los mensajes se ocultaran tan pronto como la página se inicie sin esperar a que se cargue por completo (lo que window.onload haría)
 
@@ -56,7 +53,7 @@ async function consultaAnio() {
         const data = await respuesta.json(); //almacenar y transportar información
         return data
     } else {
-        throw new Error('Error al obtener los datos del servidor. ');
+        throw new Error('Error al obtener los datos del servidor.');
     }
 }
 

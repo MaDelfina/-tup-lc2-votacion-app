@@ -21,7 +21,6 @@ let informes = document.getElementById("boton-informe") //botón de informes
 let titulo = document.getElementById('titulo');
 
 //COMBOS
-
 seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
         for (let i = seleccionCargo.options.length - 1; i > 0; i--) { //recorre el select desde el último hasta la posición 1, no toca la 0 que seria la de "cargo"
@@ -166,7 +165,6 @@ filtrar.onclick = async function () {
         mostrarTitulo();
         fijarFooter();
 
-
     } else {
         footer.style.position = "relative";
         mensajeAmarillo.style.display = "none";
@@ -178,6 +176,7 @@ filtrar.onclick = async function () {
         console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
 
         fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+
             .then(response => {
                 console.log(response)
                 if (response.ok) {
@@ -217,7 +216,7 @@ filtrar.onclick = async function () {
 
                     //PRIMER RECUADRO
 
-                    //ordeno los partidos que me devuelve el jason de mas votados a menos votados
+                    //ordeno los partidos que me devuelve el json de mas votados a menos votados
                     //sort es una función que se encarga de eso, a y b, luego vemos con chat como funciona bien, es facil. 
                     dataFiltrar.valoresTotalizadosPositivos.sort((partidoA, partidoB) => partidoB.votos - partidoA.votos);
 
@@ -227,12 +226,12 @@ filtrar.onclick = async function () {
                     }
                     console.log(dataFiltrar);
 
-                    var contenedorPrincipal = document.getElementById("recuadro-agrupaciones");
+                    let contenedorPrincipal = document.getElementById("recuadro-agrupaciones");
                     contenedorPrincipal.innerHTML = "";
                     // Crear y agregar los divs dinámicamente
                     dataFiltrar.valoresTotalizadosPositivos.forEach(agrupacion => {
                         // Crear un nuevo div para cada agrupación
-                        var recuadroDiv = document.createElement('div');
+                        let recuadroDiv = document.createElement('div');
                         recuadroDiv.classList.add('recuadro1');
                         let colores = coloresAgrupaciones[agrupacion.idAgrupacion];
                         // Crear el contenido dinámicamente
@@ -273,19 +272,19 @@ filtrar.onclick = async function () {
                     svgDistrito.innerHTML = mapas[distritoElegido];
 
                     //TERCER RECUADR
-                    let primeros7Partidos = dataFiltrar.valoresTotalizadosPositivos.slice(0, 7);
+                    let primeros7Partidos = dataFiltrar.valoresTotalizadosPositivos.slice(0, 7); //se está creando una nueva array que consiste en los elementos desde el índice 0 hasta el índice 6 (inclusive) del array original.
 
                     // Obtén el contenedor principal donde agregarás los elementos dinámicos
-                    var contenedorGrid = document.getElementById("grid");
+                    let contenedorGrid = document.getElementById("grid");
                     contenedorGrid.innerHTML="";
                     
                     primeros7Partidos.forEach((partido, index) => {
                         // Crea el elemento div con la clase "bar"
-                        var barDiv = document.createElement('div');
+                        let barDiv = document.createElement('div');
                         barDiv.classList.add('bar');
 
                         // Establece los estilos y atributos dinámicamente
-                        barDiv.style.setProperty('--bar-value', `${partido.votosPorcentaje}%`);
+                        barDiv.style.setProperty('--bar-value', `${partido.votosPorcentaje}%`); //setProperty es un método que te permite establecer el valor de una propiedad CSS
                         barDiv.style.setProperty('--bar-color', `${coloresAgrupaciones[partido.idAgrupacion].colorLiviano}`);
                         barDiv.dataset.name = `Partido ${index + 1}`
                         barDiv.title = `${partido.nombreAgrupacion} ${partido.votosPorcentaje}%`;
@@ -293,7 +292,6 @@ filtrar.onclick = async function () {
                         // Agrega el nuevo div al contenedor principal
                         contenedorGrid.appendChild(barDiv);
                     });
-
                 }
             })
             .catch(error => {

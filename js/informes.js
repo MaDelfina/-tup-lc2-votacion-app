@@ -5,7 +5,7 @@ let textoVerde = document.getElementById("texto-verde-informes");
 let mensajeRojo = document.getElementById("mensaje-rojo-informes");
 let textoRojo = document.getElementById("texto-rojo-informes");
 let arrayDatosString = localStorage.getItem('INFORMES');
-let dataFiltrar;
+let cuadro = document.getElementById('sec-contenido'); //todo el cuadro
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,6 +19,7 @@ function mostrarMensajes (){
         mensajeAmarillo.style.display="none";
         mensajeRojo.style.display="none";
         mensajeVerde.style.display="none";
+        cuadro.style.display = "block";
         verificarLocal();
     } else {
         // Si el localStorage está vacío, muestra mensaje amarillo
@@ -26,13 +27,13 @@ function mostrarMensajes (){
         mensajeRojo.style.display="none";
         mensajeVerde.style.display="none";
         textoAmarillo.innerHTML = "No hay informes guardados para mostrar."
+        cuadro.style.display = "none";
     }
 }
 
 async function verificarLocal() {
     let arrayDatosString = localStorage.getItem('INFORMES');
     let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Verifica si la cadena existe y la divide en un array llamado arrayDatos usando la coma como separador. Si la cadena no existe, se asigna un array vacío
-    let distrito = document.getElementById("titulo-provincias");
     let svgDistrito = document.getElementById("svg-provincias");
     let titulo = document.getElementById('titulo');
     let subtitulo = document.getElementById('subtitulo')
@@ -55,6 +56,7 @@ async function verificarLocal() {
             let mesaId = datosSeparados[8];
 
             fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvinciaElegida}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -65,6 +67,10 @@ async function verificarLocal() {
                 .then(data => {
                     dataFiltrar = data
                     console.log(dataFiltrar);
+
+                    dataFiltrar.estadoRecuento.forEach(valores => {
+                        //crear elementos dinamicamente pero la aPI NO FUNCIONA
+                    })
 
                     //MAPA
                     distrito.innerHTML = distritoElegido;
