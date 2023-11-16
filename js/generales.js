@@ -311,7 +311,7 @@ informes.onclick = function () {
         let nuevoRegistro = [
             valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
             valorDistritoId, valorSeccionProvincialId, valorSeccionId,
-            valorCircuitoId, valorMesaId
+            valorCircuitoId, valorMesaId, cargoElegido, distritoElegido, seccionElegida
         ].join(','); //separa los valores como decia en el tp con |
 
         //verificar si ya esta incluida

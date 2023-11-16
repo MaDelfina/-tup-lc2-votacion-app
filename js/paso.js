@@ -12,13 +12,15 @@ let cargoElegido;
 let categoriaId;
 let distritoElegido;
 let idDistritoElegido;
-let valorOculto
+let valorOculto;
 let idSeccionElegida;
 let seccionElegida;
 let dataFiltrar;
-let subtitulo = document.getElementById('subtitulo');
+let subtituloPaso = document.getElementById('subtitulo');
 let informes = document.getElementById("boton-informe") //botón de informes
-let titulo = document.getElementById('titulo');
+let tituloPaso = document.getElementById('titulo');
+
+
 
 //COMBOS
 seleccionAnio.onchange = function () {
@@ -160,8 +162,8 @@ filtrar.onclick = async function () {
         mensajeAmarillo.style.display = "block";
         textoAmarillo.innerText = `Por favor complete los campos: ${camposFaltantes.join(',')}.`; //${} permite agregar variables -- camposFaltantes.join(,) va a mostrar los componentes de la variable array separados por una coma
         sectionContenido.style.display = "none";
-        titulo.style.display = "none";
-        subtitulo.style.display = "none";
+        tituloPaso.style.display = "none";
+        subtituloPaso.style.display = "none";
         mostrarTitulo();
         fijarFooter();
 
@@ -169,8 +171,8 @@ filtrar.onclick = async function () {
         footer.style.position = "relative";
         mensajeAmarillo.style.display = "none";
         tituloInicio.style.display = "none";
-        titulo.style.display = "block";
-        subtitulo.style.display = "block";
+        tituloPaso.style.display = "block";
+        subtituloPaso.style.display = "block";
         seccionProvincialId = "" //lo vacío antes hice un if para tomar el valor del id de sección provincial cuando no fuera "null", pero cuando le pase como parametro un número y no vació me devolvía todo 0 asi que va siempre ""
 
         console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
@@ -189,8 +191,8 @@ filtrar.onclick = async function () {
                 //imprimo JSON en consola
                 dataFiltrar = data
                 sectionContenido.style.display = "block";
-                titulo.innerHTML = `Elecciones ${añoElegido} | Paso`;
-                subtitulo.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
+                tituloPaso.innerHTML = `Elecciones ${añoElegido} | Paso`;
+                subtituloPaso.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
 
                 informes.addEventListener("mouseover", function () { //función para que el cursor cambie al pasar por el botón filtrar. 
                     informes.style.cursor = "pointer";
@@ -295,8 +297,8 @@ filtrar.onclick = async function () {
                 }
             })
             .catch(error => {
-                titulo.innerHTML = `Elecciones ${añoElegido} | Paso`;
-                subtitulo.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
+                tituloPaso.innerHTML = `Elecciones ${añoElegido} | Paso`;
+                subtituloPaso.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
                 mensajeRojoTitulo.style.display = "block";
                 textoRojoTitulo.innerHTML = error.message
                 mensajeRojoTitulo.style.margin = "40px 40%";
@@ -318,7 +320,6 @@ informes.onclick = function () {
     let valorMesaId = mesaId;
     let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
     let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
-
     //verifica si son null y tira el cartel de error
     if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
         valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
@@ -329,7 +330,7 @@ informes.onclick = function () {
         let nuevoRegistro = [
             valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
             valorDistritoId, valorSeccionProvincialId, valorSeccionId,
-            valorCircuitoId, valorMesaId
+            valorCircuitoId, valorMesaId, cargoElegido, distritoElegido, seccionElegida
         ].join('|'); //separa los valores como decia en el tp con |
 
         //verificar si ya esta incluida

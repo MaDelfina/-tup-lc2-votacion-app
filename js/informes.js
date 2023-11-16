@@ -8,8 +8,10 @@ let arrayDatosString = localStorage.getItem('INFORMES');
 let cuadro = document.getElementById('sec-contenido'); //todo el cuadro
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
     mostrarMensajes();
+    console.log(arrayDatosString)
 })
 
 function mostrarMensajes (){
@@ -34,6 +36,7 @@ function mostrarMensajes (){
 async function verificarLocal() {
     let arrayDatosString = localStorage.getItem('INFORMES');
     let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Verifica si la cadena existe y la divide en un array llamado arrayDatos usando la coma como separador. Si la cadena no existe, se asigna un array vacío
+    console.log(arrayDatos)
     let svgDistrito = document.getElementById("svg-provincias");
     let titulo = document.getElementById('titulo');
     let subtitulo = document.getElementById('subtitulo')
@@ -41,7 +44,6 @@ async function verificarLocal() {
     //Verificar si hay elementos en arrayDatos
     if (arrayDatos.length > 0) {
         for (let i = 0; i < arrayDatos.length; i++) {
-
             let registro = arrayDatos[i];
             let datosSeparados = registro.split('|');
 
@@ -49,13 +51,16 @@ async function verificarLocal() {
             let tipoRecuento = datosSeparados[1];
             let tipoEleccion = datosSeparados[2];
             let categoriaId = datosSeparados[3];
-            let distritoElegido = datosSeparados[4];
+            let distritoElegidoId = datosSeparados[4];
             let seccionProvinciaElegida = datosSeparados[5];
-            let idSeccionElegida = datosSeparados[6];
+            let idSeccionElegidaId = datosSeparados[6];
             let circuitoId = datosSeparados[7];
             let mesaId = datosSeparados[8];
+            let cargoElegido = datosSeparados[9];
+            let distritoElegido = datosSeparados[10];
+            let seccionElegida = datosSeparados[11];
 
-            fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvinciaElegida}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+            fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoElegidoId}&seccionProvincialId=${seccionProvinciaElegida}&seccionId=${idSeccionElegidaId}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
 
                 .then(response => {
                     if (response.ok) {
@@ -68,17 +73,20 @@ async function verificarLocal() {
                     dataFiltrar = data
                     console.log(dataFiltrar);
 
-                    //dataFiltrar.estadoRecuento.forEach(valores => {
-                        //crear elementos dinamicamente pero la aPI NO FUNCIONA
-                    //})
-
+                    
                     //MAPA
-                    //distrito.innerHTML = distritoElegido;
-                    //svgDistrito.innerHTML = mapas[distritoElegido]; //me muestra el numero en el que se encuentra el mapa
+                    svgDistrito.innerHTML = distritoElegido;
+                    svgDistrito.innerHTML = mapas[distritoElegido]; //me muestra el numero en el que se encuentra el mapa
 
                     //TITULO Y SUBTITULO
-                    titulo.innerHTML = `Elecciones ${añoElegido} | Paso`; //esto funcina
-                    subtitulo.innerHTML = `${añoElegido} > Paso > ${tipoEleccion} > ${distritoElegido} > ${idSeccionElegida}`; //me muestra los numero en vez de los valores
+                    if (tipoEleccion == "2"){
+                        titulo.innerHTML = `Elecciones ${añoElegido} | Generales`; //esto funcina
+                        subtitulo.innerHTML = `${añoElegido} > Generales > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
+                    }
+                    else{
+                        titulo.innerHTML = `Elecciones ${añoElegido} | Paso`; //esto funcina
+                        subtitulo.innerHTML = `${añoElegido} > Paso > ${cargoElegido} > ${distritoElegido} > ${seccionElegida}`;
+                    }
 
                 })
                 .catch(error => {
