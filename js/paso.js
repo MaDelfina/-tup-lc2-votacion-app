@@ -20,8 +20,6 @@ let subtituloPaso = document.getElementById('subtitulo');
 let informes = document.getElementById("boton-informe") //botón de informes
 let tituloPaso = document.getElementById('titulo');
 
-
-
 //COMBOS
 seleccionAnio.onchange = function () {
     if (seleccionAnio.value !== 'año') { //llama a la función borrar datos
@@ -347,4 +345,4 @@ informes.onclick = function () {
             textoVerde.innerHTML = 'La operación fue exitosa. Consulta agregada al informe.';
         }
     }
-}
+}  
