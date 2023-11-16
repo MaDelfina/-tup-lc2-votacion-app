@@ -68,13 +68,13 @@ async function verificarLocal() {
                     dataFiltrar = data
                     console.log(dataFiltrar);
 
-                    dataFiltrar.estadoRecuento.forEach(valores => {
+                    //dataFiltrar.estadoRecuento.forEach(valores => {
                         //crear elementos dinamicamente pero la aPI NO FUNCIONA
-                    })
+                    //})
 
                     //MAPA
-                    distrito.innerHTML = distritoElegido;
-                    svgDistrito.innerHTML = mapas[distritoElegido]; //me muestra el numero en el que se encuentra el mapa
+                    //distrito.innerHTML = distritoElegido;
+                    //svgDistrito.innerHTML = mapas[distritoElegido]; //me muestra el numero en el que se encuentra el mapa
 
                     //TITULO Y SUBTITULO
                     titulo.innerHTML = `Elecciones ${añoElegido} | Paso`; //esto funcina
