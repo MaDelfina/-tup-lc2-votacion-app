@@ -17,6 +17,7 @@ let votos;
 
 document.addEventListener("DOMContentLoaded", function () {
     mostrarMensajes();
+    localStorage.clear()
 })
 
 function mostrarMensajes (){
@@ -35,14 +36,14 @@ function mostrarMensajes (){
         mensajeVerde.style.display="none";
         textoAmarillo.innerHTML = "No hay informes guardados para mostrar."
         tablaCompleta.style.display = "none";
-        fijarFooter()
+        //fijarFooter()
     }
 }
 
-function fijarFooter() {
+/*function fijarFooter() {
     footer.style.position = 'fixed';
     footer.style.bottom = '0';
-}
+}*/
 
 async function verificarLocal() {
     let arrayDatosString = localStorage.getItem('INFORMES');
@@ -88,10 +89,11 @@ async function verificarLocal() {
                         nombreAgrupacion = agrupacion.nombreAgrupacion
                         votosPorcentaje = agrupacion.votosPorcentaje
                         votos = agrupacion.votos
-                    })
+                
 
                     let recuadroInformes = document.createElement('div');
                     recuadroInformes.innerHTML = `
+                        <tr>
                             <th class="cvg">
                                 <div id="svg-provincias">${mapa}</div>
                             </th>
@@ -147,12 +149,14 @@ async function verificarLocal() {
                                     </div>
                                 </div>
                             </th>
+                        </tr>
                     `
                     cuadro.append(recuadroInformes)
                 })
                 .catch(error => {
                     console.error('Error al realizar la consulta a la API:', error);
                 });
+            })
         }
     }
 }
