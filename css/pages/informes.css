@@ -245,15 +245,14 @@ tr.encabezado {
     font-weight: normal;
 }
 
-.juntos p,
-.pj p,
-.porcentaje-votos p{
-    font-size:12px;
+.nombre-agrupacion-p,
+.porcentaje-votos-p,
+.numero-votos{
+    font-size:10px;
     margin: 0px 7px 7px 7px;
 }
 
-.juntos,
-.pj{
+.nombre-agrupacion{
     display:flex;
     justify-content: space-around;
     padding: 5px 5px 10px 5px
