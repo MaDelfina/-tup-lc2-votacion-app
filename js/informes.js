@@ -47,10 +47,12 @@ async function verificarLocal() {
     //Verificar si hay elementos en arrayDatos
     if (arrayDatos.length > 0) {
         let cuadro = document.getElementById('recuadro-completo');
-
+        
         for (let i = 0; i < arrayDatos.length; i++) {
+            console.log(arrayDatos[i])
             let registro = arrayDatos[i];
             let datosSeparados = registro.split('|');
+            console.log(datosSeparados);
 
             let añoElegido = datosSeparados[0];
             let tipoRecuento = datosSeparados[1];
@@ -64,18 +66,20 @@ async function verificarLocal() {
             let cargoElegido = datosSeparados[9];
             let distritoElegido = datosSeparados[10];
             let seccionElegida = datosSeparados[11];
-
-            fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoElegidoId}&seccionProvincialId=${seccionProvinciaElegida}&seccionId=${idSeccionElegidaId}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+    
+            await fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoElegidoId}&seccionProvincialId=${seccionProvinciaElegida}&seccionId=${idSeccionElegidaId}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
 
                 .then(response => {
                     if (response.ok) {
+                        console.log(response)
                         return response.json();
                     } else {
                         throw new Error('Error al obtener los datos del servidor. ');
                     }
                 })
-                .then(data => {
-                    dataFiltrar = data
+                
+                .then(response => {
+                    dataFiltrar = response
                     console.log(dataFiltrar)
                     let fila = document.createElement('tr');
                     fila.innerHTML += `

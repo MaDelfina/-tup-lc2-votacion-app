@@ -305,44 +305,60 @@ filtrar.onclick = async function () {
     }
 }
 
-//BOTON INFORMES
-informes.onclick = function () {
-    let valorAño = añoElegido.toString();
-    let valorTipoRecuento = tipoRecuento.toString();
-    let valorTipoEleccion = tipoEleccion.toString();
-    let valorCategoriaId = categoriaId.toString();
-    let valorDistritoId = idDistritoElegido.toString();
-    let valorSeccionProvincialId = '';
-    let valorSeccionId = idSeccionElegida.toString();
-    let valorCircuitoId = circuitoId;
-    let valorMesaId = mesaId;
-    let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
-    let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
+ informes.onclick = function () {
+     let valorAño = añoElegido.toString();
+     let valorTipoRecuento = tipoRecuento.toString();
+     let valorTipoEleccion = tipoEleccion.toString();
+     let valorCategoriaId = categoriaId.toString();
+     let valorDistritoId = idDistritoElegido.toString();
+     let valorSeccionProvincialId = '';
+     let valorSeccionId = idSeccionElegida.toString();
+     let valorCircuitoId = circuitoId;
+     let valorMesaId = mesaId;
+     let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
+     let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
     //verifica si son null y tira el cartel de error
-    if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
-        valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
-        valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {
-        mensajeRojo.style.display = 'block';
-        textoRojo.innerHTML = 'Hubo un error al almacenar los datos.';
-    } else {
-        let nuevoRegistro = [
-            valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
-            valorDistritoId, valorSeccionProvincialId, valorSeccionId,
-            valorCircuitoId, valorMesaId, cargoElegido, distritoElegido, seccionElegida
-        ].join('|'); //separa los valores como decia en el tp con |
+         if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
+         valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
+         valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {
+         mensajeRojo.style.display = 'block';
+         textoRojo.innerHTML = 'Hubo un error al almacenar los datos.';
+     } else {
+         let nuevoRegistro = [
+             valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
+             valorDistritoId, valorSeccionProvincialId, valorSeccionId,
+             valorCircuitoId, valorMesaId, cargoElegido, distritoElegido, seccionElegida
+         ].join('|'); //separa los valores como decia en el tp con |
 
-        //verificar si ya esta incluida
-        if (arrayDatos.includes(nuevoRegistro)) {
-            mensajeAmarillo.style.display = 'block';
-            textoAmarillo.innerHTML = 'La información ya se encuentra agregada al informe. Por favor, seleccione nueva información.';
-            mensajeVerde.style.display = 'none';
-        } else {
-            // Agrega nuevoRegistro al arrayDatos y actualizar localStorage
-            arrayDatos.push(nuevoRegistro);
-            arrayDatosString = arrayDatos.join(',');
-            localStorage.setItem('INFORMES', arrayDatosString); //almacena la informacion
-            mensajeVerde.style.display = 'block';
-            textoVerde.innerHTML = 'La operación fue exitosa. Consulta agregada al informe.';
-        }
-    }
-}  
+         //verificar si ya esta incluida
+         if (arrayDatos.includes(nuevoRegistro)) {
+             mensajeAmarillo.style.display = 'block';
+             textoAmarillo.innerHTML = 'La información ya se encuentra agregada al informe. Por favor, seleccione nueva información.';
+             mensajeVerde.style.display = 'none';
+         } else {
+             // Agrega nuevoRegistro al arrayDatos y actualizar localStorage
+             arrayDatos.push(nuevoRegistro);
+             arrayDatosString = arrayDatos.join(',');
+             localStorage.setItem('INFORMES', arrayDatosString); //almacena la informacion
+             mensajeVerde.style.display = 'block';
+             textoVerde.innerHTML = 'La operación fue exitosa. Consulta agregada al informe.';
+         }
+     } 
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

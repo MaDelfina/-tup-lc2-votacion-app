@@ -177,7 +177,7 @@ filtrar.onclick = async function () {
 
         console.log("año eleccion:" + añoElegido + "distrito id:" + idDistritoElegido + "seccion id:" + idSeccionElegida + "seccion provincial id:" + seccionProvincialId + "id cargo" + categoriaId)
 
-        fetch(`https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
+        fetch(`https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${idDistritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${idSeccionElegida}&circuitoId=${circuitoId}&mesaId=${mesaId}`)
             .then(response => {
                 console.log(response)
                 if (response.ok) {
@@ -299,10 +299,9 @@ informes.onclick = function () {
     let valorCircuitoId = circuitoId;
     let valorMesaId = mesaId;
     let arrayDatosString = localStorage.getItem('INFORMES'); //Se obtiene la cadena almacenada en el LocalStorage bajo la clave 'INFORMES'
-    let arrayDatos = arrayDatosString ? arrayDatosString.split('|') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
-
-    //verifica si son null y tira el cartel de error
-    if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
+    let arrayDatos = arrayDatosString ? arrayDatosString.split(',') : []; //Se verifica si la cadena arrayDatosString tiene algún valor, si tiene un valor, se divide la cadena en un array utilizando la coma como separador, si no tiene valor, se asigna un array vacío.
+   //verifica si son null y tira el cartel de error
+        if (valorAño == null || valorTipoRecuento == null || valorTipoEleccion == null ||
         valorCategoriaId == null || valorDistritoId == null || valorSeccionProvincialId == null ||
         valorSeccionId == null || valorCircuitoId == null || valorMesaId == null) {
         mensajeRojo.style.display = 'block';
@@ -312,7 +311,7 @@ informes.onclick = function () {
             valorAño, valorTipoRecuento, valorTipoEleccion, valorCategoriaId,
             valorDistritoId, valorSeccionProvincialId, valorSeccionId,
             valorCircuitoId, valorMesaId, cargoElegido, distritoElegido, seccionElegida
-        ].join(','); //separa los valores como decia en el tp con |
+        ].join('|'); //separa los valores como decia en el tp con |
 
         //verificar si ya esta incluida
         if (arrayDatos.includes(nuevoRegistro)) {
@@ -322,10 +321,10 @@ informes.onclick = function () {
         } else {
             // Agrega nuevoRegistro al arrayDatos y actualizar localStorage
             arrayDatos.push(nuevoRegistro);
-            arrayDatosString = arrayDatos.join('|');
+            arrayDatosString = arrayDatos.join(',');
             localStorage.setItem('INFORMES', arrayDatosString); //almacena la informacion
             mensajeVerde.style.display = 'block';
             textoVerde.innerHTML = 'La operación fue exitosa. Consulta agregada al informe.';
         }
-    }
+    } 
 }
